@@ -1,0 +1,64 @@
+@import "../../Styles/common.scss";
+
+.TwoNineFeed {
+  @include center;
+}
+
+.TwoNineTV {
+  margin: 10px;
+
+  .feedContainer {
+    width: 100%;
+
+    .feedContent {
+      width: 350px;
+
+      .feedText {
+        margin: 10px 0;
+
+        .feedProfile {
+          display: flex;
+          .profile {
+            width: 80px;
+          }
+
+          .feedProfileText {
+            @include rowCenter;
+            flex-direction: column;
+
+            .brandName {
+              font-weight: bold;
+            }
+            .brandOffical {
+              margin-top: 5px;
+              font-size: 15px;
+            }
+          }
+        }
+        .feedComment {
+          margin: 15px 0;
+        }
+        .feedTag {
+          font-weight: bold;
+        }
+        .likeIcon {
+          margin-top: 20px;
+          color: rgba(0, 0, 0, 0.4);
+          .likeNumber {
+            margin-left: 5px;
+          }
+        }
+      }
+      .container {
+        width: 335px;
+        height: 595px;
+        overflow: hidden;
+
+        .feedImg {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+}
