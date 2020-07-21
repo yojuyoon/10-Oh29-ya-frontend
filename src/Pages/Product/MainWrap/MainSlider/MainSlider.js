@@ -13,7 +13,7 @@ class MainSlider extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 1000,
+      autoplaySpeed: 2000,
       arrows: true,
     };
 
@@ -31,6 +31,9 @@ class MainSlider extends React.Component {
           </div>
           <div>
             <img src="http://img.29cm.co.kr/next-product/2020/07/16/629473ec8d674ed594d4e96f7155a82a_20200716233235.jpg?width=2000" />
+          </div>
+          <div>
+            <img src="http://img.29cm.co.kr/next-product/2020/07/16/e7292da155b14d4c9f862a4792753fae_20200716233732.jpg?width=2000" />
           </div>
           <div>
             <img src="http://img.29cm.co.kr/next-product/2020/07/16/e7292da155b14d4c9f862a4792753fae_20200716233732.jpg?width=2000" />

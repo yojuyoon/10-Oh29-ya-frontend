@@ -3,6 +3,7 @@ import "./MainWrap.scss";
 import MainLeftNav from "./MainLeftNav/MainLeftNav";
 import MainSlider from "./MainSlider/MainSlider";
 import CategorySection from "./CategorySection/CategorySection";
+import CategoryTwoBanner from "./CategoryTwoBanner/CategoryTwoBanner";
 
 class MainWrap extends React.Component {
   render() {
@@ -18,6 +19,7 @@ class MainWrap extends React.Component {
             </div>
             <div className="categorySection">
               <CategorySection />
+              <CategoryTwoBanner />
             </div>
           </div>
         </div>

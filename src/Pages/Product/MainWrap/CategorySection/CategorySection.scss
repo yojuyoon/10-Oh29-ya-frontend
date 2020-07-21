@@ -1,7 +1,34 @@
+@mixin toGoBox {
+  .btnContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 19px;
+
+    .btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 145px;
+      height: 12px;
+      padding: 15px;
+      color: #b0b0b0;
+      border: 1px solid lightgray;
+
+      .arrow {
+        width: 33px;
+        height: 7px;
+        background: url("https://img.29cm.co.kr/next29cm/ico_top_feed.png") 0 0;
+        background-size: 33px 7px;
+      }
+    }
+  }
+}
+
 .categoryWrap {
   display: flex;
   justify-content: center;
   padding-top: 58px;
+  padding-bottom: 80px;
 
   .categoryTop {
     width: 1100px;
@@ -28,19 +55,26 @@
         }
 
         .contentBox {
-          .div1 {
+          .title {
             margin-top: 15px;
             font-size: 30px;
             font-weight: bold;
             line-height: 40px;
           }
 
-          .div2 {
+          .content {
             margin-top: 10px;
             font-size: 15px;
             text-align: left;
             line-height: 1.7;
           }
+        }
+
+        @include toGoBox();
+
+        .btnContainer {
+          display: flex;
+          justify-content: flex-start;
         }
       }
     }
@@ -65,7 +99,7 @@
           }
 
           .contentBox {
-            .div1 {
+            .title {
               margin-top: 15px;
               font-size: 30px;
               font-weight: bold;
@@ -73,12 +107,14 @@
               text-align: right;
             }
 
-            .div2 {
+            .content {
               margin-top: 10px;
               font-size: 15px;
               text-align: right;
               line-height: 1.7;
             }
+
+            @include toGoBox();
           }
         }
       }
@@ -107,18 +143,25 @@
               margin-left: 40px;
               padding-right: 50px;
 
-              .div1 {
+              .title {
                 margin-top: 15px;
                 font-size: 30px;
                 font-weight: bold;
                 line-height: 40px;
               }
 
-              .div2 {
+              .content {
                 margin-top: 10px;
                 font-size: 15px;
                 line-height: 1.7;
               }
+            }
+
+            @include toGoBox();
+
+            .btnContainer {
+              display: flex;
+              justify-content: flex-start;
             }
           }
         }

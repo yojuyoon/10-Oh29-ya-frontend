@@ -1,7 +1,31 @@
 import React from "react";
+import { Route, Link } from "react-router-dom";
 import "./MainLeftNav.scss";
+import LeftNav from "./LeftNav/LeftNav";
 
 class MainLeftNav extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      categoryData: [
+        "NEW",
+        "BEST",
+        "ONlY 29CM",
+        "상의",
+        "셔츠",
+        "바지",
+        "니트",
+        "신발",
+        "아우터",
+        "가방, 지갑",
+        "액세서리",
+        "아이웨어",
+        "주얼리",
+        "수영복",
+      ],
+    };
+  }
+
   render() {
     return (
       <>
@@ -15,48 +39,9 @@ class MainLeftNav extends React.Component {
               </li>
               <li className="categoryList">
                 <ul>
-                  <li>
-                    <button>NEW</button>
-                  </li>
-                  <li>
-                    <button>BEST</button>
-                  </li>
-                  <li>
-                    <button>ONlY 29CM</button>
-                  </li>
-                  <li>
-                    <button>상의</button>
-                  </li>
-                  <li>
-                    <button>셔츠</button>
-                  </li>
-                  <li>
-                    <button>바지</button>
-                  </li>
-                  <li>
-                    <button>니트</button>
-                  </li>
-                  <li>
-                    <button>신발</button>
-                  </li>
-                  <li>
-                    <button>아우터</button>
-                  </li>
-                  <li>
-                    <button>가방, 지갑</button>
-                  </li>
-                  <li>
-                    <button>액세서리</button>
-                  </li>
-                  <li>
-                    <button>아이웨어</button>
-                  </li>
-                  <li>
-                    <button>주얼리</button>
-                  </li>
-                  <li>
-                    <button>수영복</button>
-                  </li>
+                  {this.state.categoryData.map((item, i) => {
+                    return <LeftNav item={item} key={i} />;
+                  })}
                 </ul>
               </li>
             </ul>
