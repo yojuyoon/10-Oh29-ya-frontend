@@ -23,7 +23,6 @@ class Login extends React.Component {
       .then((res) => res.json())
       .then((res) => {
         if (res.token) {
-          // const autoLoginChecked = localStorage.getItem("autoChecked");
           if (this.state.checked) {
             localStorage.setItem("token", res.token);
             localStorage.setItem("autoChecked", this.state.checked);
@@ -54,7 +53,6 @@ class Login extends React.Component {
   render() {
     const { handlerInput, handlerlogin, handlerChecked } = this;
     const { checked } = this.state;
-    console.log(checked);
 
     return (
       <div className="LoginContainer">
@@ -141,4 +139,5 @@ class Login extends React.Component {
     );
   }
 }
+
 export default withRouter(Login);
