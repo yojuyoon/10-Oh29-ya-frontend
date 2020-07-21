@@ -1,7 +1,9 @@
 @import "../../Styles/common.scss";
 
 .TwentyNineTVFeed {
+  margin-top: 300px;
   @include center;
+  flex-wrap: wrap;
 
   .TwentyNineTV {
     margin: 10px;
@@ -23,7 +25,9 @@
             display: flex;
 
             .profile {
-              width: 80px;
+              width: 60px;
+              margin-right: 10px;
+              border-radius: 50%;
               cursor: pointer;
             }
 
@@ -68,7 +72,7 @@
 
         .container {
           width: 335px;
-          height: 595px;
+          height: 565px;
           overflow: hidden;
 
           .feedImg {

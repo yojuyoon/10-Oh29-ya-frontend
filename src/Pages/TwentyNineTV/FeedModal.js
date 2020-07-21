@@ -1,44 +1,60 @@
 import React from "react";
+import SnsModal from "./SnsModal";
 import "./FeedModal.scss";
 
 class FeedModal extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      shareModal: false,
+    };
+  }
+
+  showReport = () => {
+    this.setState({
+      shareModal: true,
+    });
+  };
+
+  hideReport = () => {
+    this.setState({
+      shareModal: false,
+    });
+  };
+
   render() {
+    const { showReport, hideReport } = this;
+    const { hideModal, img, logo, brandName, text } = this.props;
     return (
       <div className="FeedModal">
+        {this.state.shareModal && <SnsModal hideReport={hideReport} />};
         <div className="leftBtn"></div>
         <div className="ModalContentContainer">
-          <button className="closeBtn">
+          <button onClick={hideModal} className="closeBtn">
             <img
               alt="closeBtn"
               src="https://img.29cm.co.kr/next29cm/media/btn_viewer.png"
             />
           </button>
           <div className="ModalContentImg">
-            <img
-              alt="contentImg"
-              className="contentImg"
-              src="https://img.29cm.co.kr/tvfeed/2020/07/20/adad1927a3c3498790fdad238f6ca695_20200720154143.jpeg"
-            />
+            <img alt="contentImg" className="contentImg" src={img} />
           </div>
+          <div className="progressBar"></div>
           <div className="rightContents">
             <div className="profile">
               <div className="info">
                 <div className="logo">
-                  <img
-                    alt="profileLogo"
-                    className="profileLogo"
-                    src="https://img.29cm.co.kr/media/profile/2020/04/10/343afabc8826446f9c735fc3a2ef5fd6_20200410132631.jpg"
-                  />
+                  <img alt="profileLogo" className="profileLogo" src={logo} />
                 </div>
                 <div className="profileName">
-                  <span className="brandName">BikerStalet</span>
+                  <span className="brandName">{brandName}</span>
                   <span className="brandOfficial">Official</span>
                 </div>
               </div>
               <div className="moreBtn">•••</div>
             </div>
             <div className="contents">
-              <div className="text">Noelle Small. Beige</div>
+              <div className="text">{text}</div>
               <div className="tag">
                 <span>#노엘 </span>
                 <span>#노엘스몰 </span>
@@ -56,7 +72,7 @@ class FeedModal extends React.Component {
                   <span className="number">1</span>
                 </i>
               </div>
-              <div className="shareIcon">
+              <div onClick={showReport} className="shareIcon">
                 <i class="fas fa-share-alt" />
               </div>
             </div>

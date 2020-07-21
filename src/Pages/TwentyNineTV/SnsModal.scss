@@ -1,0 +1,70 @@
+@import "../../Styles/common.scss";
+
+.SnsModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  @include center;
+  background-color: rgba(45, 45, 45, 0.7);
+  z-index: 999;
+
+  .SnsModalContainer {
+    position: relative;
+    width: 500px;
+    height: 291px;
+    background-color: $whiteColor;
+    @include columnCenter;
+
+    .closeBtn {
+      position: absolute;
+      top: -80px;
+      right: 0px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      img {
+        width: 55px;
+      }
+    }
+
+    .title {
+      width: 500px;
+      height: 91px;
+      @include center;
+      border-bottom: 1px solid rgba(45, 45, 45, 0.3);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .snsLogo {
+      height: 200px;
+      @include center;
+
+      .kakao {
+        color: rgb(255, 217, 0);
+      }
+
+      .facebook {
+        color: rgb(54, 78, 214);
+      }
+
+      .twitter {
+        color: rgb(18, 174, 247);
+      }
+
+      .url {
+        color: rgb(49, 49, 48);
+      }
+
+      i {
+        margin: 14px;
+        font-size: 35px;
+        cursor: pointer;
+      }
+    }
+  }
+}

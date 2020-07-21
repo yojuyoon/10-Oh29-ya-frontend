@@ -1,33 +1,66 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import FeedModal from "./FeedModal";
 import "./TwentyNineTV.scss";
 
 class TwentyNineTVFeedComponent extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      modalStatus: false,
+    };
+  }
+
+  showModal = () => {
+    this.setState({ modalStatus: true });
+    document.body.style.overflow = "hidden";
+    // this.props.getIndex(this.props.index);
+  };
+
+  hideModal = () => {
+    this.setState({ modalStatus: false });
+    document.body.style.overflow = "unset";
+  };
+
   render() {
+    const { showModal, hideModal } = this;
+    const { modalStatus } = this.state;
+    const { img, logo, brandName, text, index } = this.props;
     return (
       <>
         <section className="TwentyNineTV">
+          {modalStatus && (
+            <FeedModal
+              img={img}
+              logo={logo}
+              text={text}
+              brandName={brandName}
+              index={index}
+              hideModal={hideModal}
+            />
+          )}
           <div className="feedContainer">
             <div className="feedContent">
               <div className="container">
-                <img alt="feed" className="feedImg" src={this.props.img} />
+                <img
+                  onClick={showModal}
+                  alt="feed"
+                  className="feedImg"
+                  src={img}
+                />
               </div>
               <div className="feedText">
                 <div className="feedProfile">
-                  <img
-                    alt="feedProfile"
-                    className="profile"
-                    src={this.props.logo}
-                  />
+                  <img alt="feedProfile" className="profile" src={logo} />
                   <div className="feedProfileText">
-                    <span className="brandName">{this.props.brandName}</span>
+                    <span className="brandName">{brandName}</span>
                     <span className="brandOffical">
                       <span>✹</span>Official
                     </span>
                   </div>
                 </div>
                 <div className="feedComment">
-                  <p>독특하고 특별한 컬러의 카키, 노엘 스몰 카키</p>
+                  <p>{text}</p>
                 </div>
                 <div className="feedTag">
                   <span>#2Way </span>
