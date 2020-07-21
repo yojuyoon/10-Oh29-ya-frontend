@@ -1,0 +1,128 @@
+.categoryWrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 58px;
+
+  .categoryTop {
+    width: 1100px;
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      width: 450px;
+
+      .FeedTwo {
+        float: left;
+        padding-right: 40px;
+        margin-top: 180px;
+
+        img {
+          width: 100%;
+          margin-top: 34px;
+        }
+
+        .line {
+          width: 200px;
+          margin-left: -20px;
+          border-top: 3px solid black;
+        }
+
+        .contentBox {
+          .div1 {
+            margin-top: 15px;
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 40px;
+          }
+
+          .div2 {
+            margin-top: 10px;
+            font-size: 15px;
+            text-align: left;
+            line-height: 1.7;
+          }
+        }
+      }
+    }
+
+    .right {
+      width: 850px;
+
+      .right-top {
+        .FeedOne {
+          padding-left: 40px;
+
+          img {
+            width: 100%;
+            margin-top: 34px;
+          }
+
+          .line {
+            width: 200px;
+            float: right;
+            margin-right: -20px;
+            border-top: 3px solid black;
+          }
+
+          .contentBox {
+            .div1 {
+              margin-top: 15px;
+              font-size: 30px;
+              font-weight: bold;
+              line-height: 40px;
+              text-align: right;
+            }
+
+            .div2 {
+              margin-top: 10px;
+              font-size: 15px;
+              text-align: right;
+              line-height: 1.7;
+            }
+          }
+        }
+      }
+
+      .right-bottom {
+        .FeedThree {
+          margin-top: 120px;
+
+          .container {
+            display: flex;
+
+            img {
+              width: 100%;
+              margin-top: 34px;
+            }
+
+            .line {
+              width: 200px;
+              margin-left: -20px;
+              border-top: 3px solid black;
+            }
+
+            .contentBox {
+              display: flex;
+              align-items: flex-end;
+              margin-left: 40px;
+              padding-right: 50px;
+
+              .div1 {
+                margin-top: 15px;
+                font-size: 30px;
+                font-weight: bold;
+                line-height: 40px;
+              }
+
+              .div2 {
+                margin-top: 10px;
+                font-size: 15px;
+                line-height: 1.7;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

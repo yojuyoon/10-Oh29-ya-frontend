@@ -1,0 +1,30 @@
+.MainSlider {
+  .slick-arrow {
+    position: absolute;
+    z-index: 100;
+    width: 20px;
+  }
+
+  .slick-prev {
+    left: 300px;
+  }
+
+  .slick-prev:before {
+    content: url("/Images/left-solid.svg");
+    // font-size: 60px;
+    // color: grey;
+  }
+
+  .slick-next {
+    right: 50px;
+  }
+
+  .slick-next:before {
+    // color: grey;
+    content: url("/Images/right-solid.svg");
+  }
+
+  .slick-dots {
+    bottom: 25px;
+  }
+}
