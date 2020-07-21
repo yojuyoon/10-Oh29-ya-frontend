@@ -1,0 +1,82 @@
+@import "../../Styles/common.scss";
+
+.TwentyNineTVFeed {
+  @include center;
+
+  .TwentyNineTV {
+    margin: 10px;
+
+    .feedContainer {
+      width: 100%;
+
+      .feedContent {
+        width: 350px;
+
+        .container {
+          cursor: pointer;
+        }
+
+        .feedText {
+          margin: 10px 0;
+
+          .feedProfile {
+            display: flex;
+
+            .profile {
+              width: 80px;
+              cursor: pointer;
+            }
+
+            .feedProfileText {
+              @include rowCenter;
+              flex-direction: column;
+
+              .brandName {
+                font-weight: bold;
+                cursor: pointer;
+              }
+
+              .brandOffical {
+                margin-top: 5px;
+                font-size: 15px;
+                cursor: pointer;
+              }
+            }
+          }
+
+          .feedComment {
+            margin: 15px 0;
+          }
+
+          .feedTag {
+            font-weight: bold;
+
+            span {
+              cursor: pointer;
+            }
+          }
+
+          .likeIcon {
+            margin-top: 20px;
+            color: rgba(0, 0, 0, 0.4);
+
+            .likeNumber {
+              margin-left: 5px;
+            }
+          }
+        }
+
+        .container {
+          width: 335px;
+          height: 595px;
+          overflow: hidden;
+
+          .feedImg {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}

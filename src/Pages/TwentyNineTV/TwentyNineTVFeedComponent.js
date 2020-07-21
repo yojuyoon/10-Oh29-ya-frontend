@@ -1,12 +1,12 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import "./TwoNineTV.scss";
+import "./TwentyNineTV.scss";
 
-class TwonineTVFeedComponenet extends React.Component {
+class TwentyNineTVFeedComponent extends React.Component {
   render() {
     return (
       <>
-        <section className="TwoNineTV">
+        <section className="TwentyNineTV">
           <div className="feedContainer">
             <div className="feedContent">
               <div className="container">
@@ -18,7 +18,7 @@ class TwonineTVFeedComponenet extends React.Component {
                     alt="feedProfile"
                     className="profile"
                     src={this.props.logo}
-                  ></img>
+                  />
                   <div className="feedProfileText">
                     <span className="brandName">{this.props.brandName}</span>
                     <span className="brandOffical">
@@ -30,12 +30,12 @@ class TwonineTVFeedComponenet extends React.Component {
                   <p>독특하고 특별한 컬러의 카키, 노엘 스몰 카키</p>
                 </div>
                 <div className="feedTag">
-                  <span>#2Way</span>
-                  <span>#마스카라</span>
-                  <span>#롱래쉬</span>
+                  <span>#2Way </span>
+                  <span>#마스카라 </span>
+                  <span>#롱래쉬 </span>
                 </div>
                 <div className="likeIcon">
-                  <i class="far fa-heart"></i>
+                  <i class="far fa-heart" />
                   <span className="likeNumber">1</span>
                 </div>
               </div>
@@ -46,4 +46,4 @@ class TwonineTVFeedComponenet extends React.Component {
     );
   }
 }
-export default withRouter(TwonineTVFeedComponenet);
+export default withRouter(TwentyNineTVFeedComponent);

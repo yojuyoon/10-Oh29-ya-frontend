@@ -11,14 +11,14 @@ class FeedModal extends React.Component {
             <img
               alt="closeBtn"
               src="https://img.29cm.co.kr/next29cm/media/btn_viewer.png"
-            ></img>
+            />
           </button>
           <div className="ModalContentImg">
             <img
               alt="contentImg"
               className="contentImg"
               src="https://img.29cm.co.kr/tvfeed/2020/07/20/adad1927a3c3498790fdad238f6ca695_20200720154143.jpeg"
-            ></img>
+            />
           </div>
           <div className="rightContents">
             <div className="profile">
@@ -28,7 +28,7 @@ class FeedModal extends React.Component {
                     alt="profileLogo"
                     className="profileLogo"
                     src="https://img.29cm.co.kr/media/profile/2020/04/10/343afabc8826446f9c735fc3a2ef5fd6_20200410132631.jpg"
-                  ></img>
+                  />
                 </div>
                 <div className="profileName">
                   <span className="brandName">BikerStalet</span>
@@ -40,8 +40,14 @@ class FeedModal extends React.Component {
             <div className="contents">
               <div className="text">Noelle Small. Beige</div>
               <div className="tag">
-                #노엘
-                #노엘스몰#버킷백#데일리백#숄더백#크로스백#토트백#바이커스탈렛
+                <span>#노엘 </span>
+                <span>#노엘스몰 </span>
+                <span>#버킷백 </span>
+                <span>#데일리백 </span>
+                <span>#숄더백 </span>
+                <span>#크로스백 </span>
+                <span>#토트백 </span>
+                <span>#바이커스탈렛 </span>
               </div>
             </div>
             <div className="icons">
@@ -51,7 +57,7 @@ class FeedModal extends React.Component {
                 </i>
               </div>
               <div className="shareIcon">
-                <i class="fas fa-share-alt"></i>
+                <i class="fas fa-share-alt" />
               </div>
             </div>
             <div className="productContainer">
@@ -59,10 +65,10 @@ class FeedModal extends React.Component {
                 <span className="title">관련 상품 및 브랜드</span>
                 <div className="sideBtn">
                   <button className="left">
-                    <i class="fas fa-chevron-left"></i>
+                    <i class="fas fa-chevron-left" />
                   </button>
                   <button className="right">
-                    <i class="fas fa-chevron-right"></i>
+                    <i class="fas fa-chevron-right" />
                   </button>
                 </div>
               </div>
@@ -72,17 +78,17 @@ class FeedModal extends React.Component {
                     alt="product"
                     className="product"
                     src="https://img.29cm.co.kr/next-brand/2018/04/27/05e31d8d1ae1439888a0219cc25290ef_20180427184037.jpg"
-                  ></img>
+                  />
                   <img
                     alt="product"
                     className="product"
                     src="https://img.29cm.co.kr/next-brand/2018/04/27/05e31d8d1ae1439888a0219cc25290ef_20180427184037.jpg"
-                  ></img>
+                  />
                   <img
                     alt="product"
                     className="product"
                     src="https://img.29cm.co.kr/next-brand/2018/04/27/05e31d8d1ae1439888a0219cc25290ef_20180427184037.jpg"
-                  ></img>
+                  />
                 </div>
               </div>
             </div>
