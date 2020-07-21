@@ -16,7 +16,7 @@ class Login extends React.Component {
           />
           <input className="loginPw" placeholder="비밀번호" />
           <div className="autoLogin">
-            <input className="autoLoginBtn" type="checkbox"></input>
+            <input className="autoLoginBtn" type="checkbox" />
             <span>로그인 상태 유지</span>
           </div>
           <button className="loginBtn">로그인하기</button>
@@ -30,13 +30,21 @@ class Login extends React.Component {
           <p className="snsLoginTitle">SNS계정으로 로그인하기</p>
           <div className="snsLoginContainer">
             <div className="imgContainer">
-              <img className="logoImg" alt="logo" src="/Images/naverLogo.png" />
+              <img
+                className="logoImg"
+                alt="logo  naver"
+                src="/Images/naverLogo.png"
+              />
             </div>
             <p className="loginText">네이버로 로그인하기</p>
           </div>
           <div className="snsLoginContainer">
             <div className="imgContainer">
-              <img className="logoImg" alt="logo" src="/Images/kakaoLogo.png" />
+              <img
+                className="logoImg"
+                alt="logo  kakao"
+                src="/Images/kakaoLogo.png"
+              />
             </div>
             <p className="loginText">카카오로 로그인하기</p>
           </div>
@@ -44,7 +52,7 @@ class Login extends React.Component {
             <div className="imgContainer">
               <img
                 className="logoImg"
-                alt="logo"
+                alt="logo  facebook"
                 src="/Images/facebookLogo.png"
               />
             </div>
@@ -52,7 +60,11 @@ class Login extends React.Component {
           </div>
           <div className="snsLoginContainer">
             <div className="imgContainer">
-              <img className="logoImg" alt="logo" src="/Images/appleLogo.png" />
+              <img
+                className="logoImg"
+                alt="logo  apple"
+                src="/Images/appleLogo.png"
+              />
             </div>
             <p className="loginText">페이스북으로 로그인하기</p>
           </div>
