@@ -1,49 +1,19 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import FeedModal from "./FeedModal";
+// import FeedModal from "./FeedModal";
 import "./TwentyNineTV.scss";
 
 class TwentyNineTVFeedComponent extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      modalStatus: false,
-    };
-  }
-
-  showModal = () => {
-    this.setState({ modalStatus: true });
-    document.body.style.overflow = "hidden";
-    // this.props.getIndex(this.props.index);
-  };
-
-  hideModal = () => {
-    this.setState({ modalStatus: false });
-    document.body.style.overflow = "unset";
-  };
-
   render() {
-    const { showModal, hideModal } = this;
-    const { modalStatus } = this.state;
-    const { img, logo, brandName, text, index } = this.props;
+    const { onClick, img, logo, brandName, text } = this.props;
     return (
       <>
         <section className="TwentyNineTV">
-          {modalStatus && (
-            <FeedModal
-              img={img}
-              logo={logo}
-              text={text}
-              brandName={brandName}
-              index={index}
-              hideModal={hideModal}
-            />
-          )}
           <div className="feedContainer">
             <div className="feedContent">
               <div className="container">
                 <img
-                  onClick={showModal}
+                  onClick={onClick}
                   alt="feed"
                   className="feedImg"
                   src={img}
@@ -68,7 +38,7 @@ class TwentyNineTVFeedComponent extends React.Component {
                   <span>#롱래쉬 </span>
                 </div>
                 <div className="likeIcon">
-                  <i class="far fa-heart" />
+                  <i className="far fa-heart" />
                   <span className="likeNumber">1</span>
                 </div>
               </div>

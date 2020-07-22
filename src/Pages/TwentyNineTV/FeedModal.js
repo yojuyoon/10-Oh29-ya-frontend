@@ -13,6 +13,7 @@ class FeedModal extends React.Component {
   showReport = () => {
     this.setState({
       shareModal: true,
+      last: undefined,
     });
   };
 
@@ -24,11 +25,11 @@ class FeedModal extends React.Component {
 
   render() {
     const { showReport, hideReport } = this;
-    const { hideModal, img, logo, brandName, text } = this.props;
+    const { hideModal, data, idxPrevHandler, idxNextHandler } = this.props;
     return (
       <div className="FeedModal">
         {this.state.shareModal && <SnsModal hideReport={hideReport} />};
-        <div className="leftBtn"></div>
+        <div onClick={idxPrevHandler} className="leftBtn"></div>
         <div className="ModalContentContainer">
           <button onClick={hideModal} className="closeBtn">
             <img
@@ -37,24 +38,28 @@ class FeedModal extends React.Component {
             />
           </button>
           <div className="ModalContentImg">
-            <img alt="contentImg" className="contentImg" src={img} />
+            <img alt="contentImg" className="contentImg" src={data.imageUrl} />
           </div>
           <div className="progressBar"></div>
           <div className="rightContents">
             <div className="profile">
               <div className="info">
                 <div className="logo">
-                  <img alt="profileLogo" className="profileLogo" src={logo} />
+                  <img
+                    alt="profileLogo"
+                    className="profileLogo"
+                    src={data.logo}
+                  />
                 </div>
                 <div className="profileName">
-                  <span className="brandName">{brandName}</span>
+                  <span className="brandName">{data.brandName}</span>
                   <span className="brandOfficial">Official</span>
                 </div>
               </div>
               <div className="moreBtn">•••</div>
             </div>
             <div className="contents">
-              <div className="text">{text}</div>
+              <div className="text">{data.text}</div>
               <div className="tag">
                 <span>#노엘 </span>
                 <span>#노엘스몰 </span>
@@ -68,12 +73,12 @@ class FeedModal extends React.Component {
             </div>
             <div className="icons">
               <div className="favIcon">
-                <i class="far fa-heart">
+                <i className="far fa-heart">
                   <span className="number">1</span>
                 </i>
               </div>
               <div onClick={showReport} className="shareIcon">
-                <i class="fas fa-share-alt" />
+                <i className="fas fa-share-alt" />
               </div>
             </div>
             <div className="productContainer">
@@ -81,10 +86,10 @@ class FeedModal extends React.Component {
                 <span className="title">관련 상품 및 브랜드</span>
                 <div className="sideBtn">
                   <button className="left">
-                    <i class="fas fa-chevron-left" />
+                    <i className="fas fa-chevron-left" />
                   </button>
                   <button className="right">
-                    <i class="fas fa-chevron-right" />
+                    <i className="fas fa-chevron-right" />
                   </button>
                 </div>
               </div>
@@ -110,7 +115,7 @@ class FeedModal extends React.Component {
             </div>
           </div>
         </div>
-        <div className="rightBtn"></div>
+        <div className="rightBtn" onClick={idxNextHandler}></div>
       </div>
     );
   }
