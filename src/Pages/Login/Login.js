@@ -9,6 +9,32 @@ class Login extends React.Component {
     password: "",
     token: "",
     checked: false,
+    snsLogin: [
+      {
+        index: 1,
+        alt: "logo  naver",
+        src: "/Images/naverLogo.png",
+        text: "네이버로 로그인하기",
+      },
+      {
+        index: 2,
+        alt: "logo  kakao",
+        src: "/Images/kakaoLogo.png",
+        text: "카카오로 로그인하기",
+      },
+      {
+        index: 3,
+        alt: "logo  facebook",
+        src: "/Images/facebookLogo.png",
+        text: "페이스북으로 로그인하기",
+      },
+      {
+        index: 4,
+        alt: "logo  apple",
+        src: "/Images/appleLogo.png",
+        text: "Apple로 계속하기",
+      },
+    ],
   };
 
   handlerlogin = () => {
@@ -52,7 +78,7 @@ class Login extends React.Component {
 
   render() {
     const { handlerInput, handlerlogin, handlerChecked } = this;
-    const { checked } = this.state;
+    const { checked, snsLogin } = this.state;
 
     return (
       <div className="LoginContainer">
@@ -91,46 +117,14 @@ class Login extends React.Component {
             <p className="LoginNotText">비밀번호 재설정</p>
           </div>
           <p className="snsLoginTitle">SNS계정으로 로그인하기</p>
-          <div className="snsLoginContainer">
-            <div className="imgContainer">
-              <img
-                className="logoImg"
-                alt="logo  naver"
-                src="/Images/naverLogo.png"
-              />
+          {snsLogin.map(({ index, src, alt, text }) => (
+            <div key={index} className="snsLoginContainer">
+              <div className="imgContainer">
+                <img className="logoImg" alt={alt} src={src} />
+              </div>
+              <p className="loginText">{text}</p>
             </div>
-            <p className="loginText">네이버로 로그인하기</p>
-          </div>
-          <div className="snsLoginContainer">
-            <div className="imgContainer">
-              <img
-                className="logoImg"
-                alt="logo  kakao"
-                src="/Images/kakaoLogo.png"
-              />
-            </div>
-            <p className="loginText">카카오로 로그인하기</p>
-          </div>
-          <div className="snsLoginContainer">
-            <div className="imgContainer">
-              <img
-                className="logoImg"
-                alt="logo  facebook"
-                src="/Images/facebookLogo.png"
-              />
-            </div>
-            <p className="loginText">페이스북으로 로그인하기</p>
-          </div>
-          <div className="snsLoginContainer">
-            <div className="imgContainer">
-              <img
-                className="logoImg"
-                alt="logo  apple"
-                src="/Images/appleLogo.png"
-              />
-            </div>
-            <p className="loginText">Apple로 계속하기</p>
-          </div>
+          ))}
           <div className="unLogin">
             <p className="unLoginText">2018년 2월 이전 비회원 주문조회 {">"}</p>
           </div>
