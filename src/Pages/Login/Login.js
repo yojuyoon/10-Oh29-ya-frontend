@@ -8,16 +8,18 @@ class Login extends React.Component {
     email: "",
     password: "",
     token: "",
-    checked: "",
+    checked: false,
   };
 
   handlerlogin = () => {
+    const { email, password, token } = this.state;
+
     fetch("http://10.58.4.0:8000/account/sign-in", {
       method: "POST",
       body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
-        token: this.state.token,
+        email,
+        password,
+        token,
       }),
     })
       .then((res) => res.json())
@@ -60,13 +62,13 @@ class Login extends React.Component {
         <div className="loginBorder" />
         <div className="columnContainer">
           <input
-            className="loginId"
+            className="loginInput"
             name="email"
             onChange={handlerInput}
             placeholder="아이디 / 이메일 아이디 입력"
           />
           <input
-            className="loginPw"
+            className="loginInput"
             name="password"
             onChange={handlerInput}
             placeholder="비밀번호"
@@ -129,7 +131,7 @@ class Login extends React.Component {
                 src="/Images/appleLogo.png"
               />
             </div>
-            <p className="loginText">페이스북으로 로그인하기</p>
+            <p className="loginText">Apple로 계속하기</p>
           </div>
           <div className="unLogin">
             <p className="unLoginText">2018년 2월 이전 비회원 주문조회 {">"}</p>
