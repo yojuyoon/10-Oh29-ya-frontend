@@ -1,42 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { navData } from "../navData";
 import "./HeaderNav.scss";
 import "../../../Styles/common.scss";
 
 class Nav extends React.Component {
-  state = {
-    title: [
-      { index: 1, name: "Special-Order" },
-      { index: 2, name: "Showcase" },
-      { index: 3, name: "29TV" },
-      { index: 4, name: "PT" },
-      { index: 5, name: "Welove" },
-    ],
-    category: [
-      { index: 1, name: "Women" },
-      { index: 2, name: "ACC" },
-      { index: 3, name: "MEN" },
-      { index: 4, name: "BEAUTY" },
-      { index: 5, name: "TECH+" },
-      { index: 6, name: "CULTURE" },
-    ],
-    submenu: [
-      { index: 1, name: "Best" },
-      { index: 2, name: "Event" },
-      { index: 3, name: "Brand" },
-      { index: 4, name: "Lookbook" },
-    ],
-    icon: [
-      { index: 1, className: "fas fa-user", name: "MY PAGE" },
-      { index: 2, className: "fas fa-heart", name: "MY HEART" },
-      { index: 3, className: "fas fa-shopping-bag", name: "SHOPPING BAG" },
-      { index: 4, className: "fas fa-sign-in-alt", name: "LOGIN" },
-    ],
-  };
-
   render() {
-    const { title, category, submenu, icon } = this.state;
-
     return (
       <nav className="Nav">
         <div className="couponBox">
@@ -58,7 +27,7 @@ class Nav extends React.Component {
               />
             </div>
             <div>
-              {icon.map(({ name, index, className }) => (
+              {navData.icon.map(({ name, index, className }) => (
                 <i key={index} className={className}>
                   <span className="menuIcon">{name}</span>
                 </i>
@@ -67,7 +36,7 @@ class Nav extends React.Component {
           </div>
           <div className="navRowContainer">
             <div className="menuContainer">
-              {title.map(({ name, index }) => (
+              {navData.title.map(({ name, index }) => (
                 <span key={index} className="title">
                   {name}
                 </span>
@@ -78,7 +47,7 @@ class Nav extends React.Component {
           <div className="navRowContainer">
             <div className="CategoryColumnContainer">
               <div className="categoryCollection">
-                {category.map(({ name, index }) => (
+                {navData.category.map(({ name, index }) => (
                   <span key={index} className="category">
                     {name}
                   </span>
@@ -86,7 +55,7 @@ class Nav extends React.Component {
               </div>
               <div className="border" />
               <div className="navSubmenu">
-                {submenu.map(({ name, index }) => (
+                {navData.submenu.map(({ name, index }) => (
                   <span key={index} className="submenu">
                     {name}
                   </span>

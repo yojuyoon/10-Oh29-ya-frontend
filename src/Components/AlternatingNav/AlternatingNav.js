@@ -5,7 +5,7 @@ import Nav from "./Nav/Nav";
 
 class AlternatingNav extends React.Component {
   state = {
-    scrollPosition: "",
+    scrolled: 0,
   };
 
   componentDidMount() {
@@ -15,15 +15,11 @@ class AlternatingNav extends React.Component {
   listenToScroll = () => {
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
-
-    const height =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight;
-
-    const scrolled = winScroll / height;
+    const { scrollHeight, clientHeight } = document.documentElement;
+    const scrolled = winScroll / (scrollHeight - clientHeight);
 
     this.setState({
-      scrollPosition: scrolled,
+      scrolled,
     });
   };
   render() {
