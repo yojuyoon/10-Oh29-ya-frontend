@@ -27,10 +27,8 @@ class Login extends React.Component {
         if (res.token) {
           if (this.state.checked) {
             localStorage.setItem("token", res.token);
-            localStorage.setItem("autoChecked", this.state.checked);
           } else {
             sessionStorage.setItem("token", res.token);
-            sessionStorage.setItem("autoChecked", this.state.checked);
           }
           this.props.history.push("/AlternatingNav");
         } else {
