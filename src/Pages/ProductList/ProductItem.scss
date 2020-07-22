@@ -1,17 +1,88 @@
-.categoryWrap {
-  padding: 0px 50px;
-  margin: 0 auto;
-  background-color: lightgoldenrodyellow;
+.itemContainer {
+  width: 20%;
+  background-color: lightseagreen;
 
-  .leftNav {
-    width: 200px;
-    padding-right: 80px;
+  .imgBox {
+    img {
+      width: 100%;
+    }
   }
 
-  .rightItem {
-    .categoryList {
-      height: 46px;
-      margin-bottom: 30px;
+  .info {
+    margin-top: 15px;
+
+    .brand {
+      margin-bottom: 7px;
+      font-size: 13px;
+      text-decoration: underline;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .name {
+      margin-bottom: 14px;
+      padding-right: 10%;
+      line-height: 16px;
+      font-size: 12px;
+      color: #5d5d5d;
+      word-break: break-all;
+    }
+
+    .price {
+      font-size: 14px;
+      line-height: 16px;
+      vertical-align: top;
+
+      .sellPrice {
+        font-weight: 400;
+        color: #d4d4d4;
+        font-size: 12px;
+      }
+
+      .discountedPrice {
+        font-weight: 600;
+        color: #ff4800;
+        font-size: 14px;
+        line-height: 16px;
+        cursor: pointer; //이게 뭐지;;
+      }
+    }
+  }
+
+  .heartArea {
+    display: flex;
+    margin-top: 13px;
+
+    .heart {
+      //   display: inline-block;
+      //   width: 18px;
+      display: flex;
+      height: 18px;
+      margin-right: 14px;
+      line-height: 18px;
+      vertical-align: top;
+
+      .image {
+        margin-right: 5pxpx;
+        img {
+          width: 18px;
+        }
+      }
+    }
+
+    .review {
+      display: flex;
+      height: 18px;
+      margin-right: 14px;
+      line-height: 18px;
+      vertical-align: top;
+
+      .image {
+        margin-right: 5pxpx;
+        img {
+          width: 18px;
+        }
+      }
     }
   }
 }

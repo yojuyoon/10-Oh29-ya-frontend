@@ -1,0 +1,52 @@
+.fakeNav {
+  width: 200px;
+  height: 800px;
+  background-color: pink;
+} //나중에 삭제
+
+.ProductList {
+  margin: 0 auto;
+  padding: 0 50px;
+
+  .categoryWrap {
+    display: flex;
+    margin: 0 auto;
+  }
+
+  .left {
+    width: 280px;
+    padding-right: 80px;
+  }
+
+  .right {
+    width: 80%;
+
+    .categoryTab {
+      height: 46px;
+      margin-bottom: 30px;
+      border: solid 1px grey;
+
+      .categoryList {
+        display: flex;
+
+        li {
+          width: 64.23px;
+          //   font-weight: 700;
+          //   display: inline-block;
+          padding: 2px 20px 0;
+          font-size: 14px;
+          font-weight: 200;
+          border-right: solid 1px grey;
+          height: 14px;
+          margin: 15px 0 0;
+          //   vertical-align: top;
+        }
+      }
+    }
+
+    .productSection {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}
