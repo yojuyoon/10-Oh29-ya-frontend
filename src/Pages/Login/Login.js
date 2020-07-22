@@ -12,7 +12,7 @@ class Login extends React.Component {
   };
 
   handlerlogin = () => {
-    const { email, password, token } = this.state;
+    const { email, password, token, checked } = this.state;
 
     fetch("http://10.58.4.0:8000/account/sign-in", {
       method: "POST",
@@ -25,7 +25,7 @@ class Login extends React.Component {
       .then((res) => res.json())
       .then((res) => {
         if (res.token) {
-          if (this.state.checked) {
+          if (checked) {
             localStorage.setItem("token", res.token);
           } else {
             sessionStorage.setItem("token", res.token);
