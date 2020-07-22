@@ -4,53 +4,83 @@ import "./Nav.scss";
 import "../../../Styles/common.scss";
 
 class HeaderNav extends React.Component {
+  state = {
+    title: [
+      { index: 1, name: "Special-Order" },
+      { index: 2, name: "Showcase" },
+      { index: 3, name: "29TV" },
+      { index: 4, name: "PT" },
+      { index: 5, name: "Welove" },
+    ],
+    category: [
+      { index: 1, name: "Women" },
+      { index: 2, name: "ACC" },
+      { index: 3, name: "MEN" },
+      { index: 4, name: "BEAUTY" },
+      { index: 5, name: "TECH+" },
+      { index: 6, name: "CULTURE" },
+    ],
+    submenu: [
+      { index: 1, name: "Best" },
+      { index: 2, name: "Event" },
+      { index: 3, name: "Brand" },
+      { index: 4, name: "Lookbook" },
+    ],
+    icon: [
+      { index: 1, className: "fas fa-user" },
+      { index: 2, className: "fas fa-heart" },
+      { index: 3, className: "fas fa-shopping-bag" },
+      { index: 4, className: "fas fa-sign-in-alt" },
+    ],
+  };
+
   render() {
+    const { title, category, submenu, icon } = this.state;
+
     return (
       <nav className="NavActive">
         <div className="navContainer">
-          <div className="navLogoContainer">
+          <div className="logoContainer">
             <img
-              className="navLogoImg"
+              className="logoImg"
               alt="logo  square"
               src="Images/logoSquare.PNG"
             />
           </div>
           <div className="navMenuContainer">
             <div className="navRowContainer">
-              <div className="navMenuTitle">
-                <span className="menuTitleText">Special-Order</span>
-                <span className="menuTitleText">Showcase</span>
-                <span className="menuTitleText">29TV</span>
-                <span className="menuTitleText">PT</span>
-                <span className="menuTitleText">Welove</span>
+              <div className="menuTitle">
+                {title.map(({ name, index }) => (
+                  <span key={index} className="title">
+                    {name}
+                  </span>
+                ))}
               </div>
               <div className="navMenuIcon">
-                <i class="fas fa-user" />
-                <i class="fas fa-heart" />
-                <i class="fas fa-shopping-bag" />
-                <i class="fas fa-sign-in-alt" />
+                {icon.map(({ index, className }) => (
+                  <i key={index} className={className} />
+                ))}
               </div>
             </div>
             <div className="navRowContainer">
-              <div className="CategoryColumnContainer">
-                <div className="navMenuCategory">
-                  <span className="menuCategoryText">Women</span>
-                  <span className="menuCategoryText">Showcase</span>
-                  <span className="menuCategoryText">ACC</span>
-                  <span className="menuCategoryText">MEN</span>
-                  <span className="menuCategoryText">BEAUTY</span>
-                  <span className="menuCategoryText">TECH+</span>
-                  <span className="menuCategoryText">CULTURE</span>
+              <div className="categoryColumnContainer">
+                <div className="categoryColletion">
+                  {category.map(({ name, index }) => (
+                    <span key={index} className="category">
+                      {name}
+                    </span>
+                  ))}
                 </div>
                 <div className="border" />
-                <>
-                  <span className="subMenuText">Best</span>
-                  <span className="subMenuText">Event</span>
-                  <span className="subMenuText">Brand</span>
-                  <span className="subMenuText">Lookbook</span>
-                </>
+                <div className="submenuCollection">
+                  {submenu.map(({ name, index }) => (
+                    <span key={index} className="submenu">
+                      {name}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <i class="fas fa-search fa-lg" />
+              <i className="fas fa-search fa-lg" />
             </div>
           </div>
         </div>

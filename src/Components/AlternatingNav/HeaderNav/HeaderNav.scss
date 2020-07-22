@@ -14,11 +14,10 @@
   .couponBox {
     height: 56px;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     background-color: $blackColor;
-    padding: 0 60px 0 50px;
+    padding: 0 60px;
 
     .couponText {
       font-size: 14px;
@@ -41,21 +40,21 @@
     }
   }
 
-  .navMenuColumnContainer {
+  .menuColumnContainer {
     display: flex;
     flex-direction: column;
     margin: 30px 50px;
 
-    .navLogoRowContainer {
+    .logoRowContainer {
       display: flex;
       justify-content: space-between;
 
-      .navLogoImgContainer {
+      .imgContainer {
         width: 120px;
         height: 30px;
         cursor: pointer;
 
-        .navLogoImg {
+        .logoImg {
           width: 100%;
           height: 100%;
         }
@@ -79,11 +78,11 @@
       align-items: center;
       justify-content: space-between;
 
-      .navMenuContainer {
+      .menuContainer {
         font-family: "Montserrat", sans-serif;
         font-size: 45px;
 
-        .menuTitleText {
+        .title {
           margin-right: 30px;
           cursor: pointer;
 
@@ -91,20 +90,20 @@
             border-bottom: 5px solid $blackColor;
           }
         }
-      }
 
-      .fas {
-        cursor: pointer;
+        .fas {
+          cursor: pointer;
+        }
       }
 
       .CategoryColumnContainer {
         display: flex;
 
-        .navMenuCategory {
+        .categoryCollection {
           font-weight: bold;
+          font-size: 18px;
 
-          .menuCategoryText {
-            font-size: 18px;
+          .category {
             margin-right: 15px;
             cursor: pointer;
 
@@ -119,15 +118,17 @@
           border-right: 0.5px solid $blackColor;
         }
 
-        .subMenuText {
-          text-align: end;
-          margin: 0 10px;
+        .navSubmenu {
           font-size: 16px;
           font-style: oblique;
           cursor: pointer;
 
-          &:hover {
-            border-bottom: 4px solid $blackColor;
+          .submenu {
+            margin: 0 10px;
+
+            &:hover {
+              border-bottom: 4px solid $blackColor;
+            }
           }
         }
       }

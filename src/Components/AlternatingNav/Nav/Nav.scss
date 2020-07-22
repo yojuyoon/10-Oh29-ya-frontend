@@ -18,13 +18,13 @@
     flex-direction: row;
     padding: 0 25px 0 50px;
 
-    .navLogoContainer {
+    .logoContainer {
       max-width: 56px;
       min-width: 56px;
       height: 56px;
       cursor: pointer;
 
-      .navLogoImg {
+      .logoImg {
         width: 100%;
         height: 100%;
       }
@@ -43,12 +43,12 @@
         align-items: center;
         justify-content: space-between;
 
-        .navMenuTitle {
+        .menuTitle {
           font-family: "Montserrat", sans-serif;
           font-size: 26px;
 
-          .menuTitleText {
-            margin: 0 10px;
+          .title {
+            margin: 5px 10px;
             cursor: pointer;
 
             &:hover {
@@ -56,20 +56,23 @@
             }
           }
         }
+        .navMenuIcon {
+          font-size: 20px;
 
-        .fas {
-          margin-left: 20px;
-          cursor: pointer;
+          .fas {
+            padding: 0 10px 0;
+            cursor: pointer;
+          }
         }
 
-        .CategoryColumnContainer {
+        .categoryColumnContainer {
           display: flex;
 
-          .navMenuCategory {
+          .categoryColletion {
+            font-size: 14px;
             font-weight: bold;
 
-            .menuCategoryText {
-              font-size: 14px;
+            .category {
               margin: 0 10px;
               cursor: pointer;
 
@@ -84,18 +87,25 @@
             border-right: 0.5px solid #d4d4d4;
           }
 
-          .subMenuText {
-            margin: 0 10px;
-            text-align: end;
+          .submenuCollection {
             font-size: 13px;
             font-style: oblique;
             font-weight: 300;
-            cursor: pointer;
 
-            &:hover {
-              border-bottom: 4px solid $blackColor;
+            .submenu {
+              margin: 0 10px;
+              cursor: pointer;
+
+              &:hover {
+                border-bottom: 4px solid $blackColor;
+              }
             }
           }
+        }
+
+        .fa-search {
+          padding: 5px;
+          cursor: pointer;
         }
       }
     }
