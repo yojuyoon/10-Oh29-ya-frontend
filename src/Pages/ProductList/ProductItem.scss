@@ -1,0 +1,17 @@
+.categoryWrap {
+  padding: 0px 50px;
+  margin: 0 auto;
+  background-color: lightgoldenrodyellow;
+
+  .leftNav {
+    width: 200px;
+    padding-right: 80px;
+  }
+
+  .rightItem {
+    .categoryList {
+      height: 46px;
+      margin-bottom: 30px;
+    }
+  }
+}
