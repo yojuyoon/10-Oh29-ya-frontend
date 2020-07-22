@@ -22,6 +22,7 @@ class HeaderNav extends React.Component {
                 {navData.title.map(({ name, index }) => (
                   <span key={index} className="title">
                     {name}
+                    {name === "29TV" ? <span className="dot"></span> : null}
                   </span>
                 ))}
               </div>

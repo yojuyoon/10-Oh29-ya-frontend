@@ -50,6 +50,15 @@
             &:hover {
               border-bottom: 4px solid $blackColor;
             }
+
+            .dot {
+              width: 5px;
+              height: 5px;
+              margin-left: 5px;
+              position: absolute;
+              border-radius: 50%;
+              background: #ff4800;
+            }
           }
         }
         .navMenuIcon {
