@@ -1,6 +1,5 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-<<<<<<< HEAD
 import TwentyNineTVFeedComponent from "./TwentyNineTVFeedComponent";
 import FeedModal from "./FeedModal";
 import "./TwentyNineTV.scss";
@@ -94,12 +93,6 @@ class TwentyNineTV extends React.Component {
         )}
       </div>
     );
-=======
-
-class TwentyNineTV extends React.Component {
-  render() {
-    return <div></div>;
->>>>>>> master
   }
 }
 export default withRouter(TwentyNineTV);
