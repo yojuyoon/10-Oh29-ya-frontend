@@ -52,7 +52,6 @@ class Login extends React.Component {
   };
 
   render() {
-    // console.log(snsLogin);
     const { handlerInput, handlerlogin, handlerChecked } = this;
     const { checked } = this.state;
 
