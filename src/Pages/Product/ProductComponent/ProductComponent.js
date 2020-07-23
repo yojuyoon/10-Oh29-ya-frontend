@@ -1,25 +1,14 @@
 import React from "react";
-// import "./.scss";
+import "./ProductComponent.scss";
+import ProductComponentItem from "./ProductComponentItem/ProductComponentItem";
 
 class ProductComponent extends React.Component {
   render() {
     return (
-      <div>
+      <div className="ProductComponent">
         <div className="mainContainerCategory 밑에 컴포넌트들">
           <ul>
-            <li>
-              <div>
-                <div>
-                  <div></div>
-                  <div></div>
-                </div>
-              </div>
-              <div>
-                <div></div>
-                <div className="heart"></div>
-              </div>
-              <div></div>
-            </li>
+            <ProductComponentItem />
           </ul>
         </div>
       </div>
