@@ -1,0 +1,29 @@
+.SpecialOrder {
+  width: 100%;
+  background-color: red;
+  margin-top: 255px;
+
+  .orderContainer {
+    padding: 45px;
+
+    .itemContainer {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .itemList {
+        margin: 10px;
+
+        .imgContainer {
+          width: 775px;
+          height: 400px;
+
+          .orderImg {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}

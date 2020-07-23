@@ -5,6 +5,7 @@ import Join from "./Pages/Login/Join";
 import Main from "./Pages/Main/Main";
 import Product from "./Pages/Product/Product";
 import TwonineTV from "./Pages/TwonineTV/TwonineTV";
+import Specialorder from "./Pages/SpecialOrder/SpecialOrder";
 
 class Routes extends React.Component {
   render() {
@@ -16,6 +17,7 @@ class Routes extends React.Component {
           <Route exact path="/Join" component={Join} />
           <Route exact path="/Product" component={Product} />
           <Route exact path="/TwonineTV" component={TwonineTV} />
+          <Route exact path="/Specialorder" component={Specialorder} />
         </Switch>
       </Router>
     );
