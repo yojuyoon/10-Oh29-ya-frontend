@@ -23,8 +23,8 @@ class AlternatingNav extends React.Component {
     });
   };
   render() {
-    const { scrollPosition } = this.state;
-    return <>{scrollPosition >= 0.087 ? <Nav /> : <HeaderNav />}</>;
+    const { scrolled } = this.state;
+    return <>{scrolled >= 0.087 ? <Nav /> : <HeaderNav />}</>;
   }
 }
 
