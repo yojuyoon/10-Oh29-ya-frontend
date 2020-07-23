@@ -2,7 +2,6 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { navData } from "../navData";
 import "./HeaderNav.scss";
-import "../../../Styles/common.scss";
 
 class Nav extends React.Component {
   render() {
