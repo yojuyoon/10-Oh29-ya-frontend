@@ -1,6 +1,10 @@
 .itemContainer {
-  width: 20%;
-  background-color: lightseagreen;
+  width: 33.33%;
+  // padding-right: 10px;
+  padding-bottom: 40px;
+  padding: 0 0 40px 20px;
+  // background-color: lightseagreen;
+  box-sizing: border-box;
 
   .imgBox {
     img {
@@ -44,14 +48,31 @@
         color: #ff4800;
         font-size: 14px;
         line-height: 16px;
-        cursor: pointer; //이게 뭐지;;
+        cursor: pointer;
       }
     }
+  }
+
+  .freeShipping {
+    border: 1px solid #e4e4e4;
+    display: inline-block;
+    height: 18px;
+    margin-top: 6px;
+    padding: 0 8px;
+    border: 1px solid #e4e4e4;
+    border-radius: 1px;
+    font-size: 10px;
+    color: #5d5d5d;
+    line-height: 18px;
   }
 
   .heartArea {
     display: flex;
     margin-top: 13px;
+
+    .image {
+      margin-right: 3px;
+    }
 
     .heart {
       //   display: inline-block;
@@ -62,11 +83,8 @@
       line-height: 18px;
       vertical-align: top;
 
-      .image {
-        margin-right: 5pxpx;
-        img {
-          width: 18px;
-        }
+      img {
+        width: 18px;
       }
     }
 
@@ -78,7 +96,8 @@
       vertical-align: top;
 
       .image {
-        margin-right: 5pxpx;
+        margin-right: 5px;
+
         img {
           width: 18px;
         }
