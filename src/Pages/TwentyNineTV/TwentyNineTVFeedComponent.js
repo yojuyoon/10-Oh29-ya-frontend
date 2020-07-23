@@ -1,11 +1,31 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-// import FeedModal from "./FeedModal";
+import ActiveLIkeIcon from "./ActiveLikeIcon";
 import "./TwentyNineTV.scss";
 
 class TwentyNineTVFeedComponent extends React.Component {
+  state = {
+    officialCheck: false,
+  };
+
+  official = () => {
+    return (
+      <>
+        <span className="officialCheck">✹Official</span>
+      </>
+    );
+  };
+
   render() {
-    const { onClick, img, logo, brandName, text } = this.props;
+    const {
+      onClick,
+      img,
+      logo,
+      brandName,
+      text,
+      officialCheck,
+      hashtag,
+    } = this.props;
     return (
       <>
         <section className="TwentyNineTV">
@@ -24,23 +44,15 @@ class TwentyNineTVFeedComponent extends React.Component {
                   <img alt="feedProfile" className="profile" src={logo} />
                   <div className="feedProfileText">
                     <span className="brandName">{brandName}</span>
-                    <span className="brandOffical">
-                      <span>✹</span>Official
-                    </span>
+                    <span className="brandOffical"></span>
+                    {officialCheck && this.official()}
                   </div>
                 </div>
                 <div className="feedComment">
                   <p>{text}</p>
                 </div>
-                <div className="feedTag">
-                  <span>#2Way </span>
-                  <span>#마스카라 </span>
-                  <span>#롱래쉬 </span>
-                </div>
-                <div className="likeIcon">
-                  <i className="far fa-heart" />
-                  <span className="likeNumber">1</span>
-                </div>
+                <div className="feedTag">{hashtag}</div>
+                <ActiveLIkeIcon />
               </div>
             </div>
           </div>

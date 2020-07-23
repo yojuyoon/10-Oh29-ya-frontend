@@ -1,5 +1,6 @@
 import React from "react";
 import SnsModal from "./SnsModal";
+import ActiveLIkeIcon from "./ActiveLikeIcon";
 import "./FeedModal.scss";
 
 class FeedModal extends React.Component {
@@ -7,13 +8,13 @@ class FeedModal extends React.Component {
     super();
     this.state = {
       shareModal: false,
+      last: false,
     };
   }
 
   showReport = () => {
     this.setState({
       shareModal: true,
-      last: undefined,
     });
   };
 
@@ -38,7 +39,11 @@ class FeedModal extends React.Component {
             />
           </button>
           <div className="ModalContentImg">
-            <img alt="contentImg" className="contentImg" src={data.imageUrl} />
+            <img
+              alt="contentImg"
+              className="contentImg"
+              src={data.thumbnail_img}
+            />
           </div>
           <div className="progressBar"></div>
           <div className="rightContents">
@@ -48,35 +53,22 @@ class FeedModal extends React.Component {
                   <img
                     alt="profileLogo"
                     className="profileLogo"
-                    src={data.logo}
+                    src={data.staff_logo}
                   />
                 </div>
                 <div className="profileName">
-                  <span className="brandName">{data.brandName}</span>
+                  <span className="brandName">{data.staff_name}</span>
                   <span className="brandOfficial">Official</span>
                 </div>
               </div>
               <div className="moreBtn">•••</div>
             </div>
             <div className="contents">
-              <div className="text">{data.text}</div>
-              <div className="tag">
-                <span>#노엘 </span>
-                <span>#노엘스몰 </span>
-                <span>#버킷백 </span>
-                <span>#데일리백 </span>
-                <span>#숄더백 </span>
-                <span>#크로스백 </span>
-                <span>#토트백 </span>
-                <span>#바이커스탈렛 </span>
-              </div>
+              <div className="text">{data.content}</div>
+              <div className="tag">{data.hashtag}</div>
             </div>
             <div className="icons">
-              <div className="favIcon">
-                <i className="far fa-heart">
-                  <span className="number">1</span>
-                </i>
-              </div>
+              <ActiveLIkeIcon />
               <div onClick={showReport} className="shareIcon">
                 <i className="fas fa-share-alt" />
               </div>

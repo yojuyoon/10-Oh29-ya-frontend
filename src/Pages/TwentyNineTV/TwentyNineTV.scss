@@ -1,7 +1,9 @@
 @import "../../Styles/common.scss";
+@import "./ActiveLikeIcon.scss";
 
 .TwentyNineTVFeed {
   margin-top: 300px;
+
   @include center;
   flex-wrap: wrap;
 
@@ -13,6 +15,7 @@
 
       .feedContent {
         width: 350px;
+        height: 820px;
 
         .container {
           cursor: pointer;
@@ -23,9 +26,12 @@
 
           .feedProfile {
             display: flex;
+            height: 60px;
+            margin-bottom: 10px;
 
             .profile {
               width: 60px;
+              height: 60px;
               margin-right: 10px;
               border-radius: 50%;
               cursor: pointer;
@@ -36,11 +42,12 @@
               flex-direction: column;
 
               .brandName {
+                font-size: 18px;
                 font-weight: bold;
                 cursor: pointer;
               }
 
-              .brandOffical {
+              .officialCheck {
                 margin-top: 5px;
                 font-size: 15px;
                 cursor: pointer;
@@ -49,23 +56,22 @@
           }
 
           .feedComment {
-            margin: 15px 0;
+            height: 40px;
+            font-size: 18px;
+            line-height: 23px;
+            overflow: hidden;
           }
 
           .feedTag {
+            width: 350px;
+            margin: 15px 0;
+            font-size: 18px;
+            line-height: 23px;
+            word-break: break-all;
             font-weight: bold;
 
             span {
               cursor: pointer;
-            }
-          }
-
-          .likeIcon {
-            margin-top: 20px;
-            color: rgba(0, 0, 0, 0.4);
-
-            .likeNumber {
-              margin-left: 5px;
             }
           }
         }
