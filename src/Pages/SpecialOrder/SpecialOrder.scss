@@ -1,28 +1,61 @@
+@import "../../Styles/common.scss";
+
 .SpecialOrder {
   width: 100%;
-  background-color: red;
-  margin-top: 255px;
+  margin-top: 300px;
 
-  .orderContainer {
-    padding: 45px;
+  .itemContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
 
-    .itemContainer {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
+    .itemList {
+      height: 684px;
+      margin: 10px;
 
-      .itemList {
-        margin: 10px;
+      .imgContainer {
+        width: 785px;
+        height: 450px;
 
-        .imgContainer {
-          width: 775px;
-          height: 400px;
-
-          .orderImg {
-            width: 100%;
-            height: 100%;
-          }
+        .orderImg {
+          width: 100%;
+          height: 100%;
         }
+      }
+
+      .itemTitle {
+        margin-top: 10px;
+        font-size: 26px;
+        font-weight: bold;
+      }
+
+      .itemSubtitle {
+        height: 48px;
+        margin-top: 6px;
+      }
+
+      .dDayBubble {
+        height: 40px;
+      }
+
+      .dDayBorder {
+        height: 1.5px;
+        background-color: #dbdbdb;
+
+        &:after {
+          content: "";
+          display: block;
+          width: 30%;
+          border-bottom: 1.5px solid red;
+        }
+      }
+
+      .itemDate {
+        font-size: 18px;
+        font-style: italic;
+        font-weight: bold;
+        margin-top: 10px;
       }
     }
   }
