@@ -1,9 +1,9 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-class Login extends React.Component {
+class TwentyNineTV extends React.Component {
   render() {
     return <div></div>;
   }
 }
-export default withRouter(Login);
+export default withRouter(TwentyNineTV);
