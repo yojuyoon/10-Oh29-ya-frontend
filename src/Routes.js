@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./Pages/Login/Login";
-import Join from "./Pages/Login/Join";
+import Join from "./Pages/Join/Join";
 import Main from "./Pages/Main/Main";
 import Product from "./Pages/Product/Product";
 import TwentyNineTV from "./Pages/TwentyNineTV/TwentyNineTV";
