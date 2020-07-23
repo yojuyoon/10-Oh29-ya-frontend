@@ -2,7 +2,6 @@
   .slick-arrow {
     position: absolute;
     z-index: 999;
-    // width: 20px;
     width: 17px;
     height: 32px;
     top: 300px;
@@ -12,20 +11,20 @@
     left: 300px;
     background: url("https://www.larocheposay.co.kr/images/common/ico_comm_sp.png")
       no-repeat -169px 0;
-  }
 
-  .slick-prev:before {
-    display: none;
-  }
-
-  .slick-next::before {
-    display: none;
+    &:before {
+      display: none;
+    }
   }
 
   .slick-next {
     right: 50px;
     background: url("https://www.larocheposay.co.kr/images/common/ico_comm_sp.png")
       no-repeat -191px 0;
+
+    &::before {
+      display: none;
+    }
   }
 
   .slick-dots {

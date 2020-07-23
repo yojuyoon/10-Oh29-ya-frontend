@@ -28,26 +28,24 @@ class MainLeftNav extends React.Component {
 
   render() {
     return (
-      <>
-        <div className="MainLeftNav">
-          <div className="categoryInner">
-            <ul>
-              <li className="categoryTitle">
-                <button>
-                  <div className="title">MEN</div>
-                </button>
-              </li>
-              <li className="categoryList">
-                <ul>
-                  {this.state.categoryData.map((item, i) => {
-                    return <LeftNav item={item} key={i} />;
-                  })}
-                </ul>
-              </li>
-            </ul>
-          </div>
+      <div className="MainLeftNav">
+        <div className="categoryInner">
+          <ul>
+            <li className="categoryTitle">
+              <button>
+                <div className="title">MEN</div>
+              </button>
+            </li>
+            <li className="categoryList">
+              <ul>
+                {this.state.categoryData.map((item, i) => {
+                  return <LeftNav item={item} key={i} />;
+                })}
+              </ul>
+            </li>
+          </ul>
         </div>
-      </>
+      </div>
     );
   }
 }

@@ -7,10 +7,10 @@ class CategorySection extends React.Component {
       <div className="categoryWrap">
         <div className="categoryTop">
           <div className="left">
-            <div className="FeedTwo">
+            <div className="FeedLeft">
               <div>
                 <div className="imgBox">
-                  <div className="line"></div>
+                  <div className="line" />
                   <img src="//img.29cm.co.kr/next-product/2020/07/16/8f27856897d841f08f82267f666f62cc_20200716233920.jpg?width=700" />
                 </div>
                 <div className="contentBox">
@@ -33,10 +33,10 @@ class CategorySection extends React.Component {
           </div>
           <div className="right">
             <div className="right-top">
-              <div className="FeedOne">
+              <div className="FeedRightTop">
                 <div className="container">
                   <div className="imgBox">
-                    <div className="line"></div>
+                    <div className="line" />
                     <img src="//img.29cm.co.kr/next-product/2020/07/16/4ee69b189c8945d0976eee7f23d38016_20200716233902.jpg?width=1100" />
                   </div>
                   <div className="contentBox">
@@ -59,10 +59,10 @@ class CategorySection extends React.Component {
               </div>
             </div>
             <div className="right-bottom">
-              <div className="FeedThree">
+              <div className="FeedRightBottom">
                 <div className="container">
                   <div className="imgBox">
-                    <div className="line"></div>
+                    <div className="line" />
                     <img src="//img.29cm.co.kr/next-product/2020/07/16/a1f7586652a446ff8451e052078a4b28_20200716233944.jpg?width=700" />
                   </div>
 
