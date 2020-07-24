@@ -9,6 +9,7 @@ import TwentyNineTV from "./Pages/TwentyNineTV/TwentyNineTV";
 import Nav from "./Components/AlternatingNav/Nav/Nav";
 import HeaderNav from "./Components/AlternatingNav/HeaderNav/HeaderNav";
 import AlternatingNav from "./Components/AlternatingNav/AlternatingNav";
+import MyHeart from "./Pages/MyHeart/MyHeart";
 import "./Styles/reset.scss";
 
 class Routes extends React.Component {
@@ -27,7 +28,9 @@ class Routes extends React.Component {
           <Route exact path="/Nav" component={Nav} />
           <Route exact path="/HeaderNav" component={HeaderNav} />
           <Route exact path="/AlternatingNav" component={AlternatingNav} />
+          <Route exact path="/MyHeart" component={MyHeart} />
         </Switch>
+        <Footer />
       </Router>
     );
   }
