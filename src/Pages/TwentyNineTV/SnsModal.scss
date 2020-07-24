@@ -1,27 +1,26 @@
 @import "../../Styles/common.scss";
 
 .SnsModal {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100vh;
-  display: flex;
+  top: 0;
+  left: 0;
+  position: fixed;
   @include center;
   background-color: rgba(27, 27, 27, 0.7);
   z-index: 999;
 
   .SnsModalContainer {
-    position: relative;
     width: 500px;
     height: 291px;
+    position: relative;
     background-color: $whiteColor;
     @include columnCenter;
 
     .closeBtn {
-      position: absolute;
       top: -80px;
       right: 0px;
+      position: absolute;
       border: none;
       background-color: transparent;
       cursor: pointer;

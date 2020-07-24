@@ -5,7 +5,7 @@ class SnsModal extends React.Component {
   render() {
     const { hideReport } = this.props;
     return (
-      <div onClick={hideReport} className="SnsModal">
+      <div className="SnsModal">
         <div className="SnsModalContainer">
           <div className="closeBtn">
             <img

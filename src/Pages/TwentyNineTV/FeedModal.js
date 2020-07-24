@@ -24,8 +24,12 @@ class FeedModal extends React.Component {
     });
   };
 
+  official = () => {
+    return <span className="officialCheck">✹ Official</span>;
+  };
+
   render() {
-    const { showReport, hideReport } = this;
+    const { showReport, hideReport, official } = this;
     const { hideModal, data, idxPrevHandler, idxNextHandler } = this.props;
     return (
       <div className="FeedModal">
@@ -42,7 +46,7 @@ class FeedModal extends React.Component {
             <img
               alt="contentImg"
               className="contentImg"
-              src={data.thumbnail_img}
+              src={data.thumbnail_image}
             />
           </div>
           <div className="progressBar"></div>
@@ -58,19 +62,24 @@ class FeedModal extends React.Component {
                 </div>
                 <div className="profileName">
                   <span className="brandName">{data.staff_name}</span>
-                  <span className="brandOfficial">Official</span>
+                  <span className="officialCheck">
+                    {data.official_check && official()}
+                  </span>
                 </div>
               </div>
               <div className="moreBtn">•••</div>
             </div>
             <div className="contents">
               <div className="text">{data.content}</div>
-              <div className="tag">{data.hashtag}</div>
+              <div className="tag">{data.hashtag.join(" ")}</div>
             </div>
             <div className="icons">
               <ActiveLIkeIcon />
               <div onClick={showReport} className="shareIcon">
-                <i className="fas fa-share-alt" />
+                <img
+                  alt="shareIcon"
+                  src="https://img.icons8.com/windows/32/000000/share-2.png"
+                />
               </div>
             </div>
             <div className="productContainer">

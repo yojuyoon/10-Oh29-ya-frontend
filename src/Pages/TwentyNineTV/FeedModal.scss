@@ -19,7 +19,6 @@
     border: 2px solid $whiteColor;
     border-width: 0 2px 2px 0;
     cursor: pointer;
-    z-index: 1000;
   }
 
   .rightBtn {
@@ -45,6 +44,7 @@
       right: 0;
       border: none;
       background-color: transparent;
+      outline: none;
       cursor: pointer;
 
       img {
@@ -96,8 +96,8 @@
             width: 50px;
             height: 50px;
             margin-right: 10px;
-            cursor: pointer;
             border-radius: 50%;
+            cursor: pointer;
           }
 
           .profileName {
@@ -111,7 +111,7 @@
             cursor: pointer;
           }
 
-          .brandOfficial {
+          .officialCheck {
             margin-top: 5px;
             font-size: 15px;
             cursor: pointer;
@@ -120,6 +120,7 @@
 
         .moreBtn {
           font-size: 13px;
+          font-weight: bold;
           cursor: pointer;
         }
       }
@@ -140,27 +141,28 @@
       }
 
       .icons {
-        position: absolute;
         width: 80px;
         right: 20px;
         bottom: 200px;
-        color: rgba(45, 45, 45, 0.4);
+        position: absolute;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        color: rgba(45, 45, 45, 0.4);
 
         .shareIcon {
           width: 30px;
           font-size: 28px;
+          opacity: 0.8;
           cursor: pointer;
         }
       }
 
       .productContainer {
-        position: absolute;
         width: 416px;
         height: 180px;
         bottom: 0;
+        position: absolute;
         display: flex;
         flex-direction: column;
         background-color: rgba(45, 45, 45, 0.1);
@@ -186,6 +188,7 @@
               color: rgba(45, 45, 45, 0.1);
               background-color: white;
               border: none;
+              outline: none;
               cursor: pointer;
             }
           }

@@ -17,7 +17,7 @@ class TwentyNineTV extends React.Component {
   }
 
   componentDidMount = () => {
-    fetch("http://10.58.7.162:8000/media/recommend")
+    fetch("http://10.58.4.210:8000/media/recommend")
       .then((res) => res.json())
       .then((res) => {
         this.setState({
@@ -52,7 +52,6 @@ class TwentyNineTV extends React.Component {
   };
 
   render() {
-    console.log(this.state.data[this.state.currentIdx]);
     const { showModal, hideModal } = this;
     const { modalStatus } = this.state;
     return (
@@ -61,9 +60,8 @@ class TwentyNineTV extends React.Component {
           return (
             <TwentyNineTVFeedComponent
               onClick={() => {
-                console.log("dddd");
                 showModal({
-                  img: feed.thumbnail_img,
+                  img: feed.thumbnail_image,
                   logo: feed.staff_logo,
                   brandName: feed.staff_name,
                   text: feed.content,
@@ -73,7 +71,7 @@ class TwentyNineTV extends React.Component {
                 });
                 this.setModalIdx(index);
               }}
-              img={feed.thumbnail_img}
+              img={feed.thumbnail_image}
               logo={feed.staff_logo}
               brandName={feed.staff_name}
               text={feed.content}

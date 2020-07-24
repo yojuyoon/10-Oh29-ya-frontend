@@ -9,11 +9,7 @@ class TwentyNineTVFeedComponent extends React.Component {
   };
 
   official = () => {
-    return (
-      <>
-        <span className="officialCheck">✹Official</span>
-      </>
-    );
+    return <span className="officialCheck">✹ Official</span>;
   };
 
   render() {
@@ -26,6 +22,7 @@ class TwentyNineTVFeedComponent extends React.Component {
       officialCheck,
       hashtag,
     } = this.props;
+    const { official } = this;
     return (
       <>
         <section className="TwentyNineTV">
@@ -45,13 +42,13 @@ class TwentyNineTVFeedComponent extends React.Component {
                   <div className="feedProfileText">
                     <span className="brandName">{brandName}</span>
                     <span className="brandOffical"></span>
-                    {officialCheck && this.official()}
+                    {officialCheck && official()}
                   </div>
                 </div>
-                <div className="feedComment">
+                <div className={text.length > 0 && "feedComment"}>
                   <p>{text}</p>
                 </div>
-                <div className="feedTag">{hashtag}</div>
+                <div className="feedTag">{hashtag.join(" ")}</div>
                 <ActiveLIkeIcon />
               </div>
             </div>
