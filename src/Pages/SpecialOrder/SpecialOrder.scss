@@ -1,4 +1,12 @@
 @import "../../Styles/common.scss";
+@keyframes bubbleMotion {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 70%;
+  }
+}
 
 .SpecialOrder {
   width: 100%;
@@ -41,35 +49,63 @@
       }
 
       .dDayBubble {
+        position: relative;
         height: 40px;
+        left: 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
 
         .bubble {
-          // width: 130px;
-          // margin: auto 0;
-          // padding: 5px;
-          // text-align: center;
+          width: 150px;
+          position: absolute;
           font-weight: bold;
           color: $whiteColor;
           background-color: $orangeColor;
-          transition-property: background-color;
-          transition-duration: 1s;
-          transition-timing-function: linear;
-          transition-delay: 0.5s;
+          padding: 6px;
+          border-radius: 0.2rem;
+          text-align: center;
+          animation: bubbleMotion 1s forwards;
+
+          &::after {
+            content: "";
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid $orangeColor;
+          }
         }
       }
 
       .dDayBorder {
-        height: 1.5px;
-        background-color: #dbdbdb;
+        height: 2px;
+        background-color: #e4e4e4;
 
-        &:after {
-          content: "";
-          display: block;
-          width: 30%;
-          border-bottom: 1.5px solid red;
+        .progress {
+          height: 100%;
+          background-color: red;
+        }
+
+        .obLager {
+          width: 17%;
+        }
+
+        .wecode {
+          width: 87.2%;
+        }
+
+        .samsung {
+          width: 50%;
+        }
+
+        .pibuPibu {
+          width: 65%;
+        }
+
+        .havit {
+          width: 22%;
+        }
+
+        .komorebi {
+          width: 32%;
         }
       }
 
