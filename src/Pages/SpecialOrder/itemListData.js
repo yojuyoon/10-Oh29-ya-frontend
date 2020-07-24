@@ -23,9 +23,10 @@ export const itemList = {
     },
     {
       index: 4,
-      img: "Images/orderImg4.jpg",
-      title: "피부 타입과 고민에 따른 나만의 맞춤 크림",
-      subtitle: "라인과 체형에 따라 준비된 총 20가지 스킨 케어 솔루션",
+      img: "Images/Oh29ya.jpg",
+      title: "> Wecode 부트캠프",
+      subtitle: "17기 얼리버드 할인 진행중 ",
+      subcontent: "(얼리버드 잔여: 10)",
       date: "20.07.10 ~ 07.23",
     },
     {
