@@ -14,11 +14,11 @@ class Login extends React.Component {
                 <div className="imgContainer">
                   <img className="orderImg" alt="img" src={img} />
                 </div>
-                <p className="itemTitle">{title}</p>
-                <p className="itemSubtitle">
+                <h2 className="itemTitle">{title}</h2>
+                <h4 className="itemSubtitle">
                   {subtitle}
                   <span className="subcontent">{subcontent}</span>
-                </p>
+                </h4>
                 <div className="dDayBubble">
                   {index === 4 ? (
                     <p className="bubble">D-day 00:39:51</p>
