@@ -4,32 +4,40 @@ import "./ProductItem.scss";
 class ProductItem extends React.Component {
   render() {
     const { data } = this.props;
+    const { image, brand, name, price, discount_rate, discount_price } = data;
 
     return (
       <li className="itemContainer">
         <div className="imgBox">
-          <img src="//img.29cm.co.kr/next-product/2020/07/20/c97515156b3b4cd191004c9069eed367_20200720160946.jpg?width=500" />
+          <img src={data.image} />
         </div>
         <div className="info">
           <div className="brand">{data.brand}</div>
           <div className="name">{data.name}</div>
           <div className="price">
-            <div className="sellPrice">
-              <span>{data.sellPrice}</span>
+            <div className={data.discount_rate ? "sellPrice" : "nonDiscounted"}>
+              <span>{parseInt(data.price)}</span>
+              <span className={data.discount_rate ? "hide" : "nonDiscounted"}>
+                원
+              </span>
             </div>
-            <div className="discountedPrice">
-              <span>{data.discountRate} </span>
-              <span>{data.discountedPrice}</span>
+            <div
+              className={
+                data.discount_rate ? "discountedPrice" : "discountedPrice hide"
+              }
+            >
+              <span>{data.discount_rate}</span>
+              <span>% </span>
+              <span>{parseInt(data.discount_price)}</span>
               <span>원</span>
             </div>
           </div>
           <div className="freeShipping">무료배송</div>
         </div>
-
         <div className="heartArea">
           <div className="heart">
             <div className="image">
-              <i class="far fa-heart"></i>
+              <i class="far fa-heart" />
             </div>
             <div className="count">1,189</div>
           </div>

@@ -13,11 +13,15 @@ class CategoryItem extends React.Component {
     this.setState({ menuClicked: true });
   };
 
+  checkand = () => {
+    console.log("첵첵");
+  };
+
   render() {
     const { menuClicked } = this.state;
     return (
       <li
-        onClick={this.handleCategory}
+        onClick={this.handleCategory && this.checkand}
         className={menuClicked ? "CategoryItem clicked" : "CategoryItem"}
       >
         {this.props.item}

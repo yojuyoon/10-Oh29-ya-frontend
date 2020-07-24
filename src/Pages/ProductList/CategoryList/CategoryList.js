@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryItem from "./CategoryItem";
+import CategoryItem from "./CategoryItem/CategoryItem";
 import "./CategoryList.scss";
 
 const itemData = [
@@ -51,7 +51,9 @@ class CategoryList extends React.Component {
                   <li>추천순</li>
                   <li>신상품순</li>
                   <li>베스트순</li>
-                  <li>낮은가격순</li>
+                  <li onClick={this.props.handleSortPriceAscendingOrder}>
+                    낮은가격순
+                  </li>
                   <li>높은가격순</li>
                   <li>높은할인순</li>
                   <li>베스트리뷰순</li>

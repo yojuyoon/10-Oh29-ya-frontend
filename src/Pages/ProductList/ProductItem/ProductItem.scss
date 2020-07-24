@@ -43,12 +43,22 @@
         font-size: 12px;
       }
 
+      .nonDiscounted {
+        font-weight: 600;
+        color: #303033;
+        font-size: 14px;
+      }
+
       .discountedPrice {
         font-weight: 600;
         color: #ff4800;
         font-size: 14px;
         line-height: 16px;
         cursor: pointer;
+      }
+
+      .hide {
+        display: none;
       }
     }
   }

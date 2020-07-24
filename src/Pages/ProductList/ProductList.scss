@@ -1,12 +1,7 @@
-.fakeNav {
-  width: 200px;
-  height: 800px;
-  background-color: pink;
-} //나중에 삭제
-
 .ProductList {
   margin: 0 auto;
   padding: 0 50px;
+  display: flex;
 
   .categoryWrap {
     display: flex;
