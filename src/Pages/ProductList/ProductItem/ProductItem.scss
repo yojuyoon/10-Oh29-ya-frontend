@@ -9,6 +9,7 @@
   .imgBox {
     img {
       width: 100%;
+      overflow: hidden;
     }
   }
 
@@ -80,8 +81,12 @@
     display: flex;
     margin-top: 13px;
 
-    .image {
-      margin-right: 3px;
+    // .image {
+
+    // }
+
+    .count {
+      font-size: 14px;
     }
 
     .heart {
@@ -92,9 +97,13 @@
       margin-right: 14px;
       line-height: 18px;
       vertical-align: top;
+      margin-right: 3px;
+      cursor: pointer;
 
-      img {
-        width: 18px;
+      .heartImageBox {
+        svg {
+          width: 15px;
+        }
       }
     }
 
@@ -114,4 +123,8 @@
       }
     }
   }
+}
+
+.hide {
+  display: none;
 }

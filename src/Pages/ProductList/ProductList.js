@@ -54,15 +54,28 @@ class ProductList extends React.Component {
       });
   };
 
-  ////여긴 filter test
+  ////여긴 하트 받을 때 썼던 민호님 서버
+  //   fetch("http://10.58.1.157:8000/product/", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       category: "WOMEN",
+  //       subcategory: "상의",
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+
+  //       this.setState({
+  //         itemData: res.data,
+  //       });
+  //     });
+
   ////////////////////////////////////////////////////////////
 
   //itemData는 fetch후 res.data를 담은 상태
 
   //이 친구는 onClick했을 때 할인 중인 상품들만 보여주는 함수
   handleFilterDiscount = () => {
-    console.log("눌렸어!!");
-
     this.setState({
       itemData: this.state.itemData.filter((item) => {
         return item.discount_rate != 0;
@@ -85,19 +98,7 @@ class ProductList extends React.Component {
   };
   //////////////////////////////////////////////////////////////////
 
-  // handleSortPriceAscendingOrder = () => {
-  //   console.log("오름차순 눌렸어🙃");
-  //   console.log(this.state.itemData);
-
-  //   this.setState({
-  //     itemData: this.state.itemData.price...?
-  //   });
-  // };
-
-  // handleSortPriceDescendingOrder;
-
   render() {
-    console.log();
     return (
       <div className="ProductList">
         <div className="categoryWrap">
@@ -113,8 +114,14 @@ class ProductList extends React.Component {
               handleSortPriceAscendingOrder={this.handleSortPriceAscendingOrder}
             />
             <ul className="productSection">
-              {this.state.itemData.map((item, i) => {
-                return <ProductItem data={item} key={i} />;
+              {this.state.itemData.map((item) => {
+                return (
+                  <ProductItem
+                    data={item}
+                    key={item.id}
+                    likeNum={item.like_num}
+                  />
+                );
               })}
             </ul>
           </div>
