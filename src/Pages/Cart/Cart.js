@@ -3,7 +3,45 @@ import "./Cart.scss";
 // import { Link } from "react-router-dom";
 import CartItem from "./CartItem/CartItem";
 
+const cartData = [
+  {
+    id: 410,
+    name: "[29Edition.]_PEACE BEGINS SMILE TEE (WHITE)",
+    price: "38000.00",
+    discount_rate: 10,
+    discount_price: "34200.00",
+    brand: "빅웨이브컬렉티브",
+    image: [
+      "https://img.29cm.co.kr/next-product/2020/05/22/1760d38e60584816b499e4a7c19e14e2_20200522155254.jpg?width=700",
+    ],
+    item_quantity: 2,
+  },
+  {
+    id: 1004,
+    name: "레이스 롱원피스 잠옷",
+    price: "53000.00",
+    // discount_rate: 90,
+    // discount_price: "5300.00",
+    brand: "코즈넉",
+    image: [
+      "//img.29cm.co.kr/next-product/2020/07/07/ce3c05a2f144411b882529837a13f329_20200707152351.jpg?width=150",
+    ],
+    item_quantity: 1,
+  },
+];
+
 class Cart extends React.Component {
+  handleSumToalPrice = () => {
+    let total = 0;
+    for (let i = 0; i < cartData.length; i++) {
+      total = parseInt(total) + Number(cartData[i].price);
+      // total = cartData[1].price;
+      // console.log(typeof cartData[1].price);
+    }
+
+    return total;
+  };
+
   render() {
     return (
       <div className="Cart">
@@ -36,8 +74,10 @@ class Cart extends React.Component {
                 <div className="th4">주문금액</div>
                 <div className="th5">배송비</div>
               </div>
-              <CartItem />
-              <CartItem />
+
+              {cartData.map((item, i) => {
+                return <CartItem cartData={item} key={i} />;
+              })}
             </div>
             <div className="cartControl">
               <button type="button">선택상품 삭제</button>
@@ -54,7 +94,7 @@ class Cart extends React.Component {
             <div className="content">
               <div className="td1">
                 <div className="totalPrice">
-                  <span className="price">38,000</span>
+                  <span className="price">{this.handleSumToalPrice()}</span>
                   <span className="currency">원</span>
                 </div>
                 <div className="quantity">총 1개</div>
@@ -64,7 +104,7 @@ class Cart extends React.Component {
               </div>
               <div className="td3">
                 <div className="totalPayment">
-                  <span className="price">38,000</span>
+                  <span className="price">{this.handleSumToalPrice()}</span>
                   <span className="currency">원</span>
                 </div>
               </div>
