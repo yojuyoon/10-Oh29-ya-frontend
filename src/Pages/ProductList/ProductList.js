@@ -27,6 +27,7 @@ class ProductList extends React.Component {
   // }
 
   handleData = () => {
+    //됐던거
     // fetch("http://10.58.4.0:8000/product/", {
     //   method: "POST",
     //   body: JSON.stringify({
@@ -43,6 +44,7 @@ class ProductList extends React.Component {
     //     });
     //   });
 
+    //내로컬
     fetch("http://localhost:3000/data/product.json")
       .then((response) => response.json())
       .then((response) => {
