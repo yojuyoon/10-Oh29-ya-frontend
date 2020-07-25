@@ -30,6 +30,7 @@ class Routes extends React.Component {
           <Route exact path="/AlternatingNav" component={AlternatingNav} />
           <Route exact path="/Cart" component={Cart} />
         </Switch>
+        <Footer />
       </Router>
     );
   }
