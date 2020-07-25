@@ -10,6 +10,7 @@ import Nav from "./Components/AlternatingNav/Nav/Nav";
 import HeaderNav from "./Components/AlternatingNav/HeaderNav/HeaderNav";
 import AlternatingNav from "./Components/AlternatingNav/AlternatingNav";
 import SpecialOrder from "./Pages/SpecialOrder/SpecialOrder";
+import SpecialContent from "./Components/SpecialContent/SpecialContent";
 import "./Styles/reset.scss";
 
 class Routes extends React.Component {
@@ -28,6 +29,7 @@ class Routes extends React.Component {
           <Route exact path="/HeaderNav" component={HeaderNav} />
           <Route exact path="/AlternatingNav" component={AlternatingNav} />
           <Route exact path="/SpecialOrder" component={SpecialOrder} />
+          <Route exact path="/SpecialContent" component={SpecialContent} />
         </Switch>
       </Router>
     );
