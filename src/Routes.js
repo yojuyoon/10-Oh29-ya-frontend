@@ -23,7 +23,6 @@ class Routes extends React.Component {
           <Route exact path="/Product" component={Product} />
           <Route exact path="/TwentyNineTV" component={TwentyNineTV} />
           <Route exact path="/Footer" component={Footer} />
-          <Route exact path="/TwentyNineTV" component={TwentyNineTV} />
           <Route exact path="/Nav" component={Nav} />
           <Route exact path="/HeaderNav" component={HeaderNav} />
           <Route exact path="/AlternatingNav" component={AlternatingNav} />

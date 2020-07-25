@@ -1,11 +1,27 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import ActiveLIkeIcon from "./ActiveLikeIcon";
+import ActiveLIkeIcon from "../../Components/ActiveLikeBtn/ActiveLikeBtn";
 import "./TwentyNineTV.scss";
 
 class TwentyNineTVFeedComponent extends React.Component {
   state = {
     officialCheck: false,
+    clickedIcon: false,
+    clickedNumber: 0,
+  };
+
+  activeIcon = () => {
+    this.setState({
+      clickedIcon: true,
+      clickedNumber: this.state.clickedNumber + 1,
+    });
+  };
+
+  unActiveIcon = () => {
+    this.setState({
+      clickedIcon: false,
+      clickedNumber: this.state.clickedNumber - 1,
+    });
   };
 
   official = () => {
@@ -20,6 +36,7 @@ class TwentyNineTVFeedComponent extends React.Component {
       brandName,
       text,
       officialCheck,
+      likedNumber,
       hashtag,
     } = this.props;
     const { official } = this;
@@ -49,7 +66,7 @@ class TwentyNineTVFeedComponent extends React.Component {
                   <p>{text}</p>
                 </div>
                 <div className="feedTag">{hashtag.join(" ")}</div>
-                <ActiveLIkeIcon />
+                <ActiveLIkeIcon likedNumber={likedNumber} />
               </div>
             </div>
           </div>

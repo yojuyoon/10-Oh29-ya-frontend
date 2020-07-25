@@ -13,15 +13,22 @@ class TwentyNineTV extends React.Component {
       data: [],
       currentModalData: [],
       currentIdx: 0,
+      clickedIcon: false,
+      clickedNumber: this.likedNumber,
     };
   }
 
   componentDidMount = () => {
-    fetch("http://10.58.4.210:8000/media/recommend")
+    fetch("http://10.58.1.157:8000/media/recommend")
       .then((res) => res.json())
       .then((res) => {
         this.setState({
-          data: res.data,
+          data: res.data.map((feed) => {
+            return {
+              ...feed,
+              likedNumber: 7,
+            };
+          }),
         });
       });
   };
@@ -51,25 +58,30 @@ class TwentyNineTV extends React.Component {
     this.setState({ currentIdx: idx });
   };
 
+  // activeIcon = () => {
+  //   this.setState({
+  //     clickedIcon: true,
+  //     clickedNumber: this.state.clickedNumber + 1,
+  //   });
+  // };
+
   render() {
-    const { showModal, hideModal } = this;
-    const { modalStatus } = this.state;
+    const {
+      showModal,
+      hideModal,
+      setModalIdx,
+      idxNextHandler,
+      idxPrevHandler,
+    } = this;
+    const { modalStatus, data, currentIdx } = this.state;
     return (
       <div className="TwentyNineTVFeed">
         {this.state.data.map((feed, index) => {
           return (
             <TwentyNineTVFeedComponent
               onClick={() => {
-                showModal({
-                  img: feed.thumbnail_image,
-                  logo: feed.staff_logo,
-                  brandName: feed.staff_name,
-                  text: feed.content,
-                  officialCheck: feed.official_check,
-                  hashtag: feed.hashtag,
-                  key: index,
-                });
-                this.setModalIdx(index);
+                showModal();
+                setModalIdx(index);
               }}
               img={feed.thumbnail_image}
               logo={feed.staff_logo}
@@ -77,6 +89,7 @@ class TwentyNineTV extends React.Component {
               text={feed.content}
               officialCheck={feed.official_check}
               hashtag={feed.hashtag}
+              likedNumber={feed.likedNumber}
               key={index}
             />
           );
@@ -84,9 +97,11 @@ class TwentyNineTV extends React.Component {
         {modalStatus && (
           <FeedModal
             hideModal={hideModal}
-            data={this.state.data[this.state.currentIdx]}
-            idxNextHandler={this.idxNextHandler}
-            idxPrevHandler={this.idxPrevHandler}
+            data={data[currentIdx]}
+            idxNextHandler={
+              currentIdx === 29 ? !idxNextHandler : idxNextHandler
+            }
+            idxPrevHandler={currentIdx > 0 && idxPrevHandler}
           />
         )}
       </div>

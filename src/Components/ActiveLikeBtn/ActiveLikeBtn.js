@@ -1,10 +1,12 @@
 import React from "react";
+import "./ActiveLikeBtn.scss";
 
 class ActiveLikeIcon extends React.Component {
   state = {
     clickedIcon: false,
-    clickedNumber: 0,
+    clickedNumber: this.props.likedNumber,
   };
+
   activeIcon = () => {
     this.setState({
       clickedIcon: true,
@@ -18,6 +20,7 @@ class ActiveLikeIcon extends React.Component {
       clickedNumber: this.state.clickedNumber - 1,
     });
   };
+
   render() {
     const { activeIcon, unActiveIcon } = this;
     const { clickedIcon } = this.state;

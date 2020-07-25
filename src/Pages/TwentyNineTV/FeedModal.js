@@ -1,6 +1,6 @@
 import React from "react";
 import SnsModal from "./SnsModal";
-import ActiveLIkeIcon from "./ActiveLikeIcon";
+import ActiveLIkeIcon from "../../Components/ActiveLikeBtn/ActiveLikeBtn";
 import "./FeedModal.scss";
 
 class FeedModal extends React.Component {
@@ -29,12 +29,18 @@ class FeedModal extends React.Component {
   };
 
   render() {
+    console.log(this.props.likedNumber);
     const { showReport, hideReport, official } = this;
     const { hideModal, data, idxPrevHandler, idxNextHandler } = this.props;
+    // const iconState = sessionStorage.getItem("iconState");
+    // const iconNumber = sessionStorage.getItem("iconNumber");
     return (
       <div className="FeedModal">
         {this.state.shareModal && <SnsModal hideReport={hideReport} />};
-        <div onClick={idxPrevHandler} className="leftBtn"></div>
+        <div
+          onClick={idxPrevHandler}
+          className={!idxPrevHandler ? "leftBtnHide" : "leftBtn"}
+        ></div>
         <div className="ModalContentContainer">
           <button onClick={hideModal} className="closeBtn">
             <img
@@ -74,7 +80,10 @@ class FeedModal extends React.Component {
               <div className="tag">{data.hashtag.join(" ")}</div>
             </div>
             <div className="icons">
-              <ActiveLIkeIcon />
+              <ActiveLIkeIcon
+                plusNumber={this.props.activeIcon}
+                likedNumber={this.props.data.likedNumber}
+              />
               <div onClick={showReport} className="shareIcon">
                 <img
                   alt="shareIcon"
@@ -116,7 +125,10 @@ class FeedModal extends React.Component {
             </div>
           </div>
         </div>
-        <div className="rightBtn" onClick={idxNextHandler}></div>
+        <div
+          onClick={idxNextHandler}
+          className={!idxNextHandler ? "rightBtnHide" : "rightBtn"}
+        ></div>
       </div>
     );
   }
