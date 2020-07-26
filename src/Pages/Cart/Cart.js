@@ -1,6 +1,6 @@
 import React from "react";
 import "./Cart.scss";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CartItem from "./CartItem/CartItem";
 
 const cartData = [
@@ -20,6 +20,8 @@ const cartData = [
     id: 1004,
     name: "레이스 롱원피스 잠옷",
     price: "53000.00",
+    discount_rate: 0,
+    discount_price: 0,
     // discount_rate: 90,
     // discount_price: "5300.00",
     brand: "코즈넉",
@@ -31,6 +33,13 @@ const cartData = [
 ];
 
 class Cart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      itemSelected: [],
+    };
+  }
+
   handleSumToalPrice = () => {
     let total = 0;
     for (let i = 0; i < cartData.length; i++) {
@@ -42,7 +51,39 @@ class Cart extends React.Component {
     return total;
   };
 
+  //이게 아닌가벼;; 좀 더 고민해 볼것. 안됨
+  //자식 컴포넌트에서도 리턴 값을 전달 받는 걸 생각해 보자,,,,,,
+  // handleTotalPriceItem = () => {
+  //   if (cartData.discount_price) {
+  //     return cartData.quantity * cartData.discount_price;
+  //   }
+  //   return cartData.quantity * cartData.price;
+  // };
+
+  //여기서 post호출해서 선택된 상품들을 알려주면 좋을 듯 한데,,,흠
+  delSelectedItems = () => {
+    console.log("선택 된 상품 arr 삭제");
+    this.setState({ itemSelected: [] });
+    console.log(this.state.itemSelected);
+  };
+
+  //state에 있는 선택된 item의 모음 itemSelected를 업데이트
+  //for문이 이상한 것 같음,, 굳이 필요없음 자식 컴포는터에서 처리하고 나중에 for문 삭제할 것
+  handleSelectItem = (id) => {
+    const { itemSelected } = this.state;
+    for (let i = 0; i < itemSelected.length; i++) {
+      if (itemSelected[i] === id) {
+        return;
+      }
+    }
+    this.setState({
+      itemSelected: [...itemSelected, id],
+    });
+  };
+
   render() {
+    console.log(this.state.itemSelected);
+
     return (
       <div className="Cart">
         <div className="orderFlow">
@@ -76,11 +117,19 @@ class Cart extends React.Component {
               </div>
 
               {cartData.map((item, i) => {
-                return <CartItem cartData={item} key={i} />;
+                return (
+                  <CartItem
+                    cartData={item}
+                    handleSelectItem={this.handleSelectItem}
+                    key={i}
+                  />
+                );
               })}
             </div>
             <div className="cartControl">
-              <button type="button">선택상품 삭제</button>
+              <button type="button" onClick={this.delSelectedItems}>
+                선택상품 삭제
+              </button>
               <button type="button">품절상품 삭제</button>
               <p>장바구니는 접속 종료 후 60일 동안 보관됩니다.</p>
             </div>
@@ -112,10 +161,10 @@ class Cart extends React.Component {
           </div>
           <div className="btnOrderWrap">
             <button className="btnShopping" type="button">
-              CONTINUE SHOPPING
+              <Link>CONTINUE SHOPPING</Link>
             </button>
             <button className="btnCheckout" type="button">
-              CHECK OUT
+              <Link>CHECK OUT</Link>
             </button>
           </div>
         </div>

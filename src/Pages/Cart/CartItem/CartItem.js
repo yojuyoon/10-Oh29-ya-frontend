@@ -6,7 +6,8 @@ class CartItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: this.props.cartData.item_quantity,
+      quantity: this.props.cartData.item_quantity, //나중에 연결하면 컴디마에서 setState해 줄것.
+      checkState: false,
     };
   }
 
@@ -24,6 +25,9 @@ class CartItem extends React.Component {
   };
 
   handleTotalPriceItem = () => {
+    if (this.props.cartData.discount_price) {
+      return this.state.quantity * this.props.cartData.discount_price;
+    }
     return this.state.quantity * this.props.cartData.price;
   };
 
@@ -34,8 +38,14 @@ class CartItem extends React.Component {
     console.log(this.props.cartData.id);
   };
 
+  //얘를 추가해서 checkState가 true일 경우에는 체크박스에 걸려있는 콜백함수를 실행하지 않고 싶은데 어떻게 해야 할까,,
+  // handleCheckState = () => {
+  //   this.setState({ handleCheckState: !this.state.handleCheckState });
+  // };
+
   render() {
     const {
+      id,
       image,
       brand,
       name,
@@ -44,10 +54,19 @@ class CartItem extends React.Component {
       discount_price,
     } = this.props.cartData;
 
+    const { handleSelectItem } = this.props;
+
     return (
       <div className="CartItem">
         <div className="td1">
-          <span className="check">
+          <span
+            className="check"
+            onClick={
+              !this.state.checkState
+                ? () => handleSelectItem(id)
+                : console.log("여기다 뭐적지")
+            }
+          >
             <input type="checkbox"></input>
           </span>
         </div>
@@ -68,7 +87,7 @@ class CartItem extends React.Component {
               <span className="price">{parseInt(price)}</span>{" "}
               <span className="currency">원</span>
             </div>
-            <div className="productPrice">
+            <div className={discount_rate ? "productPrice" : "hide"}>
               <span className="discountRate">[{discount_rate}%]</span>{" "}
               <span className="totalPrice">{parseInt(discount_price)}</span>
               <span className="currency">원</span>
@@ -96,7 +115,9 @@ class CartItem extends React.Component {
               <span>원</span>
             </div>
             <div>
-              <button>BUY NOW</button>
+              <button>
+                <Link>BUY NOW</Link>
+              </button>
             </div>
           </div>
         </div>

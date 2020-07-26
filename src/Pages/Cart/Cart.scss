@@ -223,20 +223,37 @@
     box-sizing: border-box;
     cursor: pointer;
     outline: none;
-
-    &:hover {
-      color: red;
-    }
   }
 
   .btnShopping {
     border: 1px solid #a0a0a0;
     color: #303033;
+
+    a {
+      text-decoration: none;
+      color: #303033;
+
+      &:hover {
+        color: red;
+      }
+    }
   }
 
   .btnCheckout {
     margin-left: 10px;
     background: #000;
-    color: #fff;
+
+    a {
+      text-decoration: none;
+      color: #fff;
+
+      &:hover {
+        color: red;
+      }
+    }
   }
+}
+
+.hide {
+  display: none;
 }
