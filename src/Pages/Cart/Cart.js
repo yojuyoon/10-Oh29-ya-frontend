@@ -54,9 +54,6 @@ class Cart extends React.Component {
   handleSumToalPrice = () => {
     let total = 0;
     for (let i = 0; i < cartData.length; i++) {
-      // total = parseInt(total) + Number(cartData[i].price);
-      // total = cartData[1].price;
-      // console.log(typeof cartData[1].price);
       if (cartData[i].discount_rate) {
         total =
           total +
@@ -69,19 +66,9 @@ class Cart extends React.Component {
     return total;
   };
 
-  //이게 아닌가벼;; 좀 더 고민해 볼것. 안됨
-  //자식 컴포넌트에서도 리턴 값을 전달 받는 걸 생각해 보자,,,,,,
-  // handleTotalPriceItem = () => {
-  //   if (cartData.discount_price) {
-  //     return cartData.quantity * cartData.discount_price;
-  //   }
-  //   return cartData.quantity * cartData.price;
-  // };
-
   //itemSelected를 업데이트 cartItem컴포넌트에서 체크 된 것들의 배열
   handleSelectItem = (id) => {
     const { itemSelected } = this.state;
-    console.log("HEY: " + id);
 
     for (let i = 0; i < itemSelected.length; i++) {
       if (itemSelected[i] === id) {
@@ -94,43 +81,37 @@ class Cart extends React.Component {
   };
 
   handleMasterSelectBtn = () => {
-    const { itemSelected } = this.state;
+    const { itemSelected, checkMasterState } = this.state;
+
     if (itemSelected.length == cartData.length) {
-      // console.log("다 있어! 다 지우자!");
       //카드에 담긴 아이템 길이랑 selected item길이가 같으면 selected를 다 비워줌
-      //자식컴포넌트 체크도 풀어야 하는데 그건 어떻게..?,,
       this.setState({ itemSelected: [] });
-      console.log(this.state.itemSelected);
+      this.setState({ checkMasterState: false });
     } else {
-      // console.log("하나라도 있어!");
-      //자식 컴포넌트의 체크 풀고 & itemSelected에 장바구니에 담긴 모든 아이템 담기
       const filteredItems = cartData.map((item) => item.id);
       this.setState({
         itemSelected: filteredItems,
+        checkMasterState: true,
       });
     }
-    this.setState({ checkMasterState: !this.state.checkMasterState });
   };
 
   handleDelSelectedItem = (id) => {
     const { itemSelected } = this.state;
+
     for (let i = 0; i < itemSelected.length; i++) {
       if (itemSelected[i] === id) {
         itemSelected.splice(i, 1);
-        console.log(this.state.itemSelected);
         return;
       }
     }
   };
 
-  //여기서 fetch함수&POST메소드로 선택된 상품들을 알려주면 좋을 듯 한데,,,흠
-  //배열로 보내 줄 수 있음
-  delSelectedItems = () => {
-    console.log("선택 된 상품 arr 삭제");
-    //여기서 POST
-    this.setState({ itemSelected: [] });
-    console.log(this.state.itemSelected);
-  };
+  //선택 된 상품 arr 삭제
+  // delSelectedItems = () => {
+  //   this.setState({ itemSelected: [] });
+  //   console.log(this.state.itemSelected);
+  // };
 
   render() {
     console.log(this.state.itemSelected);
@@ -178,9 +159,9 @@ class Cart extends React.Component {
                 return (
                   <CartItem
                     cartData={item}
+                    checkMasterState={this.state.checkMasterState}
                     handleSelectItem={this.handleSelectItem}
                     handleDelSelectedItem={this.handleDelSelectedItem}
-                    checkMasterState={this.state.checkMasterState}
                     itemSelected={this.state.itemSelected}
                     key={i}
                   />

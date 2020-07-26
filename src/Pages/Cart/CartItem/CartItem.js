@@ -12,28 +12,6 @@ class CartItem extends React.Component {
     };
   }
 
-  handleCheckbyMaster = () => {
-    const { itemSelected, id } = this.props;
-    console.log("여기서" + itemSelected);
-    for (let i = 0; i < itemSelected.length; i++) {
-      console.log("이거랑" + itemSelected[i]);
-      console.log("요거" + this.props.cartData.id);
-      if (itemSelected[i] == this.props.cartData.id) {
-        this.setState({ checkState: true });
-      }
-    }
-  };
-
-  // handleCheckbyMaster();
-
-  testChangeCheckState = () => {
-    if (this.props.checkMasterState) {
-      this.setState({ checkState: true });
-    } else {
-      this.setState({ checkState: false });
-    }
-  };
-
   // +눌렀을 때 작동되는 함수
   handleSum = () => {
     this.setState({ quantity: this.state.quantity + 1 });
@@ -47,32 +25,77 @@ class CartItem extends React.Component {
     }
   };
 
+  //CartItem안에 물건 금액 계산 하는 함수
   handleTotalPriceItem = () => {
-    if (this.props.cartData.discount_rate) {
-      return this.state.quantity * this.props.cartData.discount_price;
+    const { discount_rate, discount_price, price } = this.props.cartData;
+    const { quantity } = this.state;
+
+    if (discount_rate) {
+      return quantity * discount_price;
     }
-    return this.state.quantity * this.props.cartData.price;
+    return quantity * price;
   };
 
-  handleDelEachItem = () => {
-    console.log("얘 삭제할거야!");
-    //디비에 삭제할거라는 싸인을 보낼 예정
-    //아이템 id를 보내면 될 것 같은데...
-    console.log(this.props.cartData.id);
-  };
+  /////////////////////////////////////////////////////////////////////////////
 
   //얘를 추가해서 checkState가 true일 경우에는 체크박스에 걸려있는
   handleCheckState = () => {
-    if (!this.state.checkState) {
-      this.props.handleSelectItem(this.props.cartData.id);
-    } else {
-      this.props.handleDelSelectedItem(this.props.cartData.id);
+    // console.log("이건 도니..?");
+    // this.newHandleCheckState();
+    const {
+      handleSelectItem,
+      handleDelSelectedItem,
+      checkMasterState,
+    } = this.props;
+
+    const { id } = this.props.cartData;
+    const { checkState } = this.state;
+
+    if (!checkState) {
+      handleSelectItem(id);
+      this.setState({ checkState: true });
+    } else if (checkMasterState && checkState) {
+      handleDelSelectedItem(id);
+      this.setState({ checkState: false });
+    } else if (checkState) {
+      handleDelSelectedItem(id);
+      this.setState({ checkState: false });
     }
-    this.setState({ checkState: !this.state.checkState });
   };
+
+  // followMasterCheckState = () => {
+  //   console.log("돌고있니..?");
+  //   const { itemSelected } = this.props;
+
+  //   itemSelected.map((item) => {
+  //     if (item === this.props.cartData.id) {
+  //       this.setState({ checkState: true });
+  //       console.log("id야" + this.props.cartData.id);
+  //       console.log("가져온 item" + item);
+  //       // return true;
+  //     }
+  //   });
+  // };
+
+  testFunction = () => {
+    const { itemSelected } = this.props;
+    const { id } = this.props.cartData;
+
+    const filtered = itemSelected.filter((item) => {
+      if (item === id) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    this.setState({ checkState: filtered });
+  };
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
 
   render() {
     console.log(this.props.checkMasterState);
+    console.log("얘는 자식 checkstate: " + this.state.checkState);
 
     const {
       // id,
@@ -90,7 +113,7 @@ class CartItem extends React.Component {
           <span className="check" onClick={this.handleCheckState}>
             <input
               type="checkbox"
-              // checked={this.state.checkState ? "checked" : undefined}
+              // checked={this.state.checkState ? "checked" : null}
               checked={
                 this.state.checkState
                   ? this.props.checkMasterState
