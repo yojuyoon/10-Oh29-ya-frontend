@@ -96,23 +96,20 @@ class Cart extends React.Component {
   handleMasterSelectBtn = () => {
     const { itemSelected } = this.state;
     if (itemSelected.length == cartData.length) {
-      console.log("다 있어!");
+      // console.log("다 있어! 다 지우자!");
       //카드에 담긴 아이템 길이랑 selected item길이가 같으면 selected를 다 비워줌
       //자식컴포넌트 체크도 풀어야 하는데 그건 어떻게..?,,
       this.setState({ itemSelected: [] });
-      this.setState({ checkMasterState: !this.state.checkMasterState });
       console.log(this.state.itemSelected);
     } else {
-      console.log("하나라도 있어!");
+      // console.log("하나라도 있어!");
       //자식 컴포넌트의 체크 풀고 & itemSelected에 장바구니에 담긴 모든 아이템 담기
       const filteredItems = cartData.map((item) => item.id);
       this.setState({
         itemSelected: filteredItems,
       });
-
-      /////
-      console.log("sdffsdjklfsdjkl");
     }
+    this.setState({ checkMasterState: !this.state.checkMasterState });
   };
 
   handleDelSelectedItem = (id) => {
@@ -137,6 +134,7 @@ class Cart extends React.Component {
 
   render() {
     console.log(this.state.itemSelected);
+    console.log(this.state.checkMasterState);
 
     return (
       <div className="Cart">
@@ -182,6 +180,8 @@ class Cart extends React.Component {
                     cartData={item}
                     handleSelectItem={this.handleSelectItem}
                     handleDelSelectedItem={this.handleDelSelectedItem}
+                    checkMasterState={this.state.checkMasterState}
+                    itemSelected={this.state.itemSelected}
                     key={i}
                   />
                 );

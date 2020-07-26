@@ -8,8 +8,31 @@ class CartItem extends React.Component {
     this.state = {
       quantity: this.props.cartData.item_quantity, //나중에 연결하면 컴디마에서 setState해 줄것.
       checkState: false,
+      checkMasterState: false,
     };
   }
+
+  handleCheckbyMaster = () => {
+    const { itemSelected, id } = this.props;
+    console.log("여기서" + itemSelected);
+    for (let i = 0; i < itemSelected.length; i++) {
+      console.log("이거랑" + itemSelected[i]);
+      console.log("요거" + this.props.cartData.id);
+      if (itemSelected[i] == this.props.cartData.id) {
+        this.setState({ checkState: true });
+      }
+    }
+  };
+
+  // handleCheckbyMaster();
+
+  testChangeCheckState = () => {
+    if (this.props.checkMasterState) {
+      this.setState({ checkState: true });
+    } else {
+      this.setState({ checkState: false });
+    }
+  };
 
   // +눌렀을 때 작동되는 함수
   handleSum = () => {
@@ -42,15 +65,15 @@ class CartItem extends React.Component {
   handleCheckState = () => {
     if (!this.state.checkState) {
       this.props.handleSelectItem(this.props.cartData.id);
-      //fetch함수로 삭제
     } else {
       this.props.handleDelSelectedItem(this.props.cartData.id);
-      //
     }
     this.setState({ checkState: !this.state.checkState });
   };
 
   render() {
+    console.log(this.props.checkMasterState);
+
     const {
       // id,
       image,
@@ -60,7 +83,6 @@ class CartItem extends React.Component {
       discount_rate,
       discount_price,
     } = this.props.cartData;
-    console.log(this.state.checkState);
 
     return (
       <div className="CartItem">
@@ -68,7 +90,16 @@ class CartItem extends React.Component {
           <span className="check" onClick={this.handleCheckState}>
             <input
               type="checkbox"
-              checked={this.state.checkState ? "checked" : undefined}
+              // checked={this.state.checkState ? "checked" : undefined}
+              checked={
+                this.state.checkState
+                  ? this.props.checkMasterState
+                    ? "checked"
+                    : null
+                  : this.props.checkMasterState
+                  ? "checked"
+                  : null
+              }
             ></input>
           </span>
         </div>
