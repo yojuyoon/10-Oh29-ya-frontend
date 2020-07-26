@@ -40,14 +40,14 @@ class CartItem extends React.Component {
 
   //얘를 추가해서 checkState가 true일 경우에는 체크박스에 걸려있는
   handleCheckState = () => {
-    if (!this.state.handleCheckState) {
+    if (!this.state.checkState) {
       this.props.handleSelectItem(this.props.cartData.id);
       //fetch함수로 삭제
     } else {
       this.props.handleDelSelectedItem(this.props.cartData.id);
       //
     }
-    this.setState({ handleCheckState: !this.state.handleCheckState });
+    this.setState({ checkState: !this.state.checkState });
   };
 
   render() {
@@ -60,12 +60,16 @@ class CartItem extends React.Component {
       discount_rate,
       discount_price,
     } = this.props.cartData;
+    console.log(this.state.checkState);
 
     return (
       <div className="CartItem">
         <div className="td1">
           <span className="check" onClick={this.handleCheckState}>
-            <input type="checkbox"></input>
+            <input
+              type="checkbox"
+              checked={this.state.checkState ? "checked" : undefined}
+            ></input>
           </span>
         </div>
         <div className="td2">

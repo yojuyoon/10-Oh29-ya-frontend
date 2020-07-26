@@ -47,6 +47,7 @@ class Cart extends React.Component {
     super(props);
     this.state = {
       itemSelected: [],
+      checkMasterState: false,
     };
   }
 
@@ -93,14 +94,16 @@ class Cart extends React.Component {
   };
 
   handleMasterSelectBtn = () => {
-    console.log("가지고 있는 아이템들을 다 어떻게 알지..? 뚜비뚜밤");
     const { itemSelected } = this.state;
     if (itemSelected.length == cartData.length) {
+      console.log("다 있어!");
       //카드에 담긴 아이템 길이랑 selected item길이가 같으면 selected를 다 비워줌
       //자식컴포넌트 체크도 풀어야 하는데 그건 어떻게..?,,
       this.setState({ itemSelected: [] });
+      this.setState({ checkMasterState: !this.state.checkMasterState });
       console.log(this.state.itemSelected);
     } else {
+      console.log("하나라도 있어!");
       //자식 컴포넌트의 체크 풀고 & itemSelected에 장바구니에 담긴 모든 아이템 담기
       const filteredItems = cartData.map((item) => item.id);
       this.setState({
@@ -160,6 +163,9 @@ class Cart extends React.Component {
                   <span className="check">
                     <input
                       type="checkbox"
+                      checked={
+                        this.state.checkMasterState ? "checked" : undefined
+                      }
                       onClick={this.handleMasterSelectBtn}
                     ></input>
                   </span>
