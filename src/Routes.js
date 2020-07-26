@@ -4,11 +4,13 @@ import Login from "./Pages/Login/Login";
 import Join from "./Pages/Join/Join";
 import Main from "./Pages/Main/Main";
 import Product from "./Pages/Product/Product";
+import DetailProduct from "./Pages/DetailProduct/DetailProduct";
 import Footer from "./Components/Footer/Footer";
 import TwentyNineTV from "./Pages/TwentyNineTV/TwentyNineTV";
 import Nav from "./Components/AlternatingNav/Nav/Nav";
 import HeaderNav from "./Components/AlternatingNav/HeaderNav/HeaderNav";
 import AlternatingNav from "./Components/AlternatingNav/AlternatingNav";
+
 import "./Styles/reset.scss";
 
 class Routes extends React.Component {
@@ -26,6 +28,7 @@ class Routes extends React.Component {
           <Route exact path="/TwentyNineTV" component={TwentyNineTV} />
           <Route exact path="/Nav" component={Nav} />
           <Route exact path="/HeaderNav" component={HeaderNav} />
+          <Route exact path="/DetailProduct" component={DetailProduct} />
           <Route exact path="/AlternatingNav" component={AlternatingNav} />
         </Switch>
       </Router>
