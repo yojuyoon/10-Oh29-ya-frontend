@@ -4,24 +4,43 @@ import "./DetailProduct.scss";
 
 class DetailProduct extends React.Component {
   state = {
-    dropDownClicked: false,
-    dropDownClass: "dropDownContent unVisited",
+    input: 1,
+    price: 6600,
+    totalPrice: 6600,
   };
 
-  clickHandler = () => {
-    !this.state.clicked
-      ? this.setState({
-          dropDownClicked: true,
-          dropDownClass: "dropDownContent visited",
-        })
-      : this.setState({
-          dropDownClicked: false,
-          dropDownClass: "dropDownContent unVisited",
-        });
+  subtractHandler = (e) => {
+    const { input } = this.state;
+    if (e.target.name === "plus") {
+      this.setState({
+        input: input + 1,
+      });
+    } else if (e.target.name === "minus" && input > 1) {
+      this.setState({
+        input: input - 1,
+      });
+    } else {
+      this.setState({
+        input: 1,
+      });
+    }
   };
+
+  handleChange = (e) => {
+    this.setState({
+      input: e.target.value,
+    });
+  };
+
+  totalPrice = () => {
+    const { price, input } = this.state;
+    return (price * input).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   render() {
-    const { dropDownClass } = this.state;
-    const { clickHandler } = this;
+    const { input } = this.state;
+    const { subtractHandler, handleChange, totalPrice } = this;
+    // console.log(input);
     return (
       <>
         <div className="detailCategory"></div>
@@ -84,18 +103,44 @@ class DetailProduct extends React.Component {
                   <p className="openCard">무이자 카드보기</p>
                 </span>
               </div>
-              <div className="configurationContainer">
-                <span className="dropDown" onClick={clickHandler}>
-                  구성
-                </span>
-                <div className={dropDownClass}>
-                  <p>구성</p>
-                  <p>코스터 코스</p>
-                  <p>튜브형 아이스 버켓(+4,800원)</p>
-                  <p>유리잔 세트(+7,600원)</p>
-                  <p>미니 천막 (8월 3일부터 순차배송) (+23,800원)</p>
+              <div className="priceResultContainer">
+                <div className="resultProduct">
+                  <span className="productName">
+                    오비라거 랄라베어 굿즈 4종
+                  </span>
+                  <span className="rowContainer">
+                    <span className="caculatar">
+                      <button
+                        className="numberBtn"
+                        name="minus"
+                        onClick={subtractHandler}
+                      >
+                        -
+                      </button>
+                      <input
+                        className="productNumber"
+                        value={input}
+                        onChange={handleChange}
+                      />
+                      <button
+                        className="numberBtn"
+                        name="plus"
+                        onClick={subtractHandler}
+                      >
+                        +
+                      </button>
+                    </span>
+                    <span className="price">6,600원</span>
+                  </span>
                 </div>
-                <i className="fas fa-chevron-down"></i>
+                <div className="border" />
+                <div className="totalPrice">
+                  <span className="text">총 상품 금액</span>
+                  <span className="price">
+                    {totalPrice()}
+                    {"원"}
+                  </span>
+                </div>
               </div>
               <div className="purcharseContainer">
                 <button className="purchaseBtn bag">SHOPPING BAG</button>
