@@ -1,8 +1,24 @@
 import React from "react";
+import FavListTwoNineTV from "./FavListTwoNineTV";
+import FavListProduct from "./FavListProduct";
+import FavListPost from "./FavListPost";
+import FavListBrand from "./FavListBrand";
 import "./MyHeart.scss";
 
+const obj = {
+  0: <FavListProduct />,
+  1: <FavListBrand />,
+  2: <FavListTwoNineTV />,
+  3: <FavListPost />,
+};
+
 class MyHeart extends React.Component {
-  handleClicked = () => {};
+  state = { activeId: 0, titleClicked: false };
+
+  handleClicked = (id) => {
+    this.setState({ activeId: id, titleClicked: true });
+  };
+
   render() {
     return (
       <div className="MyHeart">
@@ -64,13 +80,33 @@ class MyHeart extends React.Component {
               <div className="number">910</div>
             </div>
           </div>
-          <div className="myheartCategory">
-            <button className="product">PRODUCT()</button>
-            <button className="brand">BRAND()</button>
-            <button className="tv">TV()</button>
-            <button className="post">POST()</button>
-          </div>
-          <div className="myHeartContents"></div>
+          <ul className="myheartCategory">
+            <li
+              onClick={() => this.handleClicked(0)}
+              className={this.state.activeId === 0 && "myheartCategoryClicked"}
+            >
+              PRODUCT()
+            </li>
+            <li
+              onClick={() => this.handleClicked(1)}
+              className={this.state.activeId === 1 && "myheartCategoryClicked"}
+            >
+              BRAND()
+            </li>
+            <li
+              onClick={() => this.handleClicked(2)}
+              className={this.state.activeId === 2 && "myheartCategoryClicked"}
+            >
+              TV()
+            </li>
+            <li
+              onClick={() => this.handleClicked(3)}
+              className={this.state.activeId === 3 && "myheartCategoryClicked"}
+            >
+              POST()
+            </li>
+          </ul>
+          <div className="myHeartContents">{obj[this.state.activeId]}</div>
         </main>
       </div>
     );

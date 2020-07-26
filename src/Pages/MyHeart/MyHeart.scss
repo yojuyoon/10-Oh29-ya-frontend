@@ -140,23 +140,20 @@
       margin: 0 auto;
       margin-top: 30px;
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
-      font-size: 30px;
       cursor: pointer;
 
-      button {
-        background-color: transparent;
-        border: none;
-        margin-right: 30px;
+      li {
         font-size: 30px;
-        outline: none;
       }
-      button:active {
+      .myheartCategoryClicked {
         font-weight: 700;
       }
     }
-    .myheartCategoryClicked {
-      font-weight: 700;
+    .myHeartContents {
+      height: 100vh;
+      margin-top: 50px;
     }
   }
 }
