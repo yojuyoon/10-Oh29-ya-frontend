@@ -21,14 +21,24 @@ const cartData = [
     name: "레이스 롱원피스 잠옷",
     price: "53000.00",
     discount_rate: 0,
-    discount_price: 0,
-    // discount_rate: 90,
-    // discount_price: "5300.00",
+    discount_price: "0.00",
     brand: "코즈넉",
     image: [
       "//img.29cm.co.kr/next-product/2020/07/07/ce3c05a2f144411b882529837a13f329_20200707152351.jpg?width=150",
     ],
     item_quantity: 1,
+  },
+  {
+    id: 403,
+    name: "[29Edition.]_NYLON BLEND SHORTS (Safari + Mango + Evergreen)",
+    price: "45000.00",
+    discount_rate: 35,
+    discount_price: "29925.00",
+    brand: "브릭",
+    image: [
+      "https://img.29cm.co.kr/next-product/2018/05/08/e84d1225ffe24f86bffd611d73b9d73d_20180508121032.jpg?width=700",
+    ],
+    item_quantity: 4,
   },
 ];
 
@@ -43,9 +53,16 @@ class Cart extends React.Component {
   handleSumToalPrice = () => {
     let total = 0;
     for (let i = 0; i < cartData.length; i++) {
-      total = parseInt(total) + Number(cartData[i].price);
+      // total = parseInt(total) + Number(cartData[i].price);
       // total = cartData[1].price;
       // console.log(typeof cartData[1].price);
+      if (cartData[i].discount_rate) {
+        total =
+          total +
+          cartData[i].item_quantity * Number(cartData[i].discount_price);
+      } else {
+        total = total + cartData[i].item_quantity * Number(cartData[i].price);
+      }
     }
 
     return total;
@@ -60,17 +77,11 @@ class Cart extends React.Component {
   //   return cartData.quantity * cartData.price;
   // };
 
-  //여기서 post호출해서 선택된 상품들을 알려주면 좋을 듯 한데,,,흠
-  delSelectedItems = () => {
-    console.log("선택 된 상품 arr 삭제");
-    this.setState({ itemSelected: [] });
-    console.log(this.state.itemSelected);
-  };
-
-  //state에 있는 선택된 item의 모음 itemSelected를 업데이트
-  //for문이 이상한 것 같음,, 굳이 필요없음 자식 컴포는터에서 처리하고 나중에 for문 삭제할 것
+  //itemSelected를 업데이트 cartItem컴포넌트에서 체크 된 것들의 배열
   handleSelectItem = (id) => {
     const { itemSelected } = this.state;
+    console.log("HEY: " + id);
+
     for (let i = 0; i < itemSelected.length; i++) {
       if (itemSelected[i] === id) {
         return;
@@ -79,6 +90,46 @@ class Cart extends React.Component {
     this.setState({
       itemSelected: [...itemSelected, id],
     });
+  };
+
+  handleMasterSelectBtn = () => {
+    console.log("가지고 있는 아이템들을 다 어떻게 알지..? 뚜비뚜밤");
+    const { itemSelected } = this.state;
+    if (itemSelected.length == cartData.length) {
+      //카드에 담긴 아이템 길이랑 selected item길이가 같으면 selected를 다 비워줌
+      //자식컴포넌트 체크도 풀어야 하는데 그건 어떻게..?,,
+      this.setState({ itemSelected: [] });
+      console.log(this.state.itemSelected);
+    } else {
+      //자식 컴포넌트의 체크 풀고 & itemSelected에 장바구니에 담긴 모든 아이템 담기
+      const filteredItems = cartData.map((item) => item.id);
+      this.setState({
+        itemSelected: filteredItems,
+      });
+
+      /////
+      console.log("sdffsdjklfsdjkl");
+    }
+  };
+
+  handleDelSelectedItem = (id) => {
+    const { itemSelected } = this.state;
+    for (let i = 0; i < itemSelected.length; i++) {
+      if (itemSelected[i] === id) {
+        itemSelected.splice(i, 1);
+        console.log(this.state.itemSelected);
+        return;
+      }
+    }
+  };
+
+  //여기서 fetch함수&POST메소드로 선택된 상품들을 알려주면 좋을 듯 한데,,,흠
+  //배열로 보내 줄 수 있음
+  delSelectedItems = () => {
+    console.log("선택 된 상품 arr 삭제");
+    //여기서 POST
+    this.setState({ itemSelected: [] });
+    console.log(this.state.itemSelected);
   };
 
   render() {
@@ -107,7 +158,10 @@ class Cart extends React.Component {
               <div className="category">
                 <div className="th1">
                   <span className="check">
-                    <input type="checkbox"></input>
+                    <input
+                      type="checkbox"
+                      onClick={this.handleMasterSelectBtn}
+                    ></input>
                   </span>
                 </div>
                 <div className="th2">상품 정보</div>
@@ -121,6 +175,7 @@ class Cart extends React.Component {
                   <CartItem
                     cartData={item}
                     handleSelectItem={this.handleSelectItem}
+                    handleDelSelectedItem={this.handleDelSelectedItem}
                     key={i}
                   />
                 );
