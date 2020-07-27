@@ -1,5 +1,5 @@
 @import "../../Styles/common.scss";
-@import "./ActiveLikeIcon.scss";
+@import "../../Components/ActiveLikeBtn/ActiveLikeBtn.scss";
 
 .TwentyNineTVFeed {
   margin-top: 300px;
@@ -16,6 +16,9 @@
       .feedContent {
         width: 350px;
         height: 820px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
 
         .container {
           cursor: pointer;
