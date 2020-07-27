@@ -28,7 +28,7 @@ class TwentyNineTV extends React.Component {
     fetch(`http://${API_URL}/media/recommend`, {
       method: "POST",
       body: JSON.stringify({
-        user: 1,
+        user: 2,
       }),
     })
       .then((res) => res.json())
@@ -84,6 +84,7 @@ class TwentyNineTV extends React.Component {
           return (
             <TwentyNineTVFeedComponent
               onClick={() => {
+                console.log(feed.user_id);
                 showModal();
                 setModalIdx(index);
               }}
