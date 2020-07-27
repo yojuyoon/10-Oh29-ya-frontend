@@ -16,6 +16,9 @@
       .feedContent {
         width: 350px;
         height: 820px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
 
         .container {
           cursor: pointer;

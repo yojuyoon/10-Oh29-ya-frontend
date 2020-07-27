@@ -1,6 +1,6 @@
 import React from "react";
 import SnsModal from "./SnsModal";
-import ActiveLIkeIcon from "../../Components/ActiveLikeBtn/ActiveLikeBtn";
+import ActiveLikeBtn from "../../Components/ActiveLikeBtn/ActiveLikeBtn";
 import "./FeedModal.scss";
 
 class FeedModal extends React.Component {
@@ -29,11 +29,8 @@ class FeedModal extends React.Component {
   };
 
   render() {
-    console.log(this.props.likedNumber);
     const { showReport, hideReport, official } = this;
     const { hideModal, data, idxPrevHandler, idxNextHandler } = this.props;
-    // const iconState = sessionStorage.getItem("iconState");
-    // const iconNumber = sessionStorage.getItem("iconNumber");
     return (
       <div className="FeedModal">
         {this.state.shareModal && <SnsModal hideReport={hideReport} />};
@@ -80,9 +77,10 @@ class FeedModal extends React.Component {
               <div className="tag">{data.hashtag.join(" ")}</div>
             </div>
             <div className="icons">
-              <ActiveLIkeIcon
-                plusNumber={this.props.activeIcon}
-                likedNumber={this.props.data.likedNumber}
+              <ActiveLikeBtn
+                data={this.props.data}
+                postId={this.props.postId}
+                likedNumber={this.props.likedNumber}
               />
               <div onClick={showReport} className="shareIcon">
                 <img

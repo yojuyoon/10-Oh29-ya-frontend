@@ -2,10 +2,10 @@
 @import "../../Components/ActiveLikeBtn/ActiveLikeBtn.scss";
 
 .FeedModal {
-  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
+  position: fixed;
   display: flex;
   @include center;
   background-color: rgba(27, 27, 27, 0.7);
@@ -46,16 +46,16 @@
   }
 
   .ModalContentContainer {
-    position: relative;
     width: 816px;
     height: 625px;
+    position: relative;
     display: flex;
     background-color: $whiteColor;
 
     .closeBtn {
-      position: absolute;
       top: -80px;
       right: 0;
+      position: absolute;
       border: none;
       background-color: transparent;
       outline: none;
