@@ -1,0 +1,59 @@
+// @import "../../../../Styles/common.scss";
+
+.LeftNav {
+  .categoryInner {
+    li {
+      padding: 3px 0;
+    }
+
+    ul {
+      // border-bottom: 4px solid #000;
+    }
+
+    .categoryTitle {
+      button {
+        background: inherit;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        overflow: visible;
+        cursor: pointer;
+        outline: none;
+        text-align: left;
+        width: 200px;
+        // margin-top: 20px;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        font-size: 30px;
+        font-weight: bold;
+        border-bottom: 4px solid #000;
+      }
+    }
+
+    .categoryList {
+      button {
+        background: inherit;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        overflow: visible;
+        cursor: pointer;
+        outline: none;
+        color: #5d5d5d;
+        font-size: 16px;
+
+        &:hover {
+          font-weight: bold;
+        }
+      }
+
+      li {
+        height: 28px;
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}

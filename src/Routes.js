@@ -4,6 +4,7 @@ import Login from "./Pages/Login/Login";
 import Join from "./Pages/Join/Join";
 import Main from "./Pages/Main/Main";
 import Product from "./Pages/Product/Product";
+import ProductList from "./Pages/ProductList/ProductList";
 import DetailProduct from "./Pages/DetailProduct/DetailProduct";
 import Footer from "./Components/Footer/Footer";
 import TwentyNineTV from "./Pages/TwentyNineTV/TwentyNineTV";
@@ -25,6 +26,7 @@ class Routes extends React.Component {
           <Route exact path="/Login" component={Login} />
           <Route exact path="/Join" component={Join} />
           <Route exact path="/Product" component={Product} />
+          <Route exact path="/ProductList" component={ProductList} />
           <Route exact path="/TwentyNineTV" component={TwentyNineTV} />
           <Route exact path="/Footer" component={Footer} />
           <Route exact path="/Nav" component={Nav} />
