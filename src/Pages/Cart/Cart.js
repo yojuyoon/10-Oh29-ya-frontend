@@ -63,10 +63,9 @@ class Cart extends React.Component {
       if (itemSelected.includes(cartData[i].id)) {
         if (cartData[i].discount_rate) {
           total =
-            total +
-            cartData[i].item_quantity * Number(cartData[i].discount_price);
+            total + cartData[i].quantity * Number(cartData[i].discount_price);
         } else {
-          total = total + cartData[i].item_quantity * Number(cartData[i].price);
+          total = total + cartData[i].quantity * Number(cartData[i].price);
         }
       }
     }
@@ -77,7 +76,7 @@ class Cart extends React.Component {
   handleMasterSelectBtn = () => {
     const { itemSelected, cartData } = this.state;
 
-    if (itemSelected.length == cartData.length) {
+    if (itemSelected.length === cartData.length) {
       //카드에 담긴 아이템 길이랑 selected item길이가 같으면 selected를 다 비워줌
       this.setState({ itemSelected: [], checkMasterState: false });
     } else {
@@ -92,7 +91,7 @@ class Cart extends React.Component {
   handleMasterState = () => {
     const { itemSelected, cartData } = this.state;
 
-    if (itemSelected.length == cartData.length) {
+    if (itemSelected.length === cartData.length) {
       this.setState({ checkMasterState: true });
     } else {
       this.setState({ checkMasterState: false });
@@ -131,13 +130,32 @@ class Cart extends React.Component {
   // };
 
   componentDidMount() {
-    fetch("http://localhost:3000/data/cartData.json")
-      .then((response) => response.json())
-      .then((response) => {
+    //////////
+
+    ////내 로컬
+    // fetch("http://localhost:3000/data/cartData.json")
+    //   .then((response) => response.json())
+    //   .then((response) => {
+    //     this.setState({
+    //       cartData: response.data,
+    //     });
+    //   });
+
+    fetch("http://10.58.4.24:8000/cart", {
+      method: "POST",
+      body: JSON.stringify({
+        user: 1,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
         this.setState({
-          cartData: response.data,
+          cartData: res.data,
         });
+        console.log(res);
       });
+
+    /////
   }
 
   render() {
