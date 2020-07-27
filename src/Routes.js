@@ -10,12 +10,8 @@ import TwentyNineTV from "./Pages/TwentyNineTV/TwentyNineTV";
 import Nav from "./Components/AlternatingNav/Nav/Nav";
 import HeaderNav from "./Components/AlternatingNav/HeaderNav/HeaderNav";
 import AlternatingNav from "./Components/AlternatingNav/AlternatingNav";
-<<<<<<< HEAD
-
-=======
 import SpecialOrder from "./Pages/SpecialOrder/SpecialOrder";
 import SpecialContent from "./Components/SpecialContent/SpecialContent";
->>>>>>> master
 import "./Styles/reset.scss";
 
 class Routes extends React.Component {
@@ -28,6 +24,7 @@ class Routes extends React.Component {
           <Route exact path="/Login" component={Login} />
           <Route exact path="/Join" component={Join} />
           <Route exact path="/Product" component={Product} />
+          <Route exact path="/TwentyNineTV" component={TwentyNineTV} />
           <Route exact path="/Footer" component={Footer} />
           <Route exact path="/Nav" component={Nav} />
           <Route exact path="/HeaderNav" component={HeaderNav} />
