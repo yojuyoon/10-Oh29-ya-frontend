@@ -48,6 +48,7 @@ class Cart extends React.Component {
     this.state = {
       itemSelected: [],
       checkMasterState: false,
+      checkState: false,
     };
   }
 
@@ -66,27 +67,17 @@ class Cart extends React.Component {
     return total;
   };
 
-  //itemSelected를 업데이트 cartItem컴포넌트에서 체크 된 것들의 배열
-  handleSelectItem = (id) => {
-    const { itemSelected } = this.state;
+  ////////////////////////////////////////////////////////////////////////////////
 
-    for (let i = 0; i < itemSelected.length; i++) {
-      if (itemSelected[i] === id) {
-        return;
-      }
-    }
-    this.setState({
-      itemSelected: [...itemSelected, id],
-    });
-  };
+  //이걸 itemSelected에도 변화가 있을 때 마다 호출해야함,,..?
+  //props로 전달..?
 
   handleMasterSelectBtn = () => {
-    const { itemSelected, checkMasterState } = this.state;
+    const { itemSelected } = this.state;
 
     if (itemSelected.length == cartData.length) {
       //카드에 담긴 아이템 길이랑 selected item길이가 같으면 selected를 다 비워줌
-      this.setState({ itemSelected: [] });
-      this.setState({ checkMasterState: false });
+      this.setState({ itemSelected: [], checkMasterState: false });
     } else {
       const filteredItems = cartData.map((item) => item.id);
       this.setState({
@@ -96,17 +87,57 @@ class Cart extends React.Component {
     }
   };
 
-  handleDelSelectedItem = (id) => {
+  handleMasterState = () => {
+    console.log("마스터 state바꾸러 오고있니?");
+
+    const { itemSelected } = this.state;
+
+    if (itemSelected.length == cartData.length) {
+      this.setState({ checkMasterState: true });
+    } else {
+      this.setState({ checkMasterState: false });
+    }
+  };
+
+  handleSelectedItem = (id) => {
     const { itemSelected } = this.state;
 
     for (let i = 0; i < itemSelected.length; i++) {
       if (itemSelected[i] === id) {
-        itemSelected.splice(i, 1);
+        const temp = [...itemSelected];
+        temp.splice(i, 1);
+        this.setState({ itemSelected: temp }, () => this.handleMasterState());
         return;
       }
     }
+    this.setState(
+      {
+        itemSelected: [...itemSelected, id],
+      },
+      () => this.handleMasterState()
+    );
   };
 
+  // const filter = itemSelected.filter((item) => {
+  //   return item !== id;
+  // });
+  // this.setState( { itemSelected: filter } )
+
+  // handleCheckState = () => {
+  //   const { itemSelected } = this.state;
+
+  //   for (let i = 0; i < cartData.length; i++) {
+  //     for (let j = 0; i < itemSelected.length; j++) {
+  //       if (cartData[i].id === itemSelected[j]) {
+  //         this.setState({ checkState: true });
+  //       } else {
+  //         this.setState({ checkState: false });
+  //       }
+  //     }
+  //   }
+  // };
+
+  /////////////
   //선택 된 상품 arr 삭제
   // delSelectedItems = () => {
   //   this.setState({ itemSelected: [] });
@@ -160,9 +191,8 @@ class Cart extends React.Component {
                   <CartItem
                     cartData={item}
                     checkMasterState={this.state.checkMasterState}
-                    handleSelectItem={this.handleSelectItem}
-                    handleDelSelectedItem={this.handleDelSelectedItem}
                     itemSelected={this.state.itemSelected}
+                    handleSelectedItem={this.handleSelectedItem}
                     key={i}
                   />
                 );
@@ -176,6 +206,7 @@ class Cart extends React.Component {
               <p>장바구니는 접속 종료 후 60일 동안 보관됩니다.</p>
             </div>
           </div>
+          s
           <div className="priceInfoWrap">
             <div className="category">
               <div className="th1">총 주문금액</div>
