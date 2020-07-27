@@ -37,7 +37,13 @@ class SpecialContent extends React.Component {
     return (
       <li className="SpecialContent">
         <div className="imgContainer">
-          <img className="orderImg" alt="img" src={content.img} />
+          <a
+            href={
+              content.index === 1 ? "https://wecode.co.kr/" : "/DetailProduct"
+            }
+          >
+            <img className="orderImg" alt="img" src={content.img} />
+          </a>
         </div>
         <h2 className="itemTitle">{content.title}</h2>
         <h4 className="itemSubtitle">
