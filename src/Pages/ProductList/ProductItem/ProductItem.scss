@@ -1,6 +1,5 @@
 .itemContainer {
-  width: 33.33%;
-  // padding-right: 10px;
+  width: 20%;
   padding-bottom: 40px;
   padding: 0 0 40px 20px;
   // background-color: lightseagreen;
@@ -81,12 +80,10 @@
     display: flex;
     margin-top: 13px;
 
-    // .image {
-
-    // }
-
     .count {
-      font-size: 14px;
+      margin-left: 8px;
+      margin-top: 4px;
+      font-size: 12px;
     }
 
     .heart {

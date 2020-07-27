@@ -23,21 +23,21 @@ class ProductItem extends React.Component {
     });
 
     //하트 보내는 POST
-    // fetch("http://10.58.1.157:8000/product/like", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     user: 3,
-    //     product: this.props.data.id,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     console.log(res.like_num);
+    fetch("http://10.58.3.206:8000/product/like", {
+      method: "POST",
+      body: JSON.stringify({
+        user: 2,
+        product: this.props.data.id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res.like_num);
 
-    //     this.setState({
-    //       heartCount: res.like_num,
-    //     });
-    //   });
+        this.setState({
+          heartCount: res.like_num,
+        });
+      });
   };
 
   render() {

@@ -19,13 +19,6 @@ class ProductList extends React.Component {
     this.handleData();
   }
 
-  // 유동 라우터
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   if(prevState.itemData !== this.state.itemData){
-  //     this.handleData();
-  //   }
-  // }
-
   handleData = () => {
     //됐던거
     // fetch("http://10.58.4.0:8000/product/", {
@@ -45,31 +38,30 @@ class ProductList extends React.Component {
     //   });
 
     //내로컬
-    fetch("http://localhost:3000/data/product.json")
-      .then((response) => response.json())
-      .then((response) => {
+    //   fetch("http://localhost:3000/data/product.json")
+    //     .then((response) => response.json())
+    //     .then((response) => {
+    //       this.setState({
+    //         itemData: response.data,
+    //       });
+    //     });
+    // };
+
+    ////여긴 하트 받을 때 썼던 민호님 서버
+    fetch("http://10.58.3.206:8000/product", {
+      method: "POST",
+      body: JSON.stringify({
+        category: "WOMEN",
+        subcategory: "상의",
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
         this.setState({
-          itemData: response.data,
+          itemData: res.data,
         });
       });
   };
-
-  ////여긴 하트 받을 때 썼던 민호님 서버
-  //   fetch("http://10.58.1.157:8000/product/", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       category: "WOMEN",
-  //       subcategory: "상의",
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((res) => {
-
-  //       this.setState({
-  //         itemData: res.data,
-  //       });
-  //     });
-
   ////////////////////////////////////////////////////////////
 
   //itemData는 fetch후 res.data를 담은 상태
@@ -83,7 +75,7 @@ class ProductList extends React.Component {
     });
   };
 
-  //얘는 onClick했을 때, 10000원 이하의 제품을 보여주는 함수
+  //onClick했을 때, 10000원 이하의 제품을 보여주는 함수
   handleFilterRate = () => {
     console.log("여기도 눌렸어!!");
 
