@@ -48,9 +48,10 @@ class ProductList extends React.Component {
     // };
 
     ////여긴 하트 받을 때 썼던 민호님 서버
-    fetch("http://10.58.3.206:8000/product", {
+    fetch("http://10.58.4.24:8000/product", {
       method: "POST",
       body: JSON.stringify({
+        user: 2,
         category: "WOMEN",
         subcategory: "상의",
       }),
@@ -60,6 +61,7 @@ class ProductList extends React.Component {
         this.setState({
           itemData: res.data,
         });
+        console.log(res);
       });
   };
   ////////////////////////////////////////////////////////////

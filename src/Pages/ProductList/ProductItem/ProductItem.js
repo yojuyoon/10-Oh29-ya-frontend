@@ -13,6 +13,7 @@ class ProductItem extends React.Component {
   componentDidMount() {
     this.setState({
       heartCount: this.props.data.like_num,
+      myHeartState: this.props.data.user_like_pressed,
     });
   }
 
@@ -23,8 +24,8 @@ class ProductItem extends React.Component {
     });
 
     //하트 보내는 POST
-    fetch("http://10.58.3.206:8000/product/like", {
-      method: "POST",
+    fetch("http://10.58.4.24:8000/product/like", {
+      method: "PATCH",
       body: JSON.stringify({
         user: 2,
         product: this.props.data.id,
