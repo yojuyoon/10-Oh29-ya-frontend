@@ -9,24 +9,19 @@ class DetailProduct extends React.Component {
     totalPrice: 6600,
   };
 
-  subtractHandler = (e) => {
-    const { input } = this.state;
-    if (e.target.name === "plus") {
-      this.setState({
-        input: input + 1,
-      });
-    } else if (e.target.name === "minus" && input > 1) {
-      this.setState({
-        input: input - 1,
-      });
-    } else {
-      this.setState({
-        input: 1,
-      });
-    }
+  calculationHandler = (e) => {
+    let { input } = this.state;
+    const { name } = e.target;
+    const isPlus = name === "plus";
+
+    if (!isPlus && input === 1) return 1;
+
+    this.setState({
+      input: isPlus ? (input += 1) : (input -= 1),
+    });
   };
 
-  handleChange = (e) => {
+  quantityHandler = (e) => {
     this.setState({
       input: e.target.value,
     });
@@ -34,13 +29,15 @@ class DetailProduct extends React.Component {
 
   totalPrice = () => {
     const { price, input } = this.state;
-    return (price * input).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return (price * input).toLocaleString(undefined, {
+      maximumFractionDigits: 5,
+    });
   };
 
   render() {
     const { input } = this.state;
-    const { subtractHandler, handleChange, totalPrice } = this;
-    // console.log(input);
+    const { calculationHandler, quantityHandler, totalPrice } = this;
+
     return (
       <>
         <div className="detailCategory"></div>
@@ -113,19 +110,19 @@ class DetailProduct extends React.Component {
                       <button
                         className="numberBtn"
                         name="minus"
-                        onClick={subtractHandler}
+                        onClick={calculationHandler}
                       >
                         -
                       </button>
                       <input
                         className="productNumber"
                         value={input}
-                        onChange={handleChange}
+                        onChange={quantityHandler}
                       />
                       <button
                         className="numberBtn"
                         name="plus"
-                        onClick={subtractHandler}
+                        onClick={calculationHandler}
                       >
                         +
                       </button>
