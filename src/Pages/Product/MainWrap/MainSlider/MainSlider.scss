@@ -1,10 +1,10 @@
 .MainSlider {
   .slick-arrow {
-    position: absolute;
     z-index: 999;
     width: 17px;
     height: 32px;
-    top: 300px;
+    display: flex;
+    align-items: center;
   }
 
   .slick-prev {
