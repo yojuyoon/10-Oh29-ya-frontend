@@ -88,8 +88,6 @@ class Cart extends React.Component {
   };
 
   handleMasterState = () => {
-    console.log("마스터 state바꾸러 오고있니?");
-
     const { itemSelected } = this.state;
 
     if (itemSelected.length == cartData.length) {
@@ -122,20 +120,6 @@ class Cart extends React.Component {
   //   return item !== id;
   // });
   // this.setState( { itemSelected: filter } )
-
-  // handleCheckState = () => {
-  //   const { itemSelected } = this.state;
-
-  //   for (let i = 0; i < cartData.length; i++) {
-  //     for (let j = 0; i < itemSelected.length; j++) {
-  //       if (cartData[i].id === itemSelected[j]) {
-  //         this.setState({ checkState: true });
-  //       } else {
-  //         this.setState({ checkState: false });
-  //       }
-  //     }
-  //   }
-  // };
 
   /////////////
   //선택 된 상품 arr 삭제
@@ -206,7 +190,6 @@ class Cart extends React.Component {
               <p>장바구니는 접속 종료 후 60일 동안 보관됩니다.</p>
             </div>
           </div>
-          s
           <div className="priceInfoWrap">
             <div className="category">
               <div className="th1">총 주문금액</div>
