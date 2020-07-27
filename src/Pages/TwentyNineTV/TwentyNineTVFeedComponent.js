@@ -65,6 +65,7 @@ class TwentyNineTVFeedComponent extends React.Component {
                 postId={this.props.postId}
                 likeIcon={likeIcon}
                 likedNumber={likedNumber}
+                heartState={this.props.heartState}
               />
             </div>
           </div>

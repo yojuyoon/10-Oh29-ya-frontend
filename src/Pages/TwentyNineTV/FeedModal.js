@@ -81,6 +81,7 @@ class FeedModal extends React.Component {
                 data={this.props.data}
                 postId={this.props.postId}
                 likedNumber={this.props.likedNumber}
+                heartState={this.props.heartState}
               />
               <div onClick={showReport} className="shareIcon">
                 <img
