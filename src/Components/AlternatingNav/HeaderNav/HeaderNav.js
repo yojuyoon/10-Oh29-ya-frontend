@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { navData } from "../navData";
 import "./HeaderNav.scss";
 
@@ -36,10 +36,10 @@ class Nav extends React.Component {
           <div className="navRowContainer">
             <div className="menuContainer">
               {navData.title.map(({ name, index }) => (
-                <span key={index} className="title">
+                <Link to="/TwentyNineTV" key={index} className="title">
                   {name}
                   {name === "29TV" ? <span className="dot"></span> : null}
-                </span>
+                </Link>
               ))}
             </div>
             <i className="fas fa-search fa-2x" />
@@ -48,9 +48,9 @@ class Nav extends React.Component {
             <div className="CategoryColumnContainer">
               <div className="categoryCollection">
                 {navData.category.map(({ name, index }) => (
-                  <span key={index} className="category">
+                  <Link key={index} to="/Product" className="category">
                     {name}
-                  </span>
+                  </Link>
                 ))}
               </div>
               <div className="border" />

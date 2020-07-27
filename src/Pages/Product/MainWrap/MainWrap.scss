@@ -1,0 +1,19 @@
+.MainWrap {
+  .categoryNav {
+    width: 200px;
+    left: 25px;
+    margin: 25px 0 0;
+    padding: 25px 25px 15px;
+    position: absolute;
+    z-index: 20;
+    background-color: white;
+  }
+
+  .mainSwiper {
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+}

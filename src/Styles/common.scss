@@ -21,3 +21,14 @@ $clearColor: #00ff0000;
   flex-direction: column;
   align-items: center;
 }
+
+@mixin btnCustom {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+  outline: none;
+}

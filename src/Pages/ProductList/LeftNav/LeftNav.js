@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 const categoryData = [
   "NEW",
@@ -35,7 +35,7 @@ class LeftNav extends React.Component {
                   {categoryData.map((item) => {
                     return (
                       <li className="category">
-                        <Link to="/">
+                        <Link to="/ProductList">
                           <button>{item}</button>
                         </Link>
                       </li>
@@ -51,4 +51,4 @@ class LeftNav extends React.Component {
   }
 }
 
-export default LeftNav;
+export default withRouter(LeftNav);
