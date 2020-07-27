@@ -47,7 +47,7 @@ class ProductList extends React.Component {
     //     });
     // };
 
-    ////여긴 하트 받을 때 썼던 민호님 서버
+    //// 사용 중 서버
     fetch("http://10.58.4.24:8000/product", {
       method: "POST",
       body: JSON.stringify({
