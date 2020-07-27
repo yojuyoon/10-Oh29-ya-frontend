@@ -1,0 +1,98 @@
+@import "../../Styles/common.scss";
+
+.SpecialContent {
+  height: 684px;
+  margin: 10px;
+  cursor: pointer;
+
+  .imgContainer {
+    width: 785px;
+    height: 450px;
+
+    .orderImg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .itemTitle {
+    margin-top: 10px;
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+  .itemSubtitle {
+    height: 48px;
+    margin-top: 6px;
+
+    .subcontent {
+      color: blue;
+      font-weight: bold;
+    }
+  }
+
+  .dDayBubble {
+    position: relative;
+    height: 40px;
+    left: 0;
+
+    .bubble {
+      width: 150px;
+      position: absolute;
+      font-weight: bold;
+      color: $whiteColor;
+      background-color: $orangeColor;
+      padding: 6px;
+      border-radius: 0.2rem;
+      text-align: center;
+      animation: bubbleMotion 1s forwards;
+
+      &::after {
+        content: "";
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid $orangeColor;
+      }
+    }
+  }
+
+  .dDayBorder {
+    height: 2px;
+    background-color: #e4e4e4;
+
+    .progress {
+      height: 100%;
+      background-color: red;
+    }
+
+    .obLager {
+      width: 17%;
+    }
+
+    .wecode {
+      width: 87.2%;
+    }
+
+    .samsung {
+      width: 50%;
+    }
+
+    .pibuPibu {
+      width: 65%;
+    }
+
+    .havit {
+      width: 22%;
+    }
+
+    .komorebi {
+      width: 32%;
+    }
+  }
+
+  .itemDate {
+    font-size: 18px;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+}
