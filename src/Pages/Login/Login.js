@@ -2,7 +2,6 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { snsLoginArray } from "./snsLoginData.js";
 import "./Login.scss";
-import "../../Styles/common.scss";
 
 class Login extends React.Component {
   state = {
