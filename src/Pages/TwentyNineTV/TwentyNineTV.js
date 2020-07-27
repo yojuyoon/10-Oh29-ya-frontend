@@ -87,7 +87,8 @@ class TwentyNineTV extends React.Component {
                 showModal();
                 setModalIdx(index);
               }}
-              postId={feed.id}
+              postId={feed.post_id}
+              userId={feed.user_id}
               img={feed.thumbnail_image}
               logo={feed.staff_logo}
               brandName={feed.staff_name}
@@ -111,6 +112,7 @@ class TwentyNineTV extends React.Component {
             likedNumber={this.props.likedNumber}
             heartState={this.props.heartState}
             postId={this.props.postId}
+            userId={this.props.userId}
           />
         )}
       </div>

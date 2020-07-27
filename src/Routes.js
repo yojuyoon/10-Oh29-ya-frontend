@@ -27,6 +27,7 @@ class Routes extends React.Component {
           <Route exact path="/HeaderNav" component={HeaderNav} />
           <Route exact path="/AlternatingNav" component={AlternatingNav} />
         </Switch>
+        <Footer />
       </Router>
     );
   }
