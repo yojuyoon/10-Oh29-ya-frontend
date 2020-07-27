@@ -10,24 +10,6 @@ class TwentyNineTVFeedComponent extends React.Component {
     clickedNumber: 0,
   };
 
-  activeIcon = () => {
-    this.setState({
-      clickedIcon: true,
-      clickedNumber: this.state.clickedNumber + 1,
-    });
-  };
-
-  unActiveIcon = () => {
-    this.setState({
-      clickedIcon: false,
-      clickedNumber: this.state.clickedNumber - 1,
-    });
-  };
-
-  official = () => {
-    return <span className="officialCheck">✹ Official</span>;
-  };
-
   render() {
     const {
       onClick,
@@ -39,8 +21,10 @@ class TwentyNineTVFeedComponent extends React.Component {
       likedNumber,
       hashtag,
       likeIcon,
+      postId,
+      heartState,
+      userId,
     } = this.props;
-    const { official } = this;
     return (
       <section className="TwentyNineTV">
         <div className="feedContainer">
@@ -54,17 +38,27 @@ class TwentyNineTVFeedComponent extends React.Component {
                 <div className="feedProfileText">
                   <span className="brandName">{brandName}</span>
                   <span className="brandOffical"></span>
-                  {officialCheck && official()}
+                  {officialCheck && (
+                    <span className="officialCheck">✹ Official</span>
+                  )}
                 </div>
               </div>
-              <div className={text.length > 0 && "feedComment"}>
-                <p>{text}</p>
-              </div>
+              <div
+                className={
+                  text.length > 0 && (
+                    <div className="feedComment">
+                      <p>{text}</p>
+                    </div>
+                  )
+                }
+              ></div>
               <div className="feedTag">{hashtag.join(" ")}</div>
               <ActiveLikeBtn
-                postId={this.props.postId}
+                postId={postId}
+                userId={userId}
                 likeIcon={likeIcon}
                 likedNumber={likedNumber}
+                heartState={heartState}
               />
             </div>
           </div>

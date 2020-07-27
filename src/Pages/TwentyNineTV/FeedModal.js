@@ -24,13 +24,18 @@ class FeedModal extends React.Component {
     });
   };
 
-  official = () => {
-    return <span className="officialCheck">✹ Official</span>;
-  };
-
   render() {
-    const { showReport, hideReport, official } = this;
-    const { hideModal, data, idxPrevHandler, idxNextHandler } = this.props;
+    const { showReport, hideReport } = this;
+    const {
+      hideModal,
+      data,
+      idxPrevHandler,
+      idxNextHandler,
+      postId,
+      likedNumber,
+      heartState,
+      userId,
+    } = this.props;
     return (
       <div className="FeedModal">
         {this.state.shareModal && <SnsModal hideReport={hideReport} />};
@@ -66,7 +71,9 @@ class FeedModal extends React.Component {
                 <div className="profileName">
                   <span className="brandName">{data.staff_name}</span>
                   <span className="officialCheck">
-                    {data.official_check && official()}
+                    {data.official_check && (
+                      <span className="officialCheck">✹ Official</span>
+                    )}
                   </span>
                 </div>
               </div>
@@ -78,9 +85,11 @@ class FeedModal extends React.Component {
             </div>
             <div className="icons">
               <ActiveLikeBtn
-                data={this.props.data}
-                postId={this.props.postId}
-                likedNumber={this.props.likedNumber}
+                data={data}
+                postId={postId}
+                userId={userId}
+                likedNumber={likedNumber}
+                heartState={heartState}
               />
               <div onClick={showReport} className="shareIcon">
                 <img
