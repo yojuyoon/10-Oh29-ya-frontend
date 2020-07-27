@@ -3,44 +3,44 @@ import "./Cart.scss";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem/CartItem";
 
-const cartData = [
-  {
-    id: 410,
-    name: "[29Edition.]_PEACE BEGINS SMILE TEE (WHITE)",
-    price: "38000.00",
-    discount_rate: 10,
-    discount_price: "34200.00",
-    brand: "빅웨이브컬렉티브",
-    image: [
-      "https://img.29cm.co.kr/next-product/2020/05/22/1760d38e60584816b499e4a7c19e14e2_20200522155254.jpg?width=700",
-    ],
-    item_quantity: 2,
-  },
-  {
-    id: 1004,
-    name: "레이스 롱원피스 잠옷",
-    price: "53000.00",
-    discount_rate: 0,
-    discount_price: "0.00",
-    brand: "코즈넉",
-    image: [
-      "//img.29cm.co.kr/next-product/2020/07/07/ce3c05a2f144411b882529837a13f329_20200707152351.jpg?width=150",
-    ],
-    item_quantity: 1,
-  },
-  {
-    id: 403,
-    name: "[29Edition.]_NYLON BLEND SHORTS (Safari + Mango + Evergreen)",
-    price: "45000.00",
-    discount_rate: 35,
-    discount_price: "29925.00",
-    brand: "브릭",
-    image: [
-      "https://img.29cm.co.kr/next-product/2018/05/08/e84d1225ffe24f86bffd611d73b9d73d_20180508121032.jpg?width=700",
-    ],
-    item_quantity: 4,
-  },
-];
+// const cartData = [
+//   {
+//     id: 410,
+//     name: "[29Edition.]_PEACE BEGINS SMILE TEE (WHITE)",
+//     price: "38000.00",
+//     discount_rate: 10,
+//     discount_price: "34200.00",
+//     brand: "빅웨이브컬렉티브",
+//     image: [
+//       "https://img.29cm.co.kr/next-product/2020/05/22/1760d38e60584816b499e4a7c19e14e2_20200522155254.jpg?width=700",
+//     ],
+//     item_quantity: 2,
+//   },
+//   {
+//     id: 1004,
+//     name: "레이스 롱원피스 잠옷",
+//     price: "53000.00",
+//     discount_rate: 0,
+//     discount_price: "0.00",
+//     brand: "코즈넉",
+//     image: [
+//       "//img.29cm.co.kr/next-product/2020/07/07/ce3c05a2f144411b882529837a13f329_20200707152351.jpg?width=150",
+//     ],
+//     item_quantity: 1,
+//   },
+//   {
+//     id: 403,
+//     name: "[29Edition.]_NYLON BLEND SHORTS (Safari + Mango + Evergreen)",
+//     price: "45000.00",
+//     discount_rate: 35,
+//     discount_price: "29925.00",
+//     brand: "브릭",
+//     image: [
+//       "https://img.29cm.co.kr/next-product/2018/05/08/e84d1225ffe24f86bffd611d73b9d73d_20180508121032.jpg?width=700",
+//     ],
+//     item_quantity: 4,
+//   },
+// ];
 
 class Cart extends React.Component {
   constructor(props) {
@@ -49,31 +49,33 @@ class Cart extends React.Component {
       itemSelected: [],
       checkMasterState: false,
       checkState: false,
+      cartData: [],
     };
   }
 
   handleSumToalPrice = () => {
+    const { itemSelected } = this.state;
+    const { cartData } = this.state;
+
     let total = 0;
+
     for (let i = 0; i < cartData.length; i++) {
-      if (cartData[i].discount_rate) {
-        total =
-          total +
-          cartData[i].item_quantity * Number(cartData[i].discount_price);
-      } else {
-        total = total + cartData[i].item_quantity * Number(cartData[i].price);
+      if (itemSelected.includes(cartData[i].id)) {
+        if (cartData[i].discount_rate) {
+          total =
+            total +
+            cartData[i].item_quantity * Number(cartData[i].discount_price);
+        } else {
+          total = total + cartData[i].item_quantity * Number(cartData[i].price);
+        }
       }
     }
 
-    return total;
+    return total.toLocaleString();
   };
 
-  ////////////////////////////////////////////////////////////////////////////////
-
-  //이걸 itemSelected에도 변화가 있을 때 마다 호출해야함,,..?
-  //props로 전달..?
-
   handleMasterSelectBtn = () => {
-    const { itemSelected } = this.state;
+    const { itemSelected, cartData } = this.state;
 
     if (itemSelected.length == cartData.length) {
       //카드에 담긴 아이템 길이랑 selected item길이가 같으면 selected를 다 비워줌
@@ -88,7 +90,7 @@ class Cart extends React.Component {
   };
 
   handleMasterState = () => {
-    const { itemSelected } = this.state;
+    const { itemSelected, cartData } = this.state;
 
     if (itemSelected.length == cartData.length) {
       this.setState({ checkMasterState: true });
@@ -127,6 +129,16 @@ class Cart extends React.Component {
   //   this.setState({ itemSelected: [] });
   //   console.log(this.state.itemSelected);
   // };
+
+  componentDidMount() {
+    fetch("http://localhost:3000/data/cartData.json")
+      .then((response) => response.json())
+      .then((response) => {
+        this.setState({
+          cartData: response.data,
+        });
+      });
+  }
 
   render() {
     console.log(this.state.itemSelected);
@@ -170,7 +182,7 @@ class Cart extends React.Component {
                 <div className="th5">배송비</div>
               </div>
 
-              {cartData.map((item, i) => {
+              {this.state.cartData.map((item, i) => {
                 return (
                   <CartItem
                     cartData={item}

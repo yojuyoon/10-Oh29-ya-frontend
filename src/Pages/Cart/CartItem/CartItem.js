@@ -31,9 +31,14 @@ class CartItem extends React.Component {
     const { quantity } = this.state;
 
     if (discount_rate) {
-      return quantity * discount_price;
+      return (quantity * +discount_price).toLocaleString();
     }
-    return quantity * price;
+
+    return (quantity * +price).toLocaleString();
+  };
+
+  handleDelEachItem = () => {
+    console.log("삭제할거야");
   };
 
   render() {
@@ -87,12 +92,14 @@ class CartItem extends React.Component {
               <Link className="info">{name}</Link>
             </div>
             <div className="originalPrice">
-              <span className="price">{parseInt(price)}</span>{" "}
+              <span className="price">{parseInt(price).toLocaleString()}</span>{" "}
               <span className="currency">원</span>
             </div>
             <div className={discount_rate ? "productPrice" : "hide"}>
               <span className="discountRate">[{discount_rate}%]</span>{" "}
-              <span className="totalPrice">{parseInt(discount_price)}</span>
+              <span className="totalPrice">
+                {parseInt(discount_price).toLocaleString()}
+              </span>
               <span className="currency">원</span>
             </div>
             <button
