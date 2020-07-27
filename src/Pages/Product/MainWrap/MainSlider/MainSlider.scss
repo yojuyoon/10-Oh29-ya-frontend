@@ -1,4 +1,9 @@
 .MainSlider {
+  div {
+    background-size: cover;
+    background-position: 50%;
+  }
+
   .slick-arrow {
     position: absolute;
     z-index: 999;

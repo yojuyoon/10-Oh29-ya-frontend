@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import MainWrap from "./MainWrap/MainWrap";
 import TabSwiper from "./TabSwiper/TabSwiper";
 import BrandName from "./BrandName/BrandName";
-import ProductComponent from "./ProductComponent/ProductComponent";
+// import ProductComponent from "./ProductComponent/ProductComponent";
 
 class Product extends React.Component {
   render() {
@@ -14,7 +14,7 @@ class Product extends React.Component {
         <MainWrap />
         <TabSwiper />
         <BrandName />
-        <ProductComponent />
+        {/* <ProductComponent /> */}
         <div className="rightBtnTopEnd"></div>
       </div>
     );
