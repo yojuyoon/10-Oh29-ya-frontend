@@ -1,6 +1,5 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-// import { itemList } from "./itemListData";
 import "./SpecialContent.scss";
 
 class SpecialContent extends React.Component {
@@ -9,11 +8,7 @@ class SpecialContent extends React.Component {
   };
 
   componentDidMount() {
-    this.timer = setInterval(() => this.tick(), 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
+    setInterval(() => this.tick(), 1000);
   }
 
   tick() {
@@ -27,11 +22,18 @@ class SpecialContent extends React.Component {
   };
 
   render() {
-    const { dDay } = this.state;
     const { digitCheck } = this;
-    const { index, content } = this.props;
-    console.log(index);
-    console.log(dDay);
+    const { dDay } = this.state;
+    const { content } = this.props;
+
+    const Second = 1000 * 60;
+    const Minute = Second * 60;
+    const Hour = Minute * 24;
+    const hourCheck = digitCheck(Math.floor((dDay % Hour) / Minute));
+    const minuteCheck = digitCheck(Math.floor((dDay % Minute) / Second));
+    const secondCheck = digitCheck(Math.floor((dDay % Second) / 1000));
+    const dDayTime = hourCheck + ":" + minuteCheck + ":" + secondCheck;
+
     return (
       <li className="SpecialContent">
         <div className="imgContainer">
@@ -43,18 +45,9 @@ class SpecialContent extends React.Component {
           <span className="subcontent">{content.subcontent}</span>
         </h4>
         <div className="dDayBubble">
-          {content.index === 1 ? (
-            <div className="bubble">
-              D-day{" "}
-              {digitCheck(
-                Math.floor((dDay % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-              )}
-              {":"}
-              {digitCheck(Math.floor((dDay % (1000 * 60 * 60)) / (1000 * 60)))}
-              {":"}
-              {digitCheck(Math.floor((dDay % (1000 * 60)) / 1000))}
-            </div>
-          ) : null}
+          {content.index === 1 && (
+            <div className="bubble">D-day {dDayTime}</div>
+          )}
         </div>
         <div className="dDayBorder">
           <div className={content.progress} />

@@ -18,7 +18,7 @@ export const itemList = {
       subcontent: "(얼리버드 잔여: 10)",
       startDateData: "20/07/11 00:00:00",
       endDateData: "20/07/26 00:00:00",
-      date: "20/07/21 ~ 07/25",
+      date: "20/07/21 ~ 07/27",
       progress: "progress wecode",
     },
     {
