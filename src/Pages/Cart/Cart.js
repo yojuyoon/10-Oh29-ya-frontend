@@ -133,27 +133,27 @@ class Cart extends React.Component {
     //////////
 
     ////내 로컬
-    // fetch("http://localhost:3000/data/cartData.json")
-    //   .then((response) => response.json())
-    //   .then((response) => {
-    //     this.setState({
-    //       cartData: response.data,
-    //     });
-    //   });
-
-    fetch("http://10.58.4.24:8000/cart", {
-      method: "POST",
-      body: JSON.stringify({
-        user: 1,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
+    fetch("http://localhost:3000/data/cartData.json")
+      .then((response) => response.json())
+      .then((response) => {
         this.setState({
-          cartData: res.data,
+          cartData: response.data,
         });
-        console.log(res);
       });
+
+    // fetch("http://10.58.4.24:8000/cart", {
+    //   method: "GET",
+    //   body: JSON.stringify({
+    //     user: 1,
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     this.setState({
+    //       cartData: res.data,
+    //     });
+    //     console.log(res);
+    //   });
 
     /////
   }
