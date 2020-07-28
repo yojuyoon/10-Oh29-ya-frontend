@@ -37,18 +37,18 @@
     left: 0;
 
     .bubble {
-      width: 160px;
+      width: 170px;
       position: absolute;
       font-weight: bold;
       color: $whiteColor;
       background-color: $orangeColor;
-      padding: 6px 6px 6px 12px;
+      padding: 6px 12px 6px 6px;
 
       border-radius: 0.2rem;
       text-align: center;
       animation: bubbleMotion 1s forwards;
 
-      &::after {
+      &::before {
         content: "";
         border-bottom: 10px solid transparent;
         border-left: 10px solid $orangeColor;
