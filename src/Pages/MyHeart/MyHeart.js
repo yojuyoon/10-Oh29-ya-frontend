@@ -13,6 +13,9 @@ const obj = {
 };
 
 class MyHeart extends React.Component {
+  state = {
+    feed: [],
+  };
   state = { activeId: 0, titleClicked: false };
 
   handleClicked = (id) => {
