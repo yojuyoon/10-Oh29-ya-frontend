@@ -1,6 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-import { snsLoginArray } from "./snsLoginData";
+import SnsLogin from "./SnsLogin/SnsLogin";
 import { ip } from "./ip";
 import "./Login.scss";
 
@@ -94,21 +93,11 @@ class Login extends React.Component {
             <p className="LoginNotText">비밀번호 재설정</p>
           </div>
           <p className="snsLoginTitle">SNS계정으로 로그인하기</p>
-          {snsLoginArray.snsLogin.map(({ index, src, alt, text }) => (
-            <div key={index} className="snsLoginContainer">
-              <div className="imgContainer">
-                <img className="logoImg" alt={alt} src={src} />
-              </div>
-              <p className="loginText">{text}</p>
-            </div>
-          ))}
-          <div className="unLogin">
-            <p className="unLoginText">2018년 2월 이전 비회원 주문조회 {">"}</p>
-          </div>
+          <SnsLogin />
         </div>
       </div>
     );
   }
 }
 
-export default withRouter(Login);
+export default Login;
