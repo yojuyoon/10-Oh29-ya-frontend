@@ -1,16 +1,38 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { itemList } from "./itemListData";
 import SpecialContent from "../../Components/SpecialContent/SpecialContent";
 import "./SpecialOrder.scss";
 
 class SpecialOrder extends React.Component {
+  state = {
+    data: [],
+  };
+
+  componentDidMount = () => {
+    fetch("http://10.58.4.24:8000/product/specialorders", {
+      method: "GET",
+      header: JSON.stringify({}),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        this.setState({
+          data: res.data.map((data) => {
+            return {
+              ...data,
+            };
+          }),
+        });
+      });
+  };
+
   render() {
+    const { data } = this.state;
+
     return (
       <div className="SpecialOrder">
         <ul className="itemContainer">
-          {itemList.item.map((content, index) => (
-            <SpecialContent key={index} content={content} />
+          {data.map((data, index) => (
+            <SpecialContent key={index} content={data} />
           ))}
         </ul>
       </div>

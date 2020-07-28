@@ -35,14 +35,15 @@ class SpecialContent extends React.Component {
     const dDayTime = hourCheck + ":" + minuteCheck + ":" + secondCheck;
 
     return (
+      // console.log(content.index);
       <li className="SpecialContent">
         <div className="imgContainer">
           <a
             href={
-              content.index === 1 ? "https://wecode.co.kr/" : "/DetailProduct"
+              content.id === 12 ? "https://wecode.co.kr/" : "/DetailProduct"
             }
           >
-            <img className="orderImg" alt="img" src={content.img} />
+            <img className="orderImg" alt="img" src={content.image} />
           </a>
         </div>
         <h2 className="itemTitle">{content.title}</h2>
@@ -51,14 +52,16 @@ class SpecialContent extends React.Component {
           <span className="subcontent">{content.subcontent}</span>
         </h4>
         <div className="dDayBubble">
-          {content.index === 1 && (
-            <div className="bubble">D-day {dDayTime}</div>
-          )}
+          {content.id === 12 && <div className="bubble">D-day {dDayTime}</div>}
         </div>
         <div className="dDayBorder">
-          <div className={content.progress} />
+          <div className={content.id === 1} />
         </div>
-        <p className="itemDate">{content.date}</p>
+        <p className="itemDate">
+          {content.start}
+          {"~"}
+          {content.end}
+        </p>
       </li>
     );
   }
