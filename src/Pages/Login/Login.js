@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { snsLoginArray } from "./snsLoginData.js";
+import { snsLoginArray } from "./snsLoginData";
+import { ip } from "./ip";
 import "./Login.scss";
 
 class Login extends React.Component {
@@ -14,7 +15,7 @@ class Login extends React.Component {
   handlerlogin = () => {
     const { email, password, token, checked } = this.state;
 
-    fetch("http://10.58.4.24:8000/account/sign-in", {
+    fetch("http://" + ip + "/account/sign-in", {
       method: "POST",
       body: JSON.stringify({
         email,

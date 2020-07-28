@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { ip } from "./../Login/ip";
 import SpecialContent from "../../Components/SpecialContent/SpecialContent";
 import "./SpecialOrder.scss";
 
@@ -9,7 +10,7 @@ class SpecialOrder extends React.Component {
   };
 
   componentDidMount = () => {
-    fetch("http://10.58.4.24:8000/product/specialorders", {
+    fetch("http://" + ip + "/product/specialorders", {
       method: "GET",
       header: JSON.stringify({}),
     })

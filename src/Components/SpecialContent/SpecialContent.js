@@ -4,7 +4,7 @@ import "./SpecialContent.scss";
 
 class SpecialContent extends React.Component {
   state = {
-    dDay: 0,
+    dDay: "",
   };
 
   componentDidMount() {
@@ -21,8 +21,41 @@ class SpecialContent extends React.Component {
     return time < 10 ? `0${time}` : time;
   };
 
+  progressHandler = () => {
+    const endDay = this.props.content.end.replace(/^ /, "");
+    const endDate = "2020/" + endDay + " 00:00:00";
+    const startDate = this.props.content.start + " 00:00:00";
+
+    const endDateTime = new Date(endDate).getTime();
+    const startDateTime = new Date(startDate).getTime();
+    const nowDateTime = new Date().getTime();
+
+    const entireDate = endDateTime - startDateTime;
+    const nowDate = nowDateTime - startDateTime;
+    const dDayPercent = Math.floor((nowDate / entireDate) * 100) + "%";
+
+    const progressStyle = {
+      width: `${dDayPercent}`,
+    };
+
+    return progressStyle;
+  };
+
+  dDayHandler = () => {
+    const endDay = this.props.content.end.replace(/^ /, "");
+    const endDate = "2020/" + endDay + " 00:00:00";
+    const day = 1000 * 60 * 60 * 24;
+
+    const endDateTime = new Date(endDate).getTime();
+    const nowDateTime = new Date().getTime();
+
+    const entireTime = endDateTime - nowDateTime;
+    const remainingDate = Math.floor(entireTime / day + 1);
+    return remainingDate + "일";
+  };
+
   render() {
-    const { digitCheck } = this;
+    const { digitCheck, progressHandler, dDayHandler } = this;
     const { dDay } = this.state;
     const { content } = this.props;
 
@@ -35,7 +68,6 @@ class SpecialContent extends React.Component {
     const dDayTime = hourCheck + ":" + minuteCheck + ":" + secondCheck;
 
     return (
-      // console.log(content.index);
       <li className="SpecialContent">
         <div className="imgContainer">
           <a
@@ -52,10 +84,14 @@ class SpecialContent extends React.Component {
           <span className="subcontent">{content.subcontent}</span>
         </h4>
         <div className="dDayBubble">
-          {content.id === 12 && <div className="bubble">D-day {dDayTime}</div>}
+          {
+            <div className="bubble">
+              D-day {dDayHandler()} {dDayTime}
+            </div>
+          }
         </div>
         <div className="dDayBorder">
-          <div className={content.id === 1} />
+          <div className="progress" style={progressHandler()} />
         </div>
         <p className="itemDate">
           {content.start}

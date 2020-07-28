@@ -37,12 +37,13 @@
     left: 0;
 
     .bubble {
-      width: 150px;
+      width: 160px;
       position: absolute;
       font-weight: bold;
       color: $whiteColor;
       background-color: $orangeColor;
-      padding: 6px;
+      padding: 6px 6px 6px 12px;
+
       border-radius: 0.2rem;
       text-align: center;
       animation: bubbleMotion 1s forwards;
@@ -62,30 +63,6 @@
     .progress {
       height: 100%;
       background-color: red;
-    }
-
-    .obLager {
-      width: 17%;
-    }
-
-    .wecode {
-      width: 87.2%;
-    }
-
-    .samsung {
-      width: 50%;
-    }
-
-    .pibuPibu {
-      width: 65%;
-    }
-
-    .havit {
-      width: 22%;
-    }
-
-    .komorebi {
-      width: 32%;
     }
   }
 
