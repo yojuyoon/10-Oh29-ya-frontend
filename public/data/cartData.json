@@ -10,7 +10,7 @@
       "image": [
         "https://img.29cm.co.kr/next-product/2020/05/22/1760d38e60584816b499e4a7c19e14e2_20200522155254.jpg?width=700"
       ],
-      "item_quantity": 2
+      "quantity": 2
     },
     {
       "id": 1004,
@@ -22,7 +22,7 @@
       "image": [
         "//img.29cm.co.kr/next-product/2020/07/07/ce3c05a2f144411b882529837a13f329_20200707152351.jpg?width=150"
       ],
-      "item_quantity": 1
+      "quantity": 1
     },
     {
       "id": 403,
@@ -34,7 +34,7 @@
       "image": [
         "https://img.29cm.co.kr/next-product/2018/05/08/e84d1225ffe24f86bffd611d73b9d73d_20180508121032.jpg?width=700"
       ],
-      "item_quantity": 4
+      "quantity": 4
     }
   ]
 }

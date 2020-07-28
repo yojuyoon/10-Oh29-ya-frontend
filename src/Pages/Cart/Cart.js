@@ -53,6 +53,7 @@ class Cart extends React.Component {
     };
   }
 
+  //총 주문 금액 계산
   handleSumToalPrice = () => {
     const { itemSelected } = this.state;
     const { cartData } = this.state;
@@ -69,10 +70,10 @@ class Cart extends React.Component {
         }
       }
     }
-
     return total.toLocaleString();
   };
 
+  //전체 선택 버튼을 따로 관리. 원래 담긴 아이템인 cartItem 배열의 전체 길이와 selectedItem 길이가 같고 다를 때로 분기
   handleMasterSelectBtn = () => {
     const { itemSelected, cartData } = this.state;
 
@@ -88,6 +89,7 @@ class Cart extends React.Component {
     }
   };
 
+  //checkMasterState 별도 관리
   handleMasterState = () => {
     const { itemSelected, cartData } = this.state;
 
@@ -98,31 +100,65 @@ class Cart extends React.Component {
     }
   };
 
-  handleSelectedItem = (id) => {
+  handleSelectedItem = (id, quantity) => {
     const { itemSelected } = this.state;
 
-    for (let i = 0; i < itemSelected.length; i++) {
-      if (itemSelected[i] === id) {
-        const temp = [...itemSelected];
-        temp.splice(i, 1);
-        this.setState({ itemSelected: temp }, () => this.handleMasterState());
-        return;
-      }
+    if (itemSelected.includes(id)) {
+      const filter = itemSelected.filter((item) => {
+        return item !== id;
+      });
+      this.setState({ itemSelected: filter }, () => this.handleMasterState());
+    } else {
+      this.setState(
+        {
+          itemSelected: [...itemSelected, id],
+        },
+        () => this.handleMasterState()
+      );
     }
-    this.setState(
-      {
-        itemSelected: [...itemSelected, id],
-      },
-      () => this.handleMasterState()
-    );
   };
 
-  // const filter = itemSelected.filter((item) => {
-  //   return item !== id;
-  // });
-  // this.setState( { itemSelected: filter } )
+  // handleCheckOut = () => {
+  //   let checkOut = [];
 
-  /////////////
+  // }
+
+  //////////////////////////////////////////////////////////////////////////////
+
+  /*플러스 마이너스를 하는 곳. 현재 props로 전달해서 cartItem에서 oncClick 호출 중*/
+
+  handleSum = (itemId) => {
+    console.log(itemId);
+
+    const { cartData } = this.state;
+    let temp = [];
+    cartData.forEach((item) => {
+      if (item.id == itemId) {
+        let test = item;
+        item.quantity = item.quantity + 1;
+        temp.push(test);
+        console.log("이까지 오케");
+      }
+    });
+    this.setState({ cardDate: temp }, () => console.log(cartData));
+  };
+
+  handleMinus = (itemId) => {
+    console.log(itemId);
+
+    const { cartData } = this.state;
+    let temp = [];
+    cartData.forEach((item) => {
+      if (item.id == itemId && item.quantity > 1) {
+        let test = item;
+        item.quantity = item.quantity - 1;
+        temp.push(test);
+      }
+    });
+    this.setState({ cardDate: temp }, () => console.log(cartData));
+  };
+
+  //////////////////////////////////////////////////////////////////////////////
   //선택 된 상품 arr 삭제
   // delSelectedItems = () => {
   //   this.setState({ itemSelected: [] });
@@ -130,8 +166,6 @@ class Cart extends React.Component {
   // };
 
   componentDidMount() {
-    //////////
-
     ////내 로컬
     fetch("http://localhost:3000/data/cartData.json")
       .then((response) => response.json())
@@ -207,6 +241,8 @@ class Cart extends React.Component {
                     checkMasterState={this.state.checkMasterState}
                     itemSelected={this.state.itemSelected}
                     handleSelectedItem={this.handleSelectedItem}
+                    handleSum={this.handleSum}
+                    handleMinus={this.handleMinus}
                     key={i}
                   />
                 );

@@ -6,58 +6,72 @@ class CartItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: this.props.cartData.quantity, //나중에 연결하면 컴디마에서 setState해 줄것.
+      quantity: 0,
       checkState: false,
       checkMasterState: false,
     };
   }
 
-  // +눌렀을 때 작동되는 함수
-  handleSum = () => {
-    const { discount_rate, discount_price, price, id } = this.props.cartData;
-    this.setState({ quantity: this.state.quantity + 1 });
-    console.log(id);
+  componentDidMount() {
+    this.setState({ quantity: this.props.cartData.quantity });
+    // console.log(this.props.cartData.quantity);
+  }
 
-    ///// ///// ///// ///// /////
-    fetch("http://10.58.4.24:8000/cart/add", {
-      method: "POST",
-      body: JSON.stringify({
-        user: 1,
-        product: id,
-        quantity: 1,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-      });
-    ///// ///// ///// ///// ///// /////
-  };
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps !== this.props) {
+      this.setState({ quantity: this.props.cartData.quantity });
+    }
+  }
+
+  // +눌렀을 때 작동되는 함수
+  // handleSum = () => {
+  //   const { discount_rate, discount_price, price, id } = this.props.cartData;
+  //   this.setState({ quantity: this.state.quantity + 1 });
+  //   console.log(id);
+
+  //   ///// ///// ///// ///// /////
+
+  //   fetch("http://10.58.4.24:8000/cart/add", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       user: 1,
+  //       product: id,
+  //       quantity: 1,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+
+  //   ///// ///// ///// ///// ///// /////
+  // };
 
   // -눌렀을 때 작동되는 함수
-  handleMinus = () => {
-    const { discount_rate, discount_price, price, id } = this.props.cartData;
-    //왜 1이상이지? 이건 이상한데,,
-    if (this.state.quantity > 1) {
-      this.setState({ quantity: this.state.quantity - 1 });
-    }
+  // handleMinus = () => {
+  //   const { discount_rate, discount_price, price, id } = this.props.cartData;
+  //   //왜 1이상이지? 이건 이상한데,,
+  //   if (this.state.quantity > 1) {
+  //     this.setState({ quantity: this.state.quantity - 1 });
+  //   }
 
-    ///// ///// ///// ///// /////
-    fetch("http://10.58.4.24:8000/cart/add", {
-      method: "POST",
-      body: JSON.stringify({
-        user: 1,
-        product: id,
-        quantity: -1,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-      });
+  //   ///// ///// ///// ///// /////
 
-    ///// ///// ///// ///// /////
-  };
+  //   fetch("http://10.58.4.24:8000/cart/add", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       user: 1,
+  //       product: id,
+  //       quantity: -1,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+
+  //   ///// ///// ///// ///// /////
+  // };
 
   //CartItem안에 물건 금액 계산 하는 함수
   handleTotalPriceItem = () => {
@@ -87,6 +101,7 @@ class CartItem extends React.Component {
       price,
       discount_rate,
       discount_price,
+      quantity,
     } = this.props.cartData;
 
     const { itemSelected } = this.props;
@@ -96,7 +111,7 @@ class CartItem extends React.Component {
         <div className="td1">
           <span
             className="check"
-            onClick={() => this.props.handleSelectedItem(id)}
+            onClick={() => this.props.handleSelectedItem(id, quantity)}
           >
             <input
               type="checkbox"
@@ -137,11 +152,19 @@ class CartItem extends React.Component {
         <div className="td3">
           <div>
             <div className="inputQuantity">
-              <button className="btn" type="button" onClick={this.handleMinus}>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => this.props.handleMinus(id)}
+              >
                 -
               </button>
               <div className="quantity">{this.state.quantity}</div>
-              <button className="btn" type="button" onClick={this.handleSum}>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => this.props.handleSum(id)}
+              >
                 +
               </button>
             </div>
