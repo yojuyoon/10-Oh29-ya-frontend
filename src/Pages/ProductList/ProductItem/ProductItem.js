@@ -18,14 +18,14 @@ class ProductItem extends React.Component {
   }
 
   handleHeartItem = () => {
-    console.log("하트 눌렸어!");
-    this.setState({
-      myHeartState: !this.state.myHeartState,
-    });
+    // this.setState({
+    //   myHeartState: !this.state.myHeartState,
+    // });
+    ////===>필요한 코드인지 고민해 볼 것
 
     //하트 보내는 POST
-    fetch("http://10.58.4.24:8000/product/like", {
-      method: "PATCH",
+    fetch("http://10.58.1.34:8000/product/like", {
+      method: "POST",
       body: JSON.stringify({
         user: 2,
         product: this.props.data.id,
@@ -33,12 +33,12 @@ class ProductItem extends React.Component {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res.like_num);
-
+        // console.log(res.like_num);
         this.setState({
           heartCount: res.like_num,
         });
       });
+    ////////
   };
 
   render() {
@@ -48,7 +48,7 @@ class ProductItem extends React.Component {
     return (
       <li className="itemContainer">
         <div className="imgBox">
-          <img src={image} />
+          <img alt="item" src={image} />
         </div>
         <div className="info">
           <div className="brand">{brand}</div>

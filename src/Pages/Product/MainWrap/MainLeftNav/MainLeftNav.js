@@ -8,9 +8,6 @@ class MainLeftNav extends React.Component {
     super(props);
     this.state = {
       categoryData: [
-        "NEW",
-        "BEST",
-        "ONlY 29CM",
         "상의",
         "셔츠",
         "바지",

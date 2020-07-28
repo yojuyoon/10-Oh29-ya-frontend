@@ -12,7 +12,9 @@ class CategoryItem extends React.Component {
   }
 
   handleCategory = () => {
-    this.setState({ menuClicked: true });
+    this.setState({ menuClicked: true }, () =>
+      console.log(this.state.menuClicked)
+    );
   };
 
   checkand = () => {
@@ -21,12 +23,14 @@ class CategoryItem extends React.Component {
 
   render() {
     const { menuClicked } = this.state;
+    const { item } = this.props;
+
     return (
       <li
-        onClick={this.handleCategory && this.checkand}
+        onClick={this.handleCategory}
         className={menuClicked ? "CategoryItem clicked" : "CategoryItem"}
       >
-        <Link>{this.props.item}</Link>
+        <Link to={`/ProductList/MEN/${item}`}>{item}</Link>
       </li>
     );
   }

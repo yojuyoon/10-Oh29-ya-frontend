@@ -34,12 +34,14 @@ class CategoryList extends React.Component {
     };
   }
 
-  handleFilterId = (id) => {
-    this.setState({ filterId: id });
-  };
-
+  //토글 방식으로 드롭다운 메뉴를 열고, 닫고 관리하는 함수
   HandleDropDown = () => {
     this.setState({ hideDropDown: !this.state.hideDropDown });
+  };
+
+  //주어진 id와 동일한 key값을 가진 메뉴를 객체 obj에서 찾아서 드롭다운 메뉴 안에 보여줌
+  handleFilterId = (id) => {
+    this.setState({ filterId: id });
   };
 
   render() {
@@ -68,7 +70,14 @@ class CategoryList extends React.Component {
                   <li onClick={() => this.handleFilterId(1)}>추천순</li>
                   <li onClick={() => this.handleFilterId(2)}>신상품순</li>
                   <li onClick={() => this.handleFilterId(3)}>베스트순</li>
-                  <li onClick={() => this.handleFilterId(4)}>낮은가격순</li>
+                  <li
+                    onClick={() => {
+                      this.handleFilterId(4);
+                      this.props.handleSortLowPrice();
+                    }}
+                  >
+                    낮은가격순
+                  </li>
                   <li onClick={() => this.handleFilterId(5)}>높은가격순</li>
                   <li onClick={() => this.handleFilterId(6)}>높은할인순</li>
                   <li onClick={() => this.handleFilterId(7)}>베스트리뷰순</li>

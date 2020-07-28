@@ -15,16 +15,21 @@ const priceRangeArr = [
 class FilterNav extends React.Component {
   render() {
     return (
-      <div>
+      <div className="FilterNav">
         <div className="filterTop">
           <span>필터</span>
-          <span className="reset">초기화</span>
+          <span className="reset" onClick={this.props.handleFilterReset}>
+            초기화
+          </span>
         </div>
         <div className="filterBody">
           <div className="filterBox">
             <div className="filterTitle">상품정보</div>
             <ul className="filterContents">
-              <li className="eachFilter">
+              <li
+                className="eachFilter"
+                onClick={this.props.handleFilterFreeShipping}
+              >
                 <span>
                   <input type="checkbox"></input>
                   <label title="품절상품 제외">무료배송</label>
