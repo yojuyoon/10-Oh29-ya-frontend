@@ -64,9 +64,11 @@ class DetailItem extends React.Component {
   heartHandler = () => {};
 
   decimalRemove = (data) => {
-    return Math.floor(data).toLocaleString(undefined, {
-      maximumFractionDigits: 5,
-    });
+    return (
+      Math.floor(data).toLocaleString(undefined, {
+        maximumFractionDigits: 5,
+      }) + "원"
+    );
   };
 
   render() {
