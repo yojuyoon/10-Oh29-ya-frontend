@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import ActiveLikeBtn from "../../Components/ActiveLikeBtn/ActiveLikeBtn";
+
 import "./FavListTwoNine.scss";
 
 class FavListTwoNineTV extends React.Component {
@@ -8,29 +9,14 @@ class FavListTwoNineTV extends React.Component {
     favList: [],
   };
 
-  componentDidMount() {
-    fetch("http://10.58.1.34:8000/media/mypage/post", {
-      method: "POST",
-      body: JSON.stringify({
-        user: 1,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) =>
-        this.setState({
-          favList: res.my_heart_list,
-        })
-      );
-  }
-
   render() {
-    const { favList } = this.state;
-    console.log(favList);
+    const { favList, postId, userId, likeIcon } = this.props;
+    const { heartState } = this.state;
     return (
       <div className="FavListTwoNineTV">
-        {favList.map((feed) => {
+        {favList.map((feed, index) => {
           return (
-            <section className="TwentyNineTV">
+            <section key={index} className="TwentyNineTV">
               <div className="feedContainer">
                 <div className="feedContent">
                   <div className="container">
@@ -66,11 +52,11 @@ class FavListTwoNineTV extends React.Component {
                     ></div>
                     <div className="feedTag">{feed.hashtag.join(" ")}</div>
                     <ActiveLikeBtn
-                      postId={this.props.postId}
-                      userId={this.props.userId}
-                      likeIcon={this.props.likeIcon}
-                      likedNumber={this.props.likedNumber}
-                      heartState={this.props.heartState}
+                      postId={postId}
+                      userId={userId}
+                      likeIcon={likeIcon}
+                      likedNumber={feed.like_num}
+                      heartState={heartState}
                     />
                   </div>
                 </div>

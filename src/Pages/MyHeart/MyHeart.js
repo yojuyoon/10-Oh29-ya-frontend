@@ -5,16 +5,12 @@ import FavListPost from "./FavListPost";
 import FavListBrand from "./FavListBrand";
 import "./MyHeart.scss";
 
-const obj = {
-  0: <FavListProduct />,
-  1: <FavListBrand />,
-  2: <FavListTwoNineTV />,
-  3: <FavListPost />,
-};
-
 class MyHeart extends React.Component {
   state = {
-    feed: [],
+    favTwentyNineList: [],
+    twentyNineCount: "",
+    favProductList: [],
+    productCount: "",
   };
   state = { activeId: 0, titleClicked: false };
 
@@ -22,7 +18,60 @@ class MyHeart extends React.Component {
     this.setState({ activeId: id, titleClicked: true });
   };
 
+  getLength = (num) => {
+    this.setState({
+      count: num,
+    });
+  };
+
+  componentDidMount() {
+    fetch("http://10.58.6.103:8000/mypage/heart/post", {
+      method: "POST",
+      body: JSON.stringify({
+        user: 1,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) =>
+        this.setState({
+          favTwentyNineList: res.my_heart_list,
+          twentyNineCount: res.my_heart_list.length,
+        })
+      );
+
+    fetch("http://10.58.4.24:8000/mypage/heart/product", {
+      method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+  }
+
+  componentHandler = (id) => {
+    switch (id) {
+      case 0:
+        return <FavListProduct />;
+      case 1:
+        return <FavListBrand />;
+      case 2:
+        return (
+          <FavListTwoNineTV
+            favList={this.state.favTwentyNineList}
+            getLength={(num) => this.getLength(num)}
+          />
+        );
+      case 3:
+        return <FavListPost />;
+      default:
+        return <FavListProduct />;
+    }
+  };
+
   render() {
+    const { handleClicked, componentHandler } = this;
+    const { activeId, productCount, twentyNineCount } = this.state;
     return (
       <div className="MyHeart">
         <aside className="myHeartMenu">
@@ -85,31 +134,31 @@ class MyHeart extends React.Component {
           </div>
           <ul className="myheartCategory">
             <li
-              onClick={() => this.handleClicked(0)}
-              className={this.state.activeId === 0 && "myheartCategoryClicked"}
+              onClick={() => handleClicked(0)}
+              className={activeId === 0 && "myheartCategoryClicked"}
             >
-              PRODUCT()
+              PRODUCT({productCount})
             </li>
             <li
-              onClick={() => this.handleClicked(1)}
-              className={this.state.activeId === 1 && "myheartCategoryClicked"}
+              onClick={() => handleClicked(1)}
+              className={activeId === 1 && "myheartCategoryClicked"}
             >
-              BRAND()
+              BRAND(0)
             </li>
             <li
-              onClick={() => this.handleClicked(2)}
-              className={this.state.activeId === 2 && "myheartCategoryClicked"}
+              onClick={() => handleClicked(2)}
+              className={activeId === 2 && "myheartCategoryClicked"}
             >
-              TV()
+              TV({twentyNineCount})
             </li>
             <li
-              onClick={() => this.handleClicked(3)}
-              className={this.state.activeId === 3 && "myheartCategoryClicked"}
+              onClick={() => handleClicked(3)}
+              className={activeId === 3 && "myheartCategoryClicked"}
             >
-              POST()
+              POST(0)
             </li>
           </ul>
-          <div className="myHeartContents">{obj[this.state.activeId]}</div>
+          <div className="myHeartContents">{componentHandler(activeId)}</div>
         </main>
       </div>
     );
