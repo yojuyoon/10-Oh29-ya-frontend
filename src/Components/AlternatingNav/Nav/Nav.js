@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { navData } from "../navData";
 import "./Nav.scss";
 
@@ -19,10 +19,10 @@ class HeaderNav extends React.Component {
             <div className="navRowContainer">
               <div className="menuTitle">
                 {navData.title.map(({ name, index }) => (
-                  <span key={index} className="title">
+                  <Link to="/TwentyNineTV" key={index} className="title">
                     {name}
                     {name === "29TV" ? <span className="dot"></span> : null}
-                  </span>
+                  </Link>
                 ))}
               </div>
               <div className="navMenuIcon">
@@ -35,9 +35,9 @@ class HeaderNav extends React.Component {
               <div className="categoryColumnContainer">
                 <div className="categoryColletion">
                   {navData.category.map(({ name, index }) => (
-                    <span key={index} className="category">
+                    <Link key={index} to="/Product" className="category">
                       {name}
-                    </span>
+                    </Link>
                   ))}
                 </div>
                 <div className="border" />

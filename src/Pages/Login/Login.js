@@ -2,7 +2,6 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { snsLoginArray } from "./snsLoginData.js";
 import "./Login.scss";
-import "../../Styles/common.scss";
 
 class Login extends React.Component {
   state = {
@@ -15,7 +14,7 @@ class Login extends React.Component {
   handlerlogin = () => {
     const { email, password, token, checked } = this.state;
 
-    fetch("http://10.58.4.0:8000/account/sign-in", {
+    fetch("http://10.58.4.24:8000/account/sign-in", {
       method: "POST",
       body: JSON.stringify({
         email,
@@ -28,10 +27,11 @@ class Login extends React.Component {
         if (res.token) {
           if (checked) {
             localStorage.setItem("token", res.token);
+            this.props.history.push("/SpecialOrder");
           } else {
             sessionStorage.setItem("token", res.token);
+            this.props.history.push("/SpecialOrder");
           }
-          this.props.history.push("/AlternatingNav");
         } else {
           alert("다시 로그인 해주세요.");
         }
@@ -69,6 +69,7 @@ class Login extends React.Component {
           <input
             className="loginInput"
             name="password"
+            type="password"
             onChange={handlerInput}
             placeholder="비밀번호"
           />

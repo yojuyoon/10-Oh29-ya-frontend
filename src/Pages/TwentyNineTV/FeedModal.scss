@@ -1,0 +1,225 @@
+@import "../../Styles/common.scss";
+@import "../../Components/ActiveLikeBtn/ActiveLikeBtn.scss";
+
+.FeedModal {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: fixed;
+  display: flex;
+  @include center;
+  background-color: rgba(27, 27, 27, 0.7);
+  z-index: 999;
+
+  .leftBtn {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    transform: rotate(135deg);
+    border: 2px solid $whiteColor;
+    border-width: 0 2px 2px 0;
+    cursor: pointer;
+  }
+
+  .leftBtnHide {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    visibility: hidden;
+  }
+
+  .rightBtn {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    transform: rotate(135deg);
+    border: 2px solid $whiteColor;
+    border-width: 2px 0 0 2px;
+    cursor: pointer;
+  }
+
+  .rightBtnHide {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    visibility: hidden;
+  }
+
+  .ModalContentContainer {
+    width: 816px;
+    height: 625px;
+    position: relative;
+    display: flex;
+    background-color: $whiteColor;
+
+    .closeBtn {
+      top: -80px;
+      right: 0;
+      position: absolute;
+      border: none;
+      background-color: transparent;
+      outline: none;
+      cursor: pointer;
+
+      img {
+        width: 55px;
+      }
+    }
+
+    .ModalContentImg {
+      width: 400px;
+      height: 625px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .progressBar {
+      width: 2px;
+      height: 625px;
+      background: linear-gradient(to bottom, #6200ff, #aa00de);
+      animation: progress 6s ease-out;
+
+      @keyframes progress {
+        to {
+          height: 0%;
+        }
+        from {
+          height: 100%;
+        }
+      }
+    }
+
+    .rightContents {
+      width: 416px;
+
+      .profile {
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px;
+        border-bottom: 1px solid rgba(45, 45, 45, 0.3);
+
+        .info {
+          display: flex;
+          align-items: center;
+
+          .profileLogo {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+          }
+
+          .profileName {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .brandName {
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+          }
+
+          .officialCheck {
+            margin-top: 5px;
+            font-size: 15px;
+            cursor: pointer;
+          }
+        }
+
+        .moreBtn {
+          font-size: 13px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+
+      .contents {
+        padding: 30px;
+
+        .text {
+          font-size: 17px;
+          line-height: 25px;
+        }
+
+        .tag {
+          margin: 10px 0;
+          font-size: 18px;
+          font-weight: bold;
+          line-height: 23px;
+          cursor: pointer;
+        }
+      }
+
+      .icons {
+        width: 80px;
+        right: 20px;
+        bottom: 200px;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: rgba(45, 45, 45, 0.4);
+
+        .shareIcon {
+          width: 30px;
+          font-size: 28px;
+          opacity: 0.8;
+          cursor: pointer;
+        }
+      }
+
+      .productContainer {
+        width: 416px;
+        height: 180px;
+        bottom: 0;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(45, 45, 45, 0.1);
+
+        .titleContainer {
+          display: flex;
+          justify-content: space-between;
+
+          span {
+            margin: 20px;
+            font-weight: bold;
+          }
+
+          .sideBtn {
+            width: 60px;
+            margin: 10px;
+            display: flex;
+
+            button {
+              width: 25px;
+              height: 25px;
+              margin: 3px;
+              color: rgba(45, 45, 45, 0.1);
+              background-color: white;
+              border: none;
+              outline: none;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .productImage {
+          cursor: pointer;
+
+          img {
+            width: 95px;
+            height: 95px;
+            margin-left: 20px;
+          }
+        }
+      }
+    }
+  }
+}
