@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import "./TwoBannerItem.scss";
 
 class LeftNav extends React.Component {
   render() {
     const { item } = this.props;
     return (
       <li className="category">
-        <Link to={`Women/${item}`}>
+        <Link to={`/ProductList/Women/${item}`}>
           <button>{item}</button>
         </Link>
       </li>
