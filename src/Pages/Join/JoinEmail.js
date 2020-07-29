@@ -1,5 +1,4 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 import "./JoinEmail.scss";
 import { ip } from "../Login/ip";
 
@@ -82,6 +81,7 @@ class JoinEmail extends React.Component {
           onChange={changePwHandler}
           placeholder="비밀번호를 입력하세요"
         />
+
         <input
           type="password"
           name="passwordCheck"
@@ -93,19 +93,23 @@ class JoinEmail extends React.Component {
           <p className="format">비밀번호가 일치하지 않습니다.</p>
         )}
         <div className="agreeContainer">
-          <input
-            type="checkbox"
-            checked={checked}
-            onChange={checkboxHandler}
-            value={checkbox}
-          />
-          <span>[필수] 이용약관 및 개인정보 수집/이용에 동의</span>
-          <i className="fas fa-chevron-down"></i>
+          <label>
+            <input
+              type="checkbox"
+              checked={checked}
+              onChange={checkboxHandler}
+              value={checkbox}
+            />
+            [필수] 이용약관 및 개인정보 수집/이용에 동의
+          </label>
+          <i className="fas fa-chevron-down" />
         </div>
         <div className="agreeContainer">
-          <input type="checkbox" value="false" />
-          <span>[선택] 광고성 정보 수신 동의</span>
-          <i className="fas fa-chevron-down"></i>
+          <label>
+            <input type="checkbox" value="false" />
+            [선택] 광고성 정보 수신 동의
+          </label>
+          <i className="fas fa-chevron-down" />
         </div>
         {email && password && checked ? (
           <button onClick={this.joinHandler} className="join activeBtn">

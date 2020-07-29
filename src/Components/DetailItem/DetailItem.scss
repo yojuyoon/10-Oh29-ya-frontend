@@ -1,6 +1,6 @@
 @import "../../Styles/common.scss";
 
-.purchaseInformation {
+.DetailItem {
   display: flex;
   flex-direction: column;
   height: 800px;
@@ -35,16 +35,16 @@
         border: 1px solid #e5e5e5;
         border-radius: 2px;
         font-size: 11px;
+        text-align: center;
         color: #000;
         background-color: $whiteColor;
-        text-align: center;
         outline: none;
         cursor: pointer;
       }
     }
   }
 
-  .ItemContainer {
+  .detailItemContainer {
     display: flex;
 
     .imgContainer {
@@ -171,17 +171,12 @@
           width: 50%;
           height: 100%;
           font-weight: 600;
-          background: inherit;
           border: none;
-          box-shadow: none;
-          border-radius: 0;
-          padding: 0;
-          overflow: visible;
-          outline: none;
           cursor: pointer;
         }
 
         .bag {
+          background-color: $whiteColor;
           border: 1px solid #d4d4d4;
         }
 
@@ -204,7 +199,7 @@
           align-items: center;
           height: 28px;
           border-top: 1px solid #e4e4e4;
-          padding: 18px 0;
+          padding: 30px 0;
 
           .productName {
             width: 340px;
@@ -239,7 +234,6 @@
                 font-size: 13px;
                 color: #666;
                 text-align: center;
-                box-sizing: border-box;
               }
             }
 
@@ -256,7 +250,9 @@
         }
 
         .totalPrice {
-          float: right;
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
           margin-bottom: 20px;
 
           .text {

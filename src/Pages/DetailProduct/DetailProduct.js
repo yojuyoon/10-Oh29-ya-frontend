@@ -1,6 +1,5 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-// import { ip } from "./../Login/ip";
 import DetailItem from "../../Components/DetailItem/DetailItem";
 import "./DetailProduct.scss";
 
@@ -15,8 +14,8 @@ class DetailProduct extends React.Component {
 
     return (
       <>
-        <div className="detailCategory" />
-        {/* 백엔드에서 데이터 못받아온 부분 주석처리 */}
+        <div className="DetailProduct" />
+        {/* 백엔드에서 데이터 */}
         {/* <header className="header">
           <div className="blackContainer">
             <div className="titleContainer">

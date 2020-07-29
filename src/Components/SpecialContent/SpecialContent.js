@@ -67,8 +67,6 @@ class SpecialContent extends React.Component {
     const secondCheck = digitCheck(Math.floor((dDay % Second) / 1000));
     const dDayTime = hourCheck + ":" + minuteCheck + ":" + secondCheck;
 
-    console.log(content);
-
     return (
       <li className="SpecialContent">
         <div className="imgContainer">

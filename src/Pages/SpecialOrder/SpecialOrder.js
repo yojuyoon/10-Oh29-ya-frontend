@@ -10,7 +10,7 @@ class SpecialOrder extends React.Component {
   };
 
   componentDidMount = () => {
-    fetch("http://" + ip + "/product/specialorders", {
+    fetch(ip + "/product/specialorders", {
       method: "GET",
       header: JSON.stringify({}),
     })

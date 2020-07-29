@@ -6,7 +6,7 @@ import "./Join.scss";
 class Join extends React.Component {
   render() {
     return (
-      <div className="LoginContainer">
+      <div className="Join">
         <p className="loginTitle">회원가입</p>
         <div className="loginBorder" />
         <div className="bannerContainer">

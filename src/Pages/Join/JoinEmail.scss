@@ -41,15 +41,15 @@ $border: 1px solid #d4d4d4;
 
   .agreeContainer {
     height: 34px;
-    // float: left;
     margin: 5px 0;
     padding: auto 0;
     font-size: 12px;
+    display: flex;
+    justify-content: space-between;
 
     .fas {
       height: 100%;
       margin: auto 0;
-      float: right;
     }
   }
 

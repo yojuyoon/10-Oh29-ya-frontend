@@ -29,7 +29,7 @@ class DetailItem extends React.Component {
   };
 
   componentDidMount = () => {
-    fetch(`http://${ip}/product/${this.props.match.params.id}`, {
+    fetch(`${ip}/product/${this.props.match.params.id}`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -63,6 +63,12 @@ class DetailItem extends React.Component {
 
   heartHandler = () => {};
 
+  decimalRemove = (data) => {
+    return Math.floor(data).toLocaleString(undefined, {
+      maximumFractionDigits: 5,
+    });
+  };
+
   render() {
     const { input, data } = this.state;
     const {
@@ -71,10 +77,11 @@ class DetailItem extends React.Component {
       shoppingHandler,
       cardPrice,
       heartHandler,
+      decimalRemove,
     } = this;
 
     return (
-      <div className="purchaseInformation">
+      <div className="DetailItem">
         <div className="titleContainer">
           <div className="imgContainer">
             <img alt="logo" src={data.brand_logo} />
@@ -85,7 +92,7 @@ class DetailItem extends React.Component {
             <button>BRAND HOME</button>
           </div>
         </div>
-        <div className="ItemContainer">
+        <div className="detailItemContainer">
           <div className="imgContainer">
             <img alt="img" src={data.image} />
           </div>
@@ -106,18 +113,12 @@ class DetailItem extends React.Component {
                 <p>{data.like_num}</p>
               </div>
             </div>
-            <p className="costPrice">
-              {Math.floor(data.price).toLocaleString(undefined, {
-                maximumFractionDigits: 5,
-              })}
-            </p>
+            <p className="costPrice">{decimalRemove(data.price)}</p>
             <div className="priceContainer">
               <p className="price">
                 {data.discount_rate}
                 {"% "}
-                {Math.floor(data.discount_price).toLocaleString(undefined, {
-                  maximumFractionDigits: 5,
-                })}
+                {decimalRemove(data.discount_price)}
               </p>
               <button className="coupon">쿠폰적용불가상품</button>
             </div>
@@ -127,9 +128,7 @@ class DetailItem extends React.Component {
               <span className="td">
                 {data.discount_rate}
                 {"% "}
-                {Math.floor(data.discount_price).toLocaleString(undefined, {
-                  maximumFractionDigits: 5,
-                })}
+                {decimalRemove(data.discount_price)}
               </span>
             </div>
             <div className="benefitContainer">
@@ -166,9 +165,7 @@ class DetailItem extends React.Component {
                     </button>
                   </span>
                   <span className="price">
-                    {Math.floor(data.discount_price).toLocaleString(undefined, {
-                      maximumFractionDigits: 5,
-                    })}
+                    {decimalRemove(data.discount_price)}
                   </span>
                 </span>
               </div>
