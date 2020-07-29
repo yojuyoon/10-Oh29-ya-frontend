@@ -1,10 +1,10 @@
 export const navData = {
   title: [
-    { index: 1, name: "Special-Order" },
-    { index: 2, name: "Showcase" },
-    { index: 3, name: "29TV" },
-    { index: 4, name: "PT" },
-    { index: 5, name: "Welove" },
+    { index: 1, name: "Special-Order", route: "/SpecialOrder" },
+    { index: 2, name: "Showcase", route: "/SpecialOrder" },
+    { index: 3, name: "29TV", route: "/TwentyNineTV" },
+    { index: 4, name: "PT", route: "/SpecialOrder" },
+    { index: 5, name: "Welove", route: "/SpecialOrder" },
   ],
   category: [
     { index: 1, name: "Women" },

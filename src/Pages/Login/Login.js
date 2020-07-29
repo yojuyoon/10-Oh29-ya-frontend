@@ -9,6 +9,7 @@ class Login extends React.Component {
     password: "",
     token: "",
     checked: false,
+    cart: "",
   };
 
   handlerlogin = () => {
@@ -33,7 +34,7 @@ class Login extends React.Component {
             this.props.history.push("/SpecialOrder");
           }
         } else {
-          alert("다시 로그인 해주세요.");
+          alert("로그인 실패");
         }
       });
   };

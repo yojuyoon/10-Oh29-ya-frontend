@@ -6,11 +6,14 @@ import "./HeaderNav.scss";
 class Nav extends React.Component {
   logoutHandler = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("cart_count");
     sessionStorage.removeItem("token");
     this.props.history.push("/SpecialOrder");
   };
+
   render() {
     const { logoutHandler } = this;
+
     return (
       <nav className="Nav">
         <div className="couponBox">
@@ -32,20 +35,20 @@ class Nav extends React.Component {
               />
             </div>
             <div>
-              <i className="fas fa-user">
+              <Link to="/MyHeart" className="fas fa-user">
                 <span className="menuIcon">MY PAGE</span>
-              </i>
-              <i className="fas fa-heart">
+              </Link>
+              <Link to="/MyHeart" className="fas fa-heart">
                 <span className="menuIcon">MY HEART</span>
-              </i>
-              <i className="fas fa-shopping-bag">
+              </Link>
+              <Link to="/Cart" className="fas fa-shopping-bag">
                 <span className="menuIcon">SHOPPING BAG</span>
                 {localStorage.getItem("cart_count") && (
                   <span className="shoppingNumber">
                     {localStorage.getItem("cart_count")}
                   </span>
                 )}
-              </i>
+              </Link>
               {localStorage.getItem("token") ||
               sessionStorage.getItem("token") ? (
                 <i className="fas fa-door-open">
@@ -64,8 +67,8 @@ class Nav extends React.Component {
           </div>
           <div className="navRowContainer">
             <div className="menuContainer">
-              {navData.title.map(({ name, index }) => (
-                <Link to="/TwentyNineTV" key={index} className="title">
+              {navData.title.map(({ name, index, route }) => (
+                <Link to={`${route}`} key={index} className="title">
                   {name}
                   {name === "29TV" ? <span className="dot" /> : null}
                 </Link>

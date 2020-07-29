@@ -6,6 +6,7 @@ import "./Nav.scss";
 class HeaderNav extends React.Component {
   logoutHandler = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("cart_count");
     sessionStorage.removeItem("token");
     this.props.history.push("/SpecialOrder");
   };
@@ -26,8 +27,8 @@ class HeaderNav extends React.Component {
           <div className="navMenuContainer">
             <div className="navRowContainer">
               <div className="menuTitle">
-                {navData.title.map(({ name, index }) => (
-                  <Link to="/TwentyNineTV" key={index} className="title">
+                {navData.title.map(({ name, index, route }) => (
+                  <Link to={`${route}`} key={index} className="title">
                     {name}
                     {name === "29TV" && <span className="dot" />}
                   </Link>
@@ -36,7 +37,7 @@ class HeaderNav extends React.Component {
               <div className="navMenuIcon">
                 <i className="fas fa-user" />
                 <i className="fas fa-heart" />
-                <i className="fas fa-shopping-bag" />
+                <Link className="fas fa-shopping-bag" />
                 {localStorage.getItem("cart_count") && (
                   <span className="shoppingNumber">
                     {localStorage.getItem("cart_count")}

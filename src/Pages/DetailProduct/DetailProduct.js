@@ -16,7 +16,8 @@ class DetailProduct extends React.Component {
     return (
       <>
         <div className="detailCategory" />
-        <header className="header">
+        {/* 백엔드에서 데이터 못받아온 부분 주석처리 */}
+        {/* <header className="header">
           <div className="blackContainer">
             <div className="titleContainer">
               <h1 className="title">Special-Order</h1>
@@ -25,7 +26,7 @@ class DetailProduct extends React.Component {
               </p>
             </div>
           </div>
-        </header>
+        </header> */}
         <DetailItem key={data.product_id} content={data} />
       </>
     );
