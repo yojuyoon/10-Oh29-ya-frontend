@@ -46,7 +46,12 @@ class MyHeart extends React.Component {
       },
     })
       .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then((res) =>
+        this.setState({
+          favProductList: res.data,
+          productCount: res.data.length,
+        })
+      );
   }
 
   componentHandler = (id) => {
@@ -58,7 +63,7 @@ class MyHeart extends React.Component {
       case 2:
         return (
           <FavListTwoNineTV
-            favTwentyNineList={this.state.favTwentyNineList}
+            data={this.state.favTwentyNineList}
             getLength={(num) => this.getLength(num)}
           />
         );
@@ -70,7 +75,6 @@ class MyHeart extends React.Component {
   };
 
   render() {
-    console.log(this.state.favTwentyNineList);
     const { handleClicked, componentHandler } = this;
     const { activeId, productCount, twentyNineCount } = this.state;
     return (

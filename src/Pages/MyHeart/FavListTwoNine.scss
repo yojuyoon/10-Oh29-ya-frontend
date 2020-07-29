@@ -2,7 +2,9 @@
 @import "../../Components/ActiveLikeBtn/ActiveLikeBtn.scss";
 
 .FavListTwoNineTV {
-  @include center;
+  // @include center;
+  display: flex;
+  align-items: center;
   flex-wrap: wrap;
 
   .TwentyNineTV {
