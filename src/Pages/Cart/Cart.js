@@ -73,7 +73,7 @@ class Cart extends React.Component {
     return total.toLocaleString();
   };
 
-  //전체 선택 버튼을 따로 관리. 원래 담긴 아이템인 cartItem 배열의 전체 길이와 selectedItem 길이가 같고 다를 때로 분기
+  //전체 선택 버튼을 따로 관리. 원래 담긴 아이템인 cartItem 배열의 전체 길이와 selectedItem 길이가 같고 다를 때 조건으로
   handleMasterSelectBtn = () => {
     const { itemSelected, cartData } = this.state;
 
@@ -89,7 +89,7 @@ class Cart extends React.Component {
     }
   };
 
-  //checkMasterState 별도 관리
+  //checkMasterState 별도 관리  //버그 있음,, 컴디업으로 옮겨야 하나?
   handleMasterState = () => {
     const { itemSelected, cartData } = this.state;
 
@@ -102,6 +102,8 @@ class Cart extends React.Component {
 
   handleSelectedItem = (id, quantity) => {
     const { itemSelected } = this.state;
+
+    console.log(quantity);
 
     if (itemSelected.includes(id)) {
       const filter = itemSelected.filter((item) => {
@@ -118,10 +120,29 @@ class Cart extends React.Component {
     }
   };
 
-  // handleCheckOut = () => {
-  //   let checkOut = [];
+  handleCheckOut = () => {
+    const { cartData, itemSelected } = this.state;
+    let checkOut = [];
+    let newData = [];
+    var tempObj = {};
 
-  // }
+    for (let i = 0; i < itemSelected.length; i++) {
+      for (let j = 0; j < cartData.length; j++) {
+        if (itemSelected[i] === cartData[j].id) {
+          tempObj = {};
+          tempObj["id"] = itemSelected[i];
+          tempObj["quantity"] = cartData[j].quantity;
+          checkOut = [...checkOut, tempObj];
+        }
+      }
+    }
+    newData = [
+      { product_list: checkOut },
+      { total: this.handleSumToalPrice() },
+    ];
+    console.log(newData);
+    return newData;
+  };
 
   //////////////////////////////////////////////////////////////////////////////
 
@@ -159,11 +180,40 @@ class Cart extends React.Component {
   };
 
   //////////////////////////////////////////////////////////////////////////////
-  //선택 된 상품 arr 삭제
-  // delSelectedItems = () => {
-  //   this.setState({ itemSelected: [] });
-  //   console.log(this.state.itemSelected);
-  // };
+
+  //인자가 들어오고 들어오지 않고로 조건을 걸어서 아래 함수와 합칠 수 있을 것 같은데,, 고민해볼것
+
+  //selectedItem 배열(선택 된 상품)에 해당하는 상품 삭제
+  delSelectedItemGroup = () => {
+    const { cartData, itemSelected } = this.state;
+    let filter1 = [...cartData];
+
+    console.log(itemSelected);
+    for (let i = 0; i < itemSelected.length; i++) {
+      console.log("이거슨 i: ", i);
+      filter1 = filter1.filter((eachItem) => {
+        return itemSelected[i] !== eachItem.id;
+      });
+      console.log("111이거슨 필터", filter1);
+      // this.handleSelectedItem(itemSelected[i]);
+    }
+
+    this.setState({ cartData: filter1 });
+  };
+
+  //cartItem에서 item개별적으로 삭제 버튼을 눌렀을 때 동작하는 함수
+  delSelectedItem = (id) => {
+    const { cartData } = this.state;
+    // let filter = [];
+
+    const filter = cartData.filter((eachItem) => {
+      return id !== eachItem.id;
+    });
+    // console.log(filter);
+    this.setState({ cartData: filter }, this.handleSelectedItem(id));
+  };
+
+  //////////////////////////////////////////////////////////////////////////////
 
   componentDidMount() {
     ////내 로컬
@@ -192,9 +242,16 @@ class Cart extends React.Component {
     /////
   }
 
+  componentWillUnmount() {
+    let newData = this.handleCheckOut();
+    //newData를  body에 담아 POST
+    //refresh했을 경우 어떻게 처리할지 고민해 볼 것.
+  }
+
   render() {
     console.log(this.state.itemSelected);
-    console.log(this.state.checkMasterState);
+    console.log(this.state.cartData);
+    // console.log(this.state.checkMasterState);
 
     return (
       <div className="Cart">
@@ -243,13 +300,14 @@ class Cart extends React.Component {
                     handleSelectedItem={this.handleSelectedItem}
                     handleSum={this.handleSum}
                     handleMinus={this.handleMinus}
+                    delSelectedItem={this.delSelectedItem}
                     key={i}
                   />
                 );
               })}
             </div>
             <div className="cartControl">
-              <button type="button" onClick={this.delSelectedItems}>
+              <button type="button" onClick={this.delSelectedItemGroup}>
                 선택상품 삭제
               </button>
               <button type="button">품절상품 삭제</button>
@@ -285,7 +343,11 @@ class Cart extends React.Component {
             <button className="btnShopping" type="button">
               <Link>CONTINUE SHOPPING</Link>
             </button>
-            <button className="btnCheckout" type="button">
+            <button
+              className="btnCheckout"
+              type="button"
+              onClick={this.handleCheckOut}
+            >
               <Link>CHECK OUT</Link>
             </button>
           </div>

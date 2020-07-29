@@ -85,11 +85,6 @@ class CartItem extends React.Component {
     return (quantity * +price).toLocaleString();
   };
 
-  handleDelEachItem = () => {
-    console.log(this.price.cartData.id);
-    console.log("삭제할거야");
-  };
-
   render() {
     // console.log(this.props.checkMasterState);
 
@@ -145,7 +140,7 @@ class CartItem extends React.Component {
             </div>
             <button
               className="delBtn"
-              onClick={this.handleDelEachItem}
+              onClick={() => this.props.delSelectedItem(id)}
             ></button>
           </div>
         </div>
