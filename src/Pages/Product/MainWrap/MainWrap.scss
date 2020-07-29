@@ -11,9 +11,14 @@
 
   .mainSwiper {
     width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
 
     img {
       width: 100%;
+      height: 680px;
+      background-position: 50%;
     }
   }
 }

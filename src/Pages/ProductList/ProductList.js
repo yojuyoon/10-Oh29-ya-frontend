@@ -21,8 +21,7 @@ class ProductList extends React.Component {
   // }
 
   // handleData = () => {
-
-  //내로컬
+  //   //내로컬;
   //   fetch("http://localhost:3000/data/product.json")
   //     .then((response) => response.json())
   //     .then((response) => {
@@ -32,11 +31,18 @@ class ProductList extends React.Component {
   //         originItemData: response.data,
   //       });
   //     });
+
+  //   // fetch(`http://10.58.4.24:8000/product?category=MEN&subcategory=상의`)
+  //   //   .then((res) => res.json())
+  //   //   .then((res) =>
+  //   //     this.setState({ itemData: res.data, originItemData: res.data })
+  //   //   );
   // };
 
   ////되는거!!
   componentDidMount() {
     console.log(this.props.match.params.category);
+
     fetch(
       `http://10.58.4.24:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`
     )
