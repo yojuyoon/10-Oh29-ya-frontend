@@ -19,14 +19,13 @@ class TwentyNineTV extends React.Component {
 
   componentDidMount = () => {
     fetch(`http://${API_URL}/media/recommend`, {
-      method: "POST",
-      body: JSON.stringify({
-        user: 1,
-      }),
+      method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         this.setState({
           data: res.data.map((feed) => {
             return feed;
@@ -71,24 +70,14 @@ class TwentyNineTV extends React.Component {
     const { modalStatus, data, currentIdx } = this.state;
     return (
       <div className="TwentyNineTVFeed">
-        {this.state.data.map((feed, index) => {
+        {data.map((feed, index) => {
           return (
             <TwentyNineTVFeedComponent
               onClick={() => {
-                console.log(feed);
                 showModal();
                 setModalIdx(index);
               }}
-              postId={feed.post_id}
-              userId={feed.user_id}
-              img={feed.thumbnail_image}
-              logo={feed.staff_logo}
-              brandName={feed.staff_name}
-              text={feed.content}
-              officialCheck={feed.official_check}
-              likedNumber={feed.like_num}
-              heartState={feed.user_likes_pressed}
-              hashtag={feed.hashtag}
+              feed={feed}
               key={index}
             />
           );
