@@ -17,13 +17,13 @@ class HeaderNav extends React.Component {
     return (
       <nav className="NavActive">
         <div className="navContainer">
-          <div className="logoContainer">
+          <Link to="/SpecialOrder" className="logoContainer">
             <img
               className="logoImg"
               alt="logo  square"
               src="/Images/logoSquare.PNG"
             />
-          </div>
+          </Link>
           <div className="navMenuContainer">
             <div className="navRowContainer">
               <div className="menuTitle">

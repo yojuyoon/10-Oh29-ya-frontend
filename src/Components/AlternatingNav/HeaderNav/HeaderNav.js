@@ -27,13 +27,13 @@ class Nav extends React.Component {
         </div>
         <div className="menuColumnContainer">
           <div className="logoRowContainer">
-            <div className="imgContainer">
+            <Link to="/SpecialOrder" className="imgContainer">
               <img
                 className="logoImg"
                 alt="logo  square"
                 src="/Images/logoRectangle.PNG"
               />
-            </div>
+            </Link>
             <div>
               <Link to="/MyHeart" className="fas fa-user">
                 <span className="menuIcon">MY PAGE</span>
@@ -51,17 +51,13 @@ class Nav extends React.Component {
               </Link>
               {localStorage.getItem("token") ||
               sessionStorage.getItem("token") ? (
-                <i className="fas fa-door-open">
-                  <span className="menuIcon" onClick={logoutHandler}>
-                    LOGOUT
-                  </span>
+                <i onClick={logoutHandler} className="fas fa-door-open">
+                  <span className="menuIcon">LOGOUT</span>
                 </i>
               ) : (
-                <i className="fas fa-sign-in-alt">
-                  <span className="menuIcon">
-                    <a href="/Login">LOGIN</a>
-                  </span>
-                </i>
+                <Link to="/Login" className="fas fa-sign-in-alt">
+                  <span className="menuIcon">LOGIN</span>
+                </Link>
               )}
             </div>
           </div>

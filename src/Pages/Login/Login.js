@@ -1,5 +1,6 @@
 import React from "react";
 import SnsLogin from "./SnsLogin/SnsLogin";
+import { Link } from "react-router-dom";
 import API_URL from "../../config";
 import "./Login.scss";
 
@@ -87,7 +88,9 @@ class Login extends React.Component {
             로그인하기
           </button>
           <div className="loginNotPossible">
-            <p className="LoginNotText">회원가입</p>
+            <Link to="/Join" className="LoginNotText">
+              회원가입
+            </Link>
             <div className="LoginNotBorder" />
             <p className="LoginNotText">계정찾기</p>
             <div className="LoginNotBorder" />
