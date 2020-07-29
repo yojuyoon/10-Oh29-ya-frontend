@@ -1,23 +1,22 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import ActiveLikeBtn from "../../Components/ActiveLikeBtn/ActiveLikeBtn";
-
 import "./FavListTwoNine.scss";
 
 class FavListTwoNineTV extends React.Component {
   state = {
-    favList: [],
+    favTwentyNineList: [],
   };
 
   render() {
-    const { favList, postId, userId, likeIcon } = this.props;
-    const { heartState } = this.state;
+    const { favTwentyNineList } = this.props;
     return (
       <div className="FavListTwoNineTV">
-        {favList.map((feed, index) => {
+        {favTwentyNineList.map((feed) => {
+          console.log(feed.user_likes_pressed);
           return (
-            <section key={index} className="TwentyNineTV">
-              <div className="feedContainer">
+            <section className="TwentyNineTV">
+              <div key={feed.post_id} className="feedContainer">
                 <div className="feedContent">
                   <div className="container">
                     <img
@@ -52,11 +51,11 @@ class FavListTwoNineTV extends React.Component {
                     ></div>
                     <div className="feedTag">{feed.hashtag.join(" ")}</div>
                     <ActiveLikeBtn
-                      postId={postId}
-                      userId={userId}
-                      likeIcon={likeIcon}
+                      postId={this.props.postId}
+                      userId={this.props.userId}
+                      likeIcon={this.props.likeIcon}
                       likedNumber={feed.like_num}
-                      heartState={heartState}
+                      heartState={feed.user_likes_pressed}
                     />
                   </div>
                 </div>

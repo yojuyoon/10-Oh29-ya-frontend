@@ -88,17 +88,7 @@ class TwentyNineTV extends React.Component {
                 showModal();
                 setModalIdx(index);
               }}
-              postId={feed.post_id}
-              userId={feed.user_id}
-              img={feed.thumbnail_image}
-              logo={feed.staff_logo}
-              brandName={feed.staff_name}
-              text={feed.content}
-              officialCheck={feed.official_check}
-              likedNumber={feed.like_num}
-              heartState={feed.user_likes_pressed}
-              hashtag={feed.hashtag}
-              key={index}
+              data={feed}
             />
           );
         })}

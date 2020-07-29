@@ -26,10 +26,10 @@ class MyHeart extends React.Component {
 
   componentDidMount() {
     fetch("http://10.58.6.103:8000/mypage/heart/post", {
-      method: "POST",
-      body: JSON.stringify({
-        user: 1,
-      }),
+      method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
     })
       .then((res) => res.json())
       .then((res) =>
@@ -39,14 +39,14 @@ class MyHeart extends React.Component {
         })
       );
 
-    fetch("http://10.58.4.24:8000/mypage/heart/product", {
-      method: "GET",
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+    // fetch("http://10.58.4.24:8000/mypage/heart/product", {
+    //   method: "GET",
+    //   headers: {
+    //     Authorization: localStorage.getItem("token"),
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => console.log(res));
   }
 
   componentHandler = (id) => {
@@ -58,7 +58,7 @@ class MyHeart extends React.Component {
       case 2:
         return (
           <FavListTwoNineTV
-            favList={this.state.favTwentyNineList}
+            favTwentyNineList={this.state.favTwentyNineList}
             getLength={(num) => this.getLength(num)}
           />
         );
@@ -70,6 +70,7 @@ class MyHeart extends React.Component {
   };
 
   render() {
+    console.log(this.state.favTwentyNineList);
     const { handleClicked, componentHandler } = this;
     const { activeId, productCount, twentyNineCount } = this.state;
     return (
