@@ -39,14 +39,14 @@ class MyHeart extends React.Component {
         })
       );
 
-    // fetch("http://10.58.4.24:8000/mypage/heart/product", {
-    //   method: "GET",
-    //   headers: {
-    //     Authorization: localStorage.getItem("token"),
-    //   },
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => console.log(res));
+    fetch("http://10.58.6.103:8000/mypage/heart/product", {
+      method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
   }
 
   componentHandler = (id) => {
