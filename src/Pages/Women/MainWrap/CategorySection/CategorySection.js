@@ -7,11 +7,14 @@ class CategorySection extends React.Component {
       <div className="categoryWrap">
         <div className="categoryTop">
           <div className="left">
-            <div className="FeedLeft">
+            <div className="feedLeft">
               <div>
                 <div className="imgBox">
                   <div className="line" />
-                  <img src="http://img.29cm.co.kr/next-product/2020/07/24/5ee95cd4233f4709ab28a6384cce3d78_20200724172552.jpg?width=700" />
+                  <img
+                    src="http://img.29cm.co.kr/next-product/2020/07/24/5ee95cd4233f4709ab28a6384cce3d78_20200724172552.jpg?width=700"
+                    alt="banner"
+                  />
                 </div>
                 <div className="contentBox">
                   <div className="title">월간 캐주얼 #여름 셔츠</div>
@@ -30,12 +33,15 @@ class CategorySection extends React.Component {
             </div>
           </div>
           <div className="right">
-            <div className="right-top">
-              <div className="FeedRightTop">
+            <div className="rightTop">
+              <div className="feedRightTop">
                 <div className="container">
                   <div className="imgBox">
                     <div className="line" />
-                    <img src="http://img.29cm.co.kr/next-product/2020/07/24/4889593acee540eda0dffc743477c101_20200724172500.jpg?width=1100" />
+                    <img
+                      src="http://img.29cm.co.kr/next-product/2020/07/24/4889593acee540eda0dffc743477c101_20200724172500.jpg?width=1100"
+                      alt="content"
+                    />
                   </div>
                   <div className="contentBox">
                     <div className="title">29Edition.</div>
@@ -54,12 +60,15 @@ class CategorySection extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="right-bottom">
-              <div className="FeedRightBottom">
+            <div className="rightBottom">
+              <div className="feedRightBottom">
                 <div className="container">
                   <div className="imgBox">
                     <div className="line" />
-                    <img src="http://img.29cm.co.kr/next-product/2020/07/24/7960da5b113e4ee480ff1aba69d9be86_20200724172638.jpg?width=700" />
+                    <img
+                      src="http://img.29cm.co.kr/next-product/2020/07/24/7960da5b113e4ee480ff1aba69d9be86_20200724172638.jpg?width=700"
+                      alt="content"
+                    />
                   </div>
 
                   <div className="contentBox">

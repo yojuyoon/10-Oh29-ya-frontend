@@ -7,7 +7,7 @@ import MainWrap from "./MainWrap/MainWrap";
 class Women extends React.Component {
   render() {
     return (
-      <div className="Section">
+      <div className="Women">
         <MainWrap />
         <div className="rightBtnTopEnd"></div>
       </div>

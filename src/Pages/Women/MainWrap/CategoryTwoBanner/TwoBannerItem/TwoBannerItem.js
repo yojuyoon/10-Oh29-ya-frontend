@@ -7,7 +7,7 @@ class TwoBannerItem extends React.Component {
     return (
       <li className="Item">
         <div className="imgBox">
-          <img src={img} />
+          <img src={img} alt="content" />
         </div>
         <div className="container">
           <div className="title">{title}</div>

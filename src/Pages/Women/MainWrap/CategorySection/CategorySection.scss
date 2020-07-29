@@ -38,8 +38,7 @@
     .left {
       width: 450px;
 
-      .FeedLeft {
-        float: left;
+      .feedLeft {
         padding-right: 40px;
         margin-top: 180px;
         cursor: pointer;
@@ -83,10 +82,10 @@
     .right {
       width: 850px;
 
-      .right-top {
+      .rightTop {
         cursor: pointer;
 
-        .FeedRightTop {
+        .feedRightTop {
           padding-left: 40px;
 
           img {
@@ -96,7 +95,6 @@
 
           .line {
             width: 200px;
-            float: right;
             margin-right: -20px;
             border-top: 3px solid black;
           }
@@ -122,10 +120,10 @@
         }
       }
 
-      .right-bottom {
+      .rightBottom {
         cursor: pointer;
 
-        .FeedRightBottom {
+        .feedRightBottom {
           margin-top: 120px;
 
           .container {
