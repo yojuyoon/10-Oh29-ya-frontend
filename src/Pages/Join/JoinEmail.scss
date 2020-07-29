@@ -1,0 +1,77 @@
+@import "../../Styles/common.scss";
+
+$border: 1px solid #d4d4d4;
+
+.LoginContainer {
+  width: 400px;
+  height: 738px;
+  margin: 0 auto;
+  margin-top: 295px;
+
+  .loginTitle {
+    height: 60px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 45px;
+  }
+
+  .loginBorder {
+    border: 2.5px solid $blackColor;
+    margin-bottom: 18px;
+  }
+
+  .loginSubtitle {
+    margin: 20px 0 10px;
+    font-size: 13px;
+  }
+
+  .loginInput {
+    width: 374px;
+    height: 30px;
+    margin: 8px 0;
+    padding: 10px 12px;
+    border: $border;
+  }
+
+  .format {
+    text-align: right;
+    font-size: 12px;
+    color: $orangeColor;
+  }
+
+  .agreeContainer {
+    height: 34px;
+    // float: left;
+    margin: 5px 0;
+    padding: auto 0;
+    font-size: 12px;
+
+    .fas {
+      height: 100%;
+      margin: auto 0;
+      float: right;
+    }
+  }
+
+  .join {
+    margin-top: 40px;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: $whiteColor;
+    border: none;
+    cursor: pointer;
+  }
+
+  .disableBtn {
+    background-color: #e4e4e4;
+  }
+
+  .activeBtn {
+    background-color: $blackColor;
+  }
+}

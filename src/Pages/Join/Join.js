@@ -1,6 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import SnsLogin from "../Login/SnsLogin/SnsLogin";
-// import { ip } from "./ip";
 import "./Join.scss";
 
 class Join extends React.Component {
@@ -17,7 +17,9 @@ class Join extends React.Component {
             가입 후 더 많은 혜택을 받아보세요.
           </p>
         </div>
-        <div className="emailJoin">이메일로 가입하기</div>
+        <Link to="/JoinEmail" className="emailJoin">
+          이메일로 가입하기
+        </Link>
         <SnsLogin />
       </div>
     );
