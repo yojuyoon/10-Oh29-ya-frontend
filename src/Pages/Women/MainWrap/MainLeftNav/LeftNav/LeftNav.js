@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import "./TwoBannerItem.scss";
 
 class LeftNav extends React.Component {
@@ -7,7 +7,7 @@ class LeftNav extends React.Component {
     const { item } = this.props;
     return (
       <li className="category">
-        <Link to="/">
+        <Link to={`Women/${item}`}>
           <button>{item}</button>
         </Link>
       </li>
