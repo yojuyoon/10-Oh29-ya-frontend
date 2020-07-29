@@ -8,37 +8,30 @@ class FeedModal extends React.Component {
     super();
     this.state = {
       shareModal: false,
-      last: false,
+      heart: false,
+      count: "",
     };
   }
 
-  showReport = () => {
-    this.setState({
-      shareModal: true,
-    });
+  HandleSnsModal = () => {
+    this.state.shareModal
+      ? this.setState({ shareModal: false })
+      : this.setState({ shareModal: true });
   };
 
-  hideReport = () => {
+  getIconState = (likeIcon) => {
     this.setState({
-      shareModal: false,
+      heart: likeIcon.user_likes_pressed,
+      count: likeIcon.like_num,
     });
   };
 
   render() {
-    const { showReport, hideReport } = this;
-    const {
-      hideModal,
-      data,
-      idxPrevHandler,
-      idxNextHandler,
-      postId,
-      likedNumber,
-      heartState,
-      userId,
-    } = this.props;
+    const { HandleSnsModal } = this;
+    const { hideModal, data, idxPrevHandler, idxNextHandler } = this.props;
     return (
       <div className="FeedModal">
-        {this.state.shareModal && <SnsModal hideReport={hideReport} />};
+        {this.state.shareModal && <SnsModal hideReport={HandleSnsModal} />};
         <div
           onClick={idxPrevHandler}
           className={!idxPrevHandler ? "leftBtnHide" : "leftBtn"}
@@ -84,14 +77,8 @@ class FeedModal extends React.Component {
               <div className="tag">{data.hashtag.join(" ")}</div>
             </div>
             <div className="icons">
-              <ActiveLikeBtn
-                data={data}
-                postId={postId}
-                userId={userId}
-                likedNumber={likedNumber}
-                heartState={heartState}
-              />
-              <div onClick={showReport} className="shareIcon">
+              <ActiveLikeBtn />
+              <div onClick={HandleSnsModal} className="shareIcon">
                 <img
                   alt="shareIcon"
                   src="https://img.icons8.com/windows/32/000000/share-2.png"

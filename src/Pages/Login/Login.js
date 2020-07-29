@@ -1,6 +1,6 @@
 import React from "react";
 import SnsLogin from "./SnsLogin/SnsLogin";
-import { ip } from "./ip";
+import API_URL from "../../config";
 import "./Login.scss";
 
 class Login extends React.Component {
@@ -14,7 +14,7 @@ class Login extends React.Component {
   handlerlogin = () => {
     const { email, password, token, checked } = this.state;
 
-    fetch("http://" + ip + "/account/sign-in", {
+    fetch(`http://${API_URL}/account/sign-in`, {
       method: "POST",
       body: JSON.stringify({
         email,
