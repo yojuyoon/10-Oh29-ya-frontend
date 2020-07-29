@@ -87,7 +87,9 @@ class TwentyNineTV extends React.Component {
             hideModal={hideModal}
             data={data[currentIdx]}
             idxNextHandler={
-              currentIdx === 29 ? !idxNextHandler : idxNextHandler
+              currentIdx === currentIdx.length - 1
+                ? !idxNextHandler
+                : idxNextHandler
             }
             idxPrevHandler={currentIdx > 0 && idxPrevHandler}
           />

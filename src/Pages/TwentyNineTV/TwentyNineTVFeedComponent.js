@@ -24,24 +24,8 @@ class TwentyNineTVFeedComponent extends React.Component {
         likeIcon,
         post_id,
         user_likes_pressed,
-        user_id,
-        heartStateHandler,
       },
     } = this.props;
-    // const {
-    //   thumbnail_image,
-    //   staff_logo,
-    //   staff_name,
-    //   content,
-    //   official_check,
-    //   like_num,
-    //   hashtag,
-    //   likeIcon,
-    //   post_id,
-    //   user_likes_pressed,
-    //   user_id,
-    //   heartStateHandler,
-    // } = this.props.feed;
     return (
       <section className="TwentyNineTV">
         <div className="feedContainer">
@@ -77,11 +61,9 @@ class TwentyNineTVFeedComponent extends React.Component {
               <div className="feedTag">{hashtag.join(" ")}</div>
               <ActiveLikeBtn
                 postId={post_id}
-                userId={user_id}
-                likeIcon={likeIcon}
+                // likeIcon={likeIcon}
                 likedNumber={like_num}
                 heartState={user_likes_pressed}
-                heartStateHandler={heartStateHandler}
               />
             </div>
           </div>
