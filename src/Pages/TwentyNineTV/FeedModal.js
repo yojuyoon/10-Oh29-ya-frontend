@@ -20,7 +20,6 @@ class FeedModal extends React.Component {
   };
 
   getIconState = (likeIcon) => {
-    console.log("likeIcon >>>>", likeIcon);
     this.setState({
       heart: likeIcon.user_likes_pressed,
       count: likeIcon.like_num,

@@ -6,11 +6,9 @@ import "./ActiveLikeBtn.scss";
 
 class ActiveLikeBtn extends React.Component {
   state = {
-    likeIcon: {
-      heart: this.props.heartState,
-      icon: this.props.heartState ? <ActiveIcon /> : <UnActiveIcon />,
-      likedNumber: 0,
-    },
+    heart: this.props.heartState,
+    icon: this.props.heartState ? <ActiveIcon /> : <UnActiveIcon />,
+    likedNumber: 0,
   };
 
   componentDidMount() {
@@ -48,8 +46,8 @@ class ActiveLikeBtn extends React.Component {
           {
             likedNumber: res.like_num,
             heartState: res.user_likes_pressed,
-          },
-          () => this.props.getIconState(this.state.likeIcon)
+          }
+          // () => this.props.getIconState(this.state.likeIcon)
         );
       });
   };
