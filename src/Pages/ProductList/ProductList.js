@@ -13,6 +13,7 @@ class ProductList extends React.Component {
     this.state = {
       originItemData: [],
       itemData: [],
+      detailList: [],
     };
   }
 
@@ -52,6 +53,16 @@ class ProductList extends React.Component {
       );
   }
 
+  handleCreateCategories = () => {
+    let detail_list = new Set();
+
+    for (let i = 0; i < this.state.itemData.length; i++) {
+      console.log(this.state.itemData[i].detail);
+      detail_list.add(this.state.itemData[i].detail);
+    }
+    this.setState({ datailList: detail_list });
+  };
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params !== this.props.match.params) {
       fetch(
@@ -59,7 +70,12 @@ class ProductList extends React.Component {
       )
         .then((res) => res.json())
         .then((res) =>
-          this.setState({ itemData: res.data, originItemData: res.data })
+          this.setState(
+            { itemData: res.data, originItemData: res.data },
+            () => {
+              this.handleCreateCategories();
+            }
+          )
         );
     }
   }
@@ -111,34 +127,34 @@ class ProductList extends React.Component {
 
   /*********여기는 상단 categoryfilter에 있는 드롭다운 *********/
 
-  ////이 친구 일단 보류,,
-  //낮은 가격순
-  // handleSortLowPrice = () => {
-  //   const { itemData } = this.state;
-  //   const sortingField = "";
+  //내림차순, 높은 가격순
+  handleSortDescending = () => {
+    console.log("돌아감");
 
-  //   // itemData.sort((a, b) => {
-  //   //   return a["price"] - b["price"];
-  //   // });
-  //   // this.setState({ itemData: itemData });
+    const { itemData } = this.state;
+    let tempData = [...itemData];
+    let price = 0;
+    let temp = 0;
 
-  //   itemData.sort((a, b) => {
-  //     a.discount_rate
-  //       ? (sortingField = "discount_price")
-  //       : (sortingField = "price");
-  //     return a[sortingField] - b[sortingField];
-  //   });
-  //   this.setState({ itemData: itemData });
-  // };
+    for (let i = tempData.length - 1; i > 0; i--) {
+      for (let j = 0; j < i; j++) {
+        tempData[j].discount_rate
+          ? (price = "discount_price")
+          : (price = "price");
+        if (tempData[j].price < tempData[j + 1].price) {
+          temp = tempData[j].price;
+          tempData[j].price = tempData[j + 1].price;
+          tempData[j + 1].price = temp;
+        }
+      }
+    }
+    this.setState({ itemData: tempData });
+  };
 
   //////////////////////////////////////////////////////////////////
 
-  ///////
-
   render() {
     const { itemData } = this.state;
-
-    console.log(this.props);
 
     return (
       <div className="ProductList">
@@ -153,7 +169,10 @@ class ProductList extends React.Component {
             />
           </div>
           <div className="right">
-            <CategoryList handleSortLowPrice={this.handleSortLowPrice} />
+            <CategoryList
+              handleSortDescending={this.handleSortDescending}
+              detailList={this.state.detailList}
+            />
             <ul className="productSection">
               {itemData.map((item) => {
                 return (

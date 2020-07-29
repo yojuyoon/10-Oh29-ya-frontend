@@ -2,16 +2,16 @@ import React from "react";
 import CategoryItem from "./CategoryItem/CategoryItem";
 import "./CategoryList.scss";
 
-const itemData = [
-  "전체",
-  "반팔",
-  "긴팔",
-  "민소매",
-  "피케",
-  "스웨트 셔츠",
-  "후디",
-  "집업",
-];
+// const itemData = [
+//   "전체",
+//   "반팔",
+//   "긴팔",
+//   "민소매",
+//   "피케",
+//   "스웨트 셔츠",
+//   "후디",
+//   "집업",
+// ];
 
 const obj = {
   0: "추천순",
@@ -50,7 +50,7 @@ class CategoryList extends React.Component {
         <div>
           <ul className="categoryTab">
             <div className="categoryLeft">
-              {itemData.map((item, i) => {
+              {this.props.detailList.map((item, i) => {
                 return <CategoryItem item={item} key={i} />;
               })}
             </div>
@@ -70,15 +70,15 @@ class CategoryList extends React.Component {
                   <li onClick={() => this.handleFilterId(1)}>추천순</li>
                   <li onClick={() => this.handleFilterId(2)}>신상품순</li>
                   <li onClick={() => this.handleFilterId(3)}>베스트순</li>
+                  <li onClick={() => this.handleFilterId(4)}>낮은가격순</li>
                   <li
-                    onClick={() => {
-                      this.handleFilterId(4);
-                      this.props.handleSortLowPrice();
-                    }}
+                    onClick={
+                      (() => this.handleFilterId(5),
+                      this.props.handleSortDescending)
+                    }
                   >
-                    낮은가격순
+                    높은가격순
                   </li>
-                  <li onClick={() => this.handleFilterId(5)}>높은가격순</li>
                   <li onClick={() => this.handleFilterId(6)}>높은할인순</li>
                   <li onClick={() => this.handleFilterId(7)}>베스트리뷰순</li>
                   <li onClick={() => this.handleFilterId(8)}>베스트하트순</li>
