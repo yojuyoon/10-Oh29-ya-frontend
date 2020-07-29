@@ -22,7 +22,7 @@ class Nav extends React.Component {
               <img
                 className="logoImg"
                 alt="logo  square"
-                src="Images/logoRectangle.PNG"
+                src="/Images/logoRectangle.PNG"
               />
             </div>
             <div>

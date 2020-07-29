@@ -7,6 +7,7 @@ import Main from "./Pages/Main/Main";
 import Product from "./Pages/Product/Product";
 import ProductList from "./Pages/ProductList/ProductList";
 import DetailProduct from "./Pages/DetailProduct/DetailProduct";
+import DetailItem from "./Components/DetailItem/DetailItem";
 import Footer from "./Components/Footer/Footer";
 import TwentyNineTV from "./Pages/TwentyNineTV/TwentyNineTV";
 import Nav from "./Components/AlternatingNav/Nav/Nav";
@@ -33,7 +34,8 @@ class Routes extends React.Component {
           <Route exact path="/Footer" component={Footer} />
           <Route exact path="/Nav" component={Nav} />
           <Route exact path="/HeaderNav" component={HeaderNav} />
-          <Route exact path="/DetailProduct" component={DetailProduct} />
+          <Route exact path="/DetailProduct/:id" component={DetailProduct} />
+          <Route exact path="/DetailItem" component={DetailItem} />
           <Route exact path="/AlternatingNav" component={AlternatingNav} />
           <Route exact path="/MyHeart" component={MyHeart} />
           <Route exact path="/SpecialOrder" component={SpecialOrder} />

@@ -33,7 +33,7 @@ class SpecialOrder extends React.Component {
       <div className="SpecialOrder">
         <ul className="itemContainer">
           {data.map((data, index) => (
-            <SpecialContent key={index} content={data} />
+            <SpecialContent key={data.product_id} content={data} />
           ))}
         </ul>
       </div>

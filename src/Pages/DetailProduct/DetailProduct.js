@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+// import { ip } from "./../Login/ip";
 import DetailItem from "../../Components/DetailItem/DetailItem";
 import "./DetailProduct.scss";
 
@@ -9,27 +10,12 @@ class DetailProduct extends React.Component {
     data: [],
   };
 
-  componentDidMount = () => {
-    fetch("http://10.58.4.24:8000/product/specialorders", {
-      method: "GET",
-      header: JSON.stringify({}),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        this.setState({
-          data: res.data.map((data) => {
-            return {
-              ...data,
-            };
-          }),
-        });
-      });
-  };
-
   render() {
+    const { data } = this.state;
+
     return (
       <>
-        <div className="detailCategory"></div>
+        <div className="detailCategory" />
         <header className="header">
           <div className="blackContainer">
             <div className="titleContainer">
@@ -40,7 +26,7 @@ class DetailProduct extends React.Component {
             </div>
           </div>
         </header>
-        <DetailItem />
+        <DetailItem key={data.product_id} content={data} />
       </>
     );
   }

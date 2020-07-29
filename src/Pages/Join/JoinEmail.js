@@ -15,22 +15,21 @@ class JoinEmail extends React.Component {
   };
 
   joinHandler = () => {
-    const { email, password, token } = this.state;
+    const { email, password } = this.state;
 
     fetch("http://" + ip + "/account/sign-up", {
       method: "POST",
       body: JSON.stringify({
         email,
         password,
-        token,
       }),
     })
       .then((res) => res.json())
       .then((res) =>
-        res.message === "SUCCESS"
+        res.token
           ? (sessionStorage.setItem("token", res.token),
-            this.props.history.push("/SpecialOrder"))
-          : alert("회원가입 실패")
+            this.props.history.push("/Login"))
+          : alert("다시 회원가입 해주세요")
       );
   };
 

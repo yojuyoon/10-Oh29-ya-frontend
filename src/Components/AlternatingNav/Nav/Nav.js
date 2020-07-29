@@ -12,7 +12,7 @@ class HeaderNav extends React.Component {
             <img
               className="logoImg"
               alt="logo  square"
-              src="Images/logoSquare.PNG"
+              src="/Images/logoSquare.PNG"
             />
           </div>
           <div className="navMenuContainer">

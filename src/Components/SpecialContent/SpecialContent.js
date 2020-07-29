@@ -23,7 +23,7 @@ class SpecialContent extends React.Component {
 
   progressHandler = () => {
     const endDay = this.props.content.end.replace(/^ /, "");
-    const endDate = "2020/" + endDay + " 00:00:00";
+    const endDate = "2020/" + endDay + " 23:59:59";
     const startDate = this.props.content.start + " 00:00:00";
 
     const endDateTime = new Date(endDate).getTime();
@@ -72,7 +72,9 @@ class SpecialContent extends React.Component {
         <div className="imgContainer">
           <a
             href={
-              content.id === 12 ? "https://wecode.co.kr/" : "/DetailProduct"
+              content.id === 20
+                ? "https://wecode.co.kr/"
+                : "/DetailProduct/" + content.product_id
             }
           >
             <img className="orderImg" alt="img" src={content.image} />
