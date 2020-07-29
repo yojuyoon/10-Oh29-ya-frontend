@@ -19,7 +19,7 @@ class Nav extends React.Component {
             할인 쿠폰
           </span>
           <span className="couponDownContainer">
-            쿠폰받기 <i className="fas fa-download"></i>
+            쿠폰받기 <i className="fas fa-download" />
           </span>
         </div>
         <div className="menuColumnContainer">
@@ -40,6 +40,11 @@ class Nav extends React.Component {
               </i>
               <i className="fas fa-shopping-bag">
                 <span className="menuIcon">SHOPPING BAG</span>
+                {localStorage.getItem("cart_count") && (
+                  <span className="shoppingNumber">
+                    {localStorage.getItem("cart_count")}
+                  </span>
+                )}
               </i>
               {localStorage.getItem("token") ||
               sessionStorage.getItem("token") ? (
@@ -62,7 +67,7 @@ class Nav extends React.Component {
               {navData.title.map(({ name, index }) => (
                 <Link to="/TwentyNineTV" key={index} className="title">
                   {name}
-                  {name === "29TV" ? <span className="dot"></span> : null}
+                  {name === "29TV" ? <span className="dot" /> : null}
                 </Link>
               ))}
             </div>

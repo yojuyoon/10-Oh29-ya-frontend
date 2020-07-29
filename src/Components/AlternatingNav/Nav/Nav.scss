@@ -67,12 +67,29 @@ a {
             }
           }
         }
+
         .navMenuIcon {
+          position: relative;
           font-size: 20px;
 
           .fas {
             padding: 0 10px 0;
             cursor: pointer;
+          }
+
+          .shoppingNumber {
+            width: 15px;
+            top: -10px;
+            left: 50%;
+            position: absolute;
+            font-size: 13px;
+            color: $whiteColor;
+            background-color: $orangeColor;
+            padding: 2px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 13px;
+            box-sizing: border-box;
           }
         }
 
