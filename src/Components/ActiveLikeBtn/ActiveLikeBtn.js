@@ -6,9 +6,11 @@ import "./ActiveLikeBtn.scss";
 
 class ActiveLikeBtn extends React.Component {
   state = {
-    heart: this.props.heartState,
-    icon: this.props.heartState ? <ActiveIcon /> : <UnActiveIcon />,
-    likedNumber: 0,
+    likeIcon: {
+      heart: this.props.heartState,
+      icon: this.props.heartState ? <ActiveIcon /> : <UnActiveIcon />,
+      likedNumber: 0,
+    },
   };
 
   componentDidMount() {
@@ -20,7 +22,7 @@ class ActiveLikeBtn extends React.Component {
 
   iconHandler = () => {
     const { heart } = this.state;
-    const { postId, userId } = this.props;
+    const { postId } = this.props;
     heart
       ? this.setState({
           heart: false,
@@ -33,17 +35,22 @@ class ActiveLikeBtn extends React.Component {
 
     return fetch(`http://${API_URL}/media/recommend/like`, {
       method: "PATCH",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
       body: JSON.stringify({
-        user: userId,
         post: postId,
       }),
     })
       .then((res) => res.json())
       .then((res) => {
-        this.setState({
-          likedNumber: res.like_num,
-          heartState: res.user_likes_pressed,
-        });
+        this.setState(
+          {
+            likedNumber: res.like_num,
+            heartState: res.user_likes_pressed,
+          },
+          () => this.props.getIconState(this.state.likeIcon)
+        );
       });
   };
 
