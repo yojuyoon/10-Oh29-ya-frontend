@@ -2,7 +2,7 @@ import React from "react";
 import "./ProductList.scss";
 // import "../../Styles/reset.scss"; //지울거
 import "./LeftNav.scss";
-import LeftNav from "../Product/MainWrap/MainLeftNav/MainLeftNav";
+import LeftNav from "../Men/MainWrap/MainLeftNav/MainLeftNav";
 import ProductItem from "./ProductItem/ProductItem";
 import CategoryList from "./CategoryList/CategoryList";
 import FilterNav from "./FilterNav/FilterNav";
