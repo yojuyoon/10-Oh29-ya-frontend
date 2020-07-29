@@ -8,7 +8,6 @@ class FeedModal extends React.Component {
     super();
     this.state = {
       shareModal: false,
-      last: false,
     };
   }
 
@@ -31,10 +30,10 @@ class FeedModal extends React.Component {
       data,
       idxPrevHandler,
       idxNextHandler,
-      postId,
-      likedNumber,
-      heartState,
-      userId,
+      // postId,
+      // likedNumber,
+      // heartState,
+      // userId,
     } = this.props;
     return (
       <div className="FeedModal">
@@ -85,11 +84,12 @@ class FeedModal extends React.Component {
             </div>
             <div className="icons">
               <ActiveLikeBtn
-                data={data}
-                postId={postId}
-                userId={userId}
-                likedNumber={likedNumber}
-                heartState={heartState}
+                postId={this.props.postId}
+                userId={this.props.userId}
+                likeIcon={this.props.likeIcon}
+                likedNumber={this.props.likedNumber}
+                heartState={this.props.heartState}
+                heartStateHandler={this.props.heartStateHandler}
               />
               <div onClick={showReport} className="shareIcon">
                 <img
