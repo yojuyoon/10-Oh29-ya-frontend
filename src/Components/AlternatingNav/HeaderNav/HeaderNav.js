@@ -4,7 +4,13 @@ import { navData } from "../navData";
 import "./HeaderNav.scss";
 
 class Nav extends React.Component {
+  logoutHandler = () => {
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+    this.props.history.push("/SpecialOrder");
+  };
   render() {
+    const { logoutHandler } = this;
     return (
       <nav className="Nav">
         <div className="couponBox">
@@ -26,11 +32,29 @@ class Nav extends React.Component {
               />
             </div>
             <div>
-              {navData.icon.map(({ name, index, className }) => (
-                <i key={index} className={className}>
-                  <span className="menuIcon">{name}</span>
+              <i className="fas fa-user">
+                <span className="menuIcon">MY PAGE</span>
+              </i>
+              <i className="fas fa-heart">
+                <span className="menuIcon">MY HEART</span>
+              </i>
+              <i className="fas fa-shopping-bag">
+                <span className="menuIcon">SHOPPING BAG</span>
+              </i>
+              {localStorage.getItem("token") ||
+              sessionStorage.getItem("token") ? (
+                <i className="fas fa-door-open">
+                  <span className="menuIcon" onClick={logoutHandler}>
+                    LOGOUT
+                  </span>
                 </i>
-              ))}
+              ) : (
+                <i className="fas fa-sign-in-alt">
+                  <span className="menuIcon">
+                    <a href="/Login">LOGIN</a>
+                  </span>
+                </i>
+              )}
             </div>
           </div>
           <div className="navRowContainer">

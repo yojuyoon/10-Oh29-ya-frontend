@@ -20,10 +20,4 @@ export const navData = {
     { index: 3, name: "Brand" },
     { index: 4, name: "Lookbook" },
   ],
-  icon: [
-    { index: 1, className: "fas fa-user", name: "MY PAGE" },
-    { index: 2, className: "fas fa-heart", name: "MY HEART" },
-    { index: 3, className: "fas fa-shopping-bag", name: "SHOPPING BAG" },
-    { index: 4, className: "fas fa-sign-in-alt", name: "LOGIN" },
-  ],
 };

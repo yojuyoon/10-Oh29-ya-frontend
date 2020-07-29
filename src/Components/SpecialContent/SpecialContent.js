@@ -67,12 +67,14 @@ class SpecialContent extends React.Component {
     const secondCheck = digitCheck(Math.floor((dDay % Second) / 1000));
     const dDayTime = hourCheck + ":" + minuteCheck + ":" + secondCheck;
 
+    console.log(content);
+
     return (
       <li className="SpecialContent">
         <div className="imgContainer">
           <a
             href={
-              content.id === 20
+              content.id === 26
                 ? "https://wecode.co.kr/"
                 : "/DetailProduct/" + content.product_id
             }
