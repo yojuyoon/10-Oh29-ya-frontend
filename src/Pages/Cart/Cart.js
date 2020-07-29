@@ -3,45 +3,6 @@ import "./Cart.scss";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem/CartItem";
 
-// const cartData = [
-//   {
-//     id: 410,
-//     name: "[29Edition.]_PEACE BEGINS SMILE TEE (WHITE)",
-//     price: "38000.00",
-//     discount_rate: 10,
-//     discount_price: "34200.00",
-//     brand: "빅웨이브컬렉티브",
-//     image: [
-//       "https://img.29cm.co.kr/next-product/2020/05/22/1760d38e60584816b499e4a7c19e14e2_20200522155254.jpg?width=700",
-//     ],
-//     item_quantity: 2,
-//   },
-//   {
-//     id: 1004,
-//     name: "레이스 롱원피스 잠옷",
-//     price: "53000.00",
-//     discount_rate: 0,
-//     discount_price: "0.00",
-//     brand: "코즈넉",
-//     image: [
-//       "//img.29cm.co.kr/next-product/2020/07/07/ce3c05a2f144411b882529837a13f329_20200707152351.jpg?width=150",
-//     ],
-//     item_quantity: 1,
-//   },
-//   {
-//     id: 403,
-//     name: "[29Edition.]_NYLON BLEND SHORTS (Safari + Mango + Evergreen)",
-//     price: "45000.00",
-//     discount_rate: 35,
-//     discount_price: "29925.00",
-//     brand: "브릭",
-//     image: [
-//       "https://img.29cm.co.kr/next-product/2018/05/08/e84d1225ffe24f86bffd611d73b9d73d_20180508121032.jpg?width=700",
-//     ],
-//     item_quantity: 4,
-//   },
-// ];
-
 class Cart extends React.Component {
   constructor(props) {
     super(props);
@@ -100,10 +61,9 @@ class Cart extends React.Component {
     }
   };
 
-  handleSelectedItem = (id, quantity) => {
+  //아이템이 들어오고 나갈 때 마다 itemSelected 배열을 관리해주는 함수
+  handleSelectedItem = (id) => {
     const { itemSelected } = this.state;
-
-    console.log(quantity);
 
     if (itemSelected.includes(id)) {
       const filter = itemSelected.filter((item) => {
@@ -120,6 +80,8 @@ class Cart extends React.Component {
     }
   };
 
+  //DB로 보낼 데이터를 만드는 함수
+  //형태 예시: [{product_list: [{id: 1004, quantity: 2}, {id: 404, quantity: 4}]}, {total: “225,700”}]
   handleCheckOut = () => {
     const { cartData, itemSelected } = this.state;
     let checkOut = [];
@@ -140,7 +102,8 @@ class Cart extends React.Component {
       { product_list: checkOut },
       { total: this.handleSumToalPrice() },
     ];
-    console.log(newData);
+    console.log(newData); //나중에 삭제
+    localStorage.setItem("cart_count", cartData.length);
     return newData;
   };
 
@@ -154,14 +117,13 @@ class Cart extends React.Component {
     const { cartData } = this.state;
     let temp = [];
     cartData.forEach((item) => {
-      if (item.id == itemId) {
+      if (item.id === itemId) {
         let test = item;
         item.quantity = item.quantity + 1;
         temp.push(test);
-        console.log("이까지 오케");
       }
     });
-    this.setState({ cardDate: temp }, () => console.log(cartData));
+    this.setState({ cardDate: temp });
   };
 
   handleMinus = (itemId) => {
@@ -170,48 +132,45 @@ class Cart extends React.Component {
     const { cartData } = this.state;
     let temp = [];
     cartData.forEach((item) => {
-      if (item.id == itemId && item.quantity > 1) {
+      if (item.id === itemId && item.quantity > 1) {
         let test = item;
         item.quantity = item.quantity - 1;
         temp.push(test);
       }
     });
-    this.setState({ cardDate: temp }, () => console.log(cartData));
+    this.setState({ cardDate: temp });
   };
 
   //////////////////////////////////////////////////////////////////////////////
 
-  //인자가 들어오고 들어오지 않고로 조건을 걸어서 아래 함수와 합칠 수 있을 것 같은데,, 고민해볼것
-
   //selectedItem 배열(선택 된 상품)에 해당하는 상품 삭제
   delSelectedItemGroup = () => {
     const { cartData, itemSelected } = this.state;
-    let filter1 = [...cartData];
+    let filtered = [...cartData];
 
     console.log(itemSelected);
     for (let i = 0; i < itemSelected.length; i++) {
-      console.log("이거슨 i: ", i);
-      filter1 = filter1.filter((eachItem) => {
+      filtered = filtered.filter((eachItem) => {
         return itemSelected[i] !== eachItem.id;
       });
-      console.log("111이거슨 필터", filter1);
-      // this.handleSelectedItem(itemSelected[i]);
     }
-
-    this.setState({ cartData: filter1 });
+    this.setState({ cartData: filtered, itemSelected: [] });
   };
 
   //cartItem에서 item개별적으로 삭제 버튼을 눌렀을 때 동작하는 함수
   delSelectedItem = (id) => {
-    const { cartData } = this.state;
-    // let filter = [];
+    const { cartData, itemSelected } = this.state;
 
     const filter = cartData.filter((eachItem) => {
       return id !== eachItem.id;
     });
-    // console.log(filter);
-    this.setState({ cartData: filter }, this.handleSelectedItem(id));
+    this.setState({ cartData: filter });
+    if (itemSelected.includes(id)) {
+      this.handleSelectedItem(id);
+    }
   };
+
+  //만약에 삭제하려는 아이템아이디가 selected안에 있으면, 삭제
 
   //////////////////////////////////////////////////////////////////////////////
 
@@ -246,11 +205,22 @@ class Cart extends React.Component {
     let newData = this.handleCheckOut();
     //newData를  body에 담아 POST
     //refresh했을 경우 어떻게 처리할지 고민해 볼 것.
+
+    fetch("http://10.58.4.24:8000/cart/", {
+      method: "POST",
+      body: JSON.stringify({
+        cart: newData,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+      });
   }
 
   render() {
     console.log(this.state.itemSelected);
-    console.log(this.state.cartData);
+    console.log("cartData: ", this.state.cartData);
     // console.log(this.state.checkMasterState);
 
     return (
@@ -326,7 +296,9 @@ class Cart extends React.Component {
                   <span className="price">{this.handleSumToalPrice()}</span>
                   <span className="currency">원</span>
                 </div>
-                <div className="quantity">총 1개</div>
+                <div className="quantity">
+                  총 {this.state.itemSelected.length}개
+                </div>
               </div>
               <div className="td2">
                 <span className="price">0</span> <span>원</span>

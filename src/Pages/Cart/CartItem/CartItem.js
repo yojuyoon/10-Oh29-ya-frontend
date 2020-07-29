@@ -14,7 +14,6 @@ class CartItem extends React.Component {
 
   componentDidMount() {
     this.setState({ quantity: this.props.cartData.quantity });
-    // console.log(this.props.cartData.quantity);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -22,56 +21,6 @@ class CartItem extends React.Component {
       this.setState({ quantity: this.props.cartData.quantity });
     }
   }
-
-  // +눌렀을 때 작동되는 함수
-  // handleSum = () => {
-  //   const { discount_rate, discount_price, price, id } = this.props.cartData;
-  //   this.setState({ quantity: this.state.quantity + 1 });
-  //   console.log(id);
-
-  //   ///// ///// ///// ///// /////
-
-  //   fetch("http://10.58.4.24:8000/cart/add", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       user: 1,
-  //       product: id,
-  //       quantity: 1,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       console.log(res);
-  //     });
-
-  //   ///// ///// ///// ///// ///// /////
-  // };
-
-  // -눌렀을 때 작동되는 함수
-  // handleMinus = () => {
-  //   const { discount_rate, discount_price, price, id } = this.props.cartData;
-  //   //왜 1이상이지? 이건 이상한데,,
-  //   if (this.state.quantity > 1) {
-  //     this.setState({ quantity: this.state.quantity - 1 });
-  //   }
-
-  //   ///// ///// ///// ///// /////
-
-  //   fetch("http://10.58.4.24:8000/cart/add", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       user: 1,
-  //       product: id,
-  //       quantity: -1,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       console.log(res);
-  //     });
-
-  //   ///// ///// ///// ///// /////
-  // };
 
   //CartItem안에 물건 금액 계산 하는 함수
   handleTotalPriceItem = () => {
