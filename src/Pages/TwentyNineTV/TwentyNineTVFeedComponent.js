@@ -24,6 +24,7 @@ class TwentyNineTVFeedComponent extends React.Component {
       postId,
       heartState,
       userId,
+      heartStateHandler,
     } = this.props;
     return (
       <section className="TwentyNineTV">
@@ -59,6 +60,7 @@ class TwentyNineTVFeedComponent extends React.Component {
                 likeIcon={likeIcon}
                 likedNumber={likedNumber}
                 heartState={heartState}
+                heartStateHandler={heartStateHandler}
               />
             </div>
           </div>
