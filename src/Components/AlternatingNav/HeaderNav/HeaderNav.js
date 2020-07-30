@@ -5,6 +5,7 @@ import "./HeaderNav.scss";
 
 class Nav extends React.Component {
   logoutHandler = () => {
+    alert("로그아웃 정상 처리 되었습니다. 👋💨");
     localStorage.removeItem("token");
     localStorage.removeItem("cart_count");
     sessionStorage.removeItem("token");
