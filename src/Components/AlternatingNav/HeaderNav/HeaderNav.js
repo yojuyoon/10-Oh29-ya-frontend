@@ -4,7 +4,17 @@ import { navData } from "../navData";
 import "./HeaderNav.scss";
 
 class Nav extends React.Component {
+  logoutHandler = () => {
+    alert("로그아웃 정상 처리 되었습니다. 👋💨");
+    localStorage.removeItem("token");
+    localStorage.removeItem("cart_count");
+    sessionStorage.removeItem("token");
+    this.props.history.push("/SpecialOrder");
+  };
+
   render() {
+    const { logoutHandler } = this;
+
     return (
       <nav className="Nav">
         <div className="couponBox">
@@ -13,32 +23,51 @@ class Nav extends React.Component {
             할인 쿠폰
           </span>
           <span className="couponDownContainer">
-            쿠폰받기 <i className="fas fa-download"></i>
+            쿠폰받기 <i className="fas fa-download" />
           </span>
         </div>
         <div className="menuColumnContainer">
           <div className="logoRowContainer">
-            <div className="imgContainer">
+            <Link to="/SpecialOrder" className="imgContainer">
               <img
                 className="logoImg"
                 alt="logo  square"
-                src="Images/logoRectangle.PNG"
+                src="/Images/logoRectangle.PNG"
               />
-            </div>
+            </Link>
             <div>
-              {navData.icon.map(({ name, index, className }) => (
-                <i key={index} className={className}>
-                  <span className="menuIcon">{name}</span>
+              <Link to="/MyHeart" className="fas fa-user">
+                <span className="menuIcon">MY PAGE</span>
+              </Link>
+              <Link to="/MyHeart" className="fas fa-heart">
+                <span className="menuIcon">MY HEART</span>
+              </Link>
+              <Link to="/Cart" className="fas fa-shopping-bag">
+                <span className="menuIcon">SHOPPING BAG</span>
+                {localStorage.getItem("cart_count") && (
+                  <span className="shoppingNumber">
+                    {localStorage.getItem("cart_count")}
+                  </span>
+                )}
+              </Link>
+              {localStorage.getItem("token") ||
+              sessionStorage.getItem("token") ? (
+                <i onClick={logoutHandler} className="fas fa-door-open">
+                  <span className="menuIcon">LOGOUT</span>
                 </i>
-              ))}
+              ) : (
+                <Link to="/Login" className="fas fa-sign-in-alt">
+                  <span className="menuIcon">LOGIN</span>
+                </Link>
+              )}
             </div>
           </div>
           <div className="navRowContainer">
             <div className="menuContainer">
-              {navData.title.map(({ name, index }) => (
-                <Link to="/TwentyNineTV" key={index} className="title">
+              {navData.title.map(({ name, index, route }) => (
+                <Link to={`${route}`} key={index} className="title">
                   {name}
-                  {name === "29TV" ? <span className="dot"></span> : null}
+                  {name === "29TV" && <span className="dot" />}
                 </Link>
               ))}
             </div>
