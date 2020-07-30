@@ -1,5 +1,6 @@
 import React from "react";
 import "./ProductItem.scss";
+import { Link } from "react-router-dom";
 
 class ProductItem extends React.Component {
   constructor() {
@@ -27,48 +28,57 @@ class ProductItem extends React.Component {
   }
 
   handleHeartItem = () => {
-    // this.setState({
-    //   myHeartState: !this.state.myHeartState,
-    // });
-    // //
-
-    if (!localStorage.getItem("access_token")) {
-      alert("로그인을 먼저 하셔야합니다");
-      this.props.history.push("Login");
-    }
-
     //하트 보내는 POST
-    fetch("http://10.58.1.34:8000/product/like", {
-      method: "POST",
-      headers: {
-        Authorization: localStorage.getItem("access_token"),
-      },
-      body: JSON.stringify({
-        product: this.props.data.id,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        // console.log(res.like_num);
-        this.setState({
-          heartCount: res.like_num,
+    if (!localStorage.getItem("token")) {
+      alert("로그인을 먼저 하셔야합니다");
+      this.props.history.push("Login"); //여기 오류
+    } else {
+      fetch("http://10.58.4.24:8000/product/like", {
+        method: "PATCH",
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          product: this.props.data.id,
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log("여기에 무엇이 들었니", res);
+          this.setState({
+            heartCount: res.like_data.like_num,
+            myHeartState: res.like_data.pressed,
+          });
         });
-      });
-    ////////
+    }
   };
 
   render() {
     const { data } = this.props;
-    const { image, brand, name, price, discount_rate, discount_price } = data;
+    const {
+      image,
+      brand,
+      name,
+      price,
+      discount_rate,
+      discount_price,
+      id,
+    } = data;
 
     return (
-      <li className="itemContainer">
+      <li className="productItem">
         <div className="imgBox">
-          <img alt="item" src={image} />
+          <Link to={`/DetailProduct/${id}`}>
+            <img alt="item" src={image} />
+          </Link>
         </div>
         <div className="info">
-          <div className="brand">{brand}</div>
-          <div className="name">{name}</div>
+          <div className="brand">
+            <Link to={`/DetailProduct/${id}`}>{brand}</Link>
+          </div>
+          <div className="name">
+            <Link to={`/DetailProduct/${id}`}>{name}</Link>
+          </div>
           <div className="price">
             <div className={discount_rate ? "sellPrice" : "nonDiscounted"}>
               <span>{parseInt(price)}</span>
@@ -89,8 +99,8 @@ class ProductItem extends React.Component {
           </div>
           <div className="freeShipping">무료배송</div>
         </div>
-        <div className="heartArea">
-          <div className="heart" onClick={this.handleHeartItem}>
+        <div className="heartArea" onClick={this.handleHeartItem}>
+          <div className="heart">
             <div className="heartImageBox">
               <svg
                 aria-label="non colored"

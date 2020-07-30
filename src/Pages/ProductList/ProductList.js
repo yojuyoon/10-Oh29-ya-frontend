@@ -17,71 +17,96 @@ class ProductList extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.handleData();
-  }
+  // componentDidMount() {
+  //   this.handleData();
+  // }
 
-  handleData = () => {
-    //내로컬;
-    fetch("http://localhost:3000/data/product.json")
-      .then((response) => response.json())
-      .then((response) => {
-        // console.log(response);
-        this.setState({
-          itemData: response.data,
-          originItemData: response.data,
-        });
-      });
+  // handleData = () => {
+  //   //내로컬;
+  //   // fetch("http://localhost:3000/data/product.json")
+  //   //   .then((response) => response.json())
+  //   //   .then((response) => {
+  //   //     // console.log(response);
+  //   //     this.setState({
+  //   //       itemData: response.data,
+  //   //       originItemData: response.data,
+  //   //     });
+  //   //   });
 
-    // fetch(`http://10.58.4.24:8000/product?category=MEN&subcategory=상의`)
-    //   .then((res) => res.json())
-    //   .then((res) =>
-    //     this.setState({ itemData: res.data, originItemData: res.data })
-    //   );
-  };
+  //   fetch(
+  //     `http://10.58.4.24:8000/product?category=MEN&subcategory=상의`,
+  //     localStorage.getItem("token")
+  //       ? {
+  //           headers: {
+  //             Authorization: localStorage.getItem("token"),
+  //           },
+  //         }
+  //       : null
+  //   )
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       console.log(res);
+  //       this.setState({ itemData: res.data, originItemData: res.data });
+  //     });
+  // };
 
   //되는거!!
 
-  // handleCreateCategories = () => {
-  //   let detail_list = new Set();
+  handleCreateCategories = () => {
+    let detail_list = new Set();
 
-  //   for (let i = 0; i < this.state.itemData.length; i++) {
-  //     console.log(this.state.itemData[i].detail);
-  //     detail_list.add(this.state.itemData[i].detail);
-  //   }
-  //   this.setState({ datailList: detail_list });
-  // };
+    for (let i = 0; i < this.state.itemData.length; i++) {
+      detail_list.add(this.state.itemData[i].detail);
+    }
 
-  // componentDidMount() {
-  //   console.log(this.props.match.params.category);
+    this.setState({ detailList: [...detail_list] });
+  };
 
-  //   fetch(
-  //     `http://10.58.4.24:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((res) =>
-  //       this.setState({ itemData: res.data, originItemData: res.data }, () => {
-  //         this.handleCreateCategories();
-  //       })
-  //     );
-  // }
+  componentDidMount() {
+    console.log(this.props.match.params.category);
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevProps.match.params !== this.props.match.params) {
-  //     fetch(
-  //       `http://10.58.4.24:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`
-  //     )
-  //       .then((res) => res.json())
-  //       .then((res) =>
-  //         this.setState(
-  //           { itemData: res.data, originItemData: res.data },
-  //           () => {
-  //             this.handleCreateCategories();
-  //           }
-  //         )
-  //       );
-  //   }
-  // }
+    fetch(
+      `http://10.58.4.24:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`,
+
+      localStorage.getItem("token")
+        ? {
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+          }
+        : null
+    )
+      .then((res) => res.json())
+      .then((res) =>
+        this.setState({ itemData: res.data, originItemData: res.data }, () => {
+          this.handleCreateCategories();
+        })
+      );
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.match.params !== this.props.match.params) {
+      fetch(
+        `http://10.58.4.24:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`,
+        localStorage.getItem("token")
+          ? {
+              headers: {
+                Authorization: localStorage.getItem("token"),
+              },
+            }
+          : null
+      )
+        .then((res) => res.json())
+        .then((res) =>
+          this.setState(
+            { itemData: res.data, originItemData: res.data },
+            () => {
+              this.handleCreateCategories();
+            }
+          )
+        );
+    }
+  }
 
   ////////////////////////////////////////////////////////////
 
