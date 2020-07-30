@@ -42,13 +42,10 @@ class ActiveLikeBtn extends React.Component {
     })
       .then((res) => res.json())
       .then((res) => {
-        this.setState(
-          {
-            likedNumber: res.like_num,
-            heartState: res.user_likes_pressed,
-          }
-          // () => this.props.getIconState(this.state.likeIcon)
-        );
+        this.setState({
+          likedNumber: res.like_num,
+          heartState: res.user_likes_pressed,
+        });
       });
   };
 

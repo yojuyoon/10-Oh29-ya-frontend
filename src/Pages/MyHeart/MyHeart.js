@@ -3,6 +3,7 @@ import FavListTwoNineTV from "./FavListTwoNineTV";
 import FavListProduct from "./FavListProduct";
 import FavListPost from "./FavListPost";
 import FavListBrand from "./FavListBrand";
+import API_URL from "../../config";
 import "./MyHeart.scss";
 
 class MyHeart extends React.Component {
@@ -11,8 +12,9 @@ class MyHeart extends React.Component {
     twentyNineCount: "",
     favProductList: [],
     productCount: "",
+    activeId: 0,
+    titleClicked: false,
   };
-  state = { activeId: 0, titleClicked: false };
 
   handleClicked = (id) => {
     this.setState({ activeId: id, titleClicked: true });
@@ -25,7 +27,7 @@ class MyHeart extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://10.58.6.103:8000/mypage/heart/post", {
+    fetch(`http://${API_URL}/mypage/heart/post`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -39,7 +41,7 @@ class MyHeart extends React.Component {
         })
       );
 
-    fetch("http://10.58.6.103:8000/mypage/heart/product", {
+    fetch(`http://${API_URL}/mypage/heart/product`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -55,22 +57,20 @@ class MyHeart extends React.Component {
   }
 
   componentHandler = (id) => {
+    const { favProductList, favTwentyNineList } = this.state;
     switch (id) {
       case 0:
-        return <FavListProduct />;
+        return <FavListProduct item={favProductList} />;
       case 1:
         return <FavListBrand />;
       case 2:
-        return (
-          <FavListTwoNineTV
-            data={this.state.favTwentyNineList}
-            getLength={(num) => this.getLength(num)}
-          />
-        );
+        return <FavListTwoNineTV data={favTwentyNineList} />;
       case 3:
         return <FavListPost />;
       default:
-        return <FavListProduct />;
+        return this.state.favProductList.length ? (
+          <FavListProduct item={favProductList} />
+        ) : null;
     }
   };
 

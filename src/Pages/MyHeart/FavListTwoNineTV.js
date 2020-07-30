@@ -4,12 +4,8 @@ import TwentyNineTVComponent from "../TwentyNineTV/TwentyNineTVFeedComponent";
 import "./FavListTwoNine.scss";
 
 class FavListTwoNineTV extends React.Component {
-  state = {
-    favTwentyNineList: this.props.data,
-    modalStatus: false,
-  };
-
   render() {
+    console.log("data>>>", this.props.data);
     return (
       <div className="FavListTwoNineTV">
         {this.props.data.map((feed) => {
