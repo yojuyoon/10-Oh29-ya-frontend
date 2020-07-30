@@ -24,10 +24,9 @@ class Cart extends React.Component {
     for (let i = 0; i < cartData.length; i++) {
       if (itemSelected.includes(cartData[i].id)) {
         if (cartData[i].discount_rate) {
-          total =
-            total + cartData[i].quantity * Number(cartData[i].discount_price);
+          total += cartData[i].quantity * Number(cartData[i].discount_price);
         } else {
-          total = total + cartData[i].quantity * Number(cartData[i].price);
+          total += cartData[i].quantity * Number(cartData[i].price);
         }
       }
     }
@@ -39,7 +38,6 @@ class Cart extends React.Component {
     const { itemSelected, cartData } = this.state;
 
     if (itemSelected.length === cartData.length) {
-      //카드에 담긴 아이템 길이랑 selected item길이가 같으면 selected를 다 비워줌
       this.setState({ itemSelected: [], checkMasterState: false });
     } else {
       const filteredItems = cartData.map((item) => item.id);
@@ -50,34 +48,29 @@ class Cart extends React.Component {
     }
   };
 
-  //checkMasterState 별도 관리  //버그 있음,, 컴디업으로 옮겨야 하나?
   handleMasterState = () => {
     const { itemSelected, cartData } = this.state;
 
-    if (itemSelected.length === cartData.length) {
-      this.setState({ checkMasterState: true });
-    } else {
-      this.setState({ checkMasterState: false });
-    }
+    this.setState({
+      checkMasterState: itemSelected.length === cartData.length,
+    });
   };
 
-  //아이템이 들어오고 나갈 때 마다 itemSelected 배열을 관리해주는 함수
   handleSelectedItem = (id) => {
     const { itemSelected } = this.state;
 
-    if (itemSelected.includes(id)) {
-      const filter = itemSelected.filter((item) => {
-        return item !== id;
-      });
-      this.setState({ itemSelected: filter }, () => this.handleMasterState());
-    } else {
-      this.setState(
-        {
-          itemSelected: [...itemSelected, id],
-        },
-        () => this.handleMasterState()
-      );
-    }
+    const filter = itemSelected.filter((item) => {
+      return item !== id;
+    });
+
+    this.setState(
+      {
+        itemSelected: itemSelected.includes(id)
+          ? filter
+          : [...itemSelected, id],
+      },
+      () => this.handleMasterState()
+    );
   };
 
   //DB로 보낼 데이터를 만드는 함수
@@ -102,70 +95,39 @@ class Cart extends React.Component {
       { product_list: checkOut },
       { total: this.handleSumToalPrice() },
     ];
-    console.log(newData); //나중에 삭제
-    ////
-
-    // fetch("http://10.58.4.24:8000/cart/update", {
-    //   method: "PATCH",
-    //   headers: {
-    //     Authorization: localStorage.getItem("token"),
-    //   },
-    //   body: JSON.stringify({
-    //     cart: newData,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     console.log("체크아웃 좀 시켜줘..ㅜ", res);
-    //   });
-
-    ////
     localStorage.setItem("cart_count", cartData.length);
     return newData;
   };
 
-  //////////////////////////////////////////////////////////////////////////////
-
-  /*플러스 마이너스를 하는 곳. 현재 props로 전달해서 cartItem에서 oncClick 호출 중*/
-
   handleSum = (itemId) => {
-    console.log(itemId);
-
     const { cartData } = this.state;
     let temp = [];
     cartData.forEach((item) => {
       if (item.id === itemId) {
-        let test = item;
-        item.quantity = item.quantity + 1;
-        temp.push(test);
+        item.quantity += 1;
+        temp.push(item);
       }
     });
     this.setState({ cardDate: temp });
   };
 
   handleMinus = (itemId) => {
-    console.log(itemId);
-
     const { cartData } = this.state;
     let temp = [];
     cartData.forEach((item) => {
       if (item.id === itemId && item.quantity > 1) {
-        let test = item;
-        item.quantity = item.quantity - 1;
-        temp.push(test);
+        item.quantity -= 1;
+        temp.push(item);
       }
     });
     this.setState({ cardDate: temp });
   };
-
-  //////////////////////////////////////////////////////////////////////////////
 
   //selectedItem 배열(선택 된 상품)에 해당하는 상품 삭제
   delSelectedItemGroup = () => {
     const { cartData, itemSelected } = this.state;
     let filtered = [...cartData];
 
-    console.log(itemSelected);
     for (let i = 0; i < itemSelected.length; i++) {
       filtered = filtered.filter((eachItem) => {
         return itemSelected[i] !== eachItem.id;
@@ -187,25 +149,7 @@ class Cart extends React.Component {
     }
   };
 
-  //만약에 삭제하려는 아이템아이디가 selected안에 있으면, 삭제
-
-  //////////////////////////////////////////////////////////////////////////////
-
   componentDidMount() {
-    ////내 로컬
-    // fetch("http://localhost:3000/data/cartData.json")
-    //   .then((response) => response.json())
-    //   .then((response) => {
-    //     this.setState(
-    //       {
-    //         cartData: response.data,
-    //       },
-    //       () => {
-    //         localStorage.setItem("cart_count", this.state.cartData.length);
-    //       }
-    //     );
-    //   });
-
     fetch("http://10.58.4.24:8000/cart", {
       method: "GET",
       headers: {
@@ -214,19 +158,14 @@ class Cart extends React.Component {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log("여기!!", res);
         this.setState({
           cartData: res.data,
         });
       });
-
-    ///
   }
 
   componentWillUnmount() {
     let newData = this.handleCheckOut();
-    //newData를  body에 담아 POST
-    //refresh했을 경우 어떻게 처리할지 고민해 볼 것.
 
     fetch("http://10.58.4.24:8000/cart/update", {
       method: "PATCH",
@@ -238,15 +177,11 @@ class Cart extends React.Component {
       }),
     })
       .then((res) => res.json())
-      .then((res) => {
-        console.log("체크아웃 좀 시켜줘..ㅜ", res);
-      });
+      .then((res) => {});
   }
 
   render() {
-    console.log(this.state.itemSelected);
-    console.log("cartData: ", this.state.cartData);
-    // console.log(this.state.checkMasterState);
+    const { checkMasterState, itemSelected } = this.state;
 
     return (
       <div className="Cart">
@@ -273,24 +208,22 @@ class Cart extends React.Component {
                   <span className="check">
                     <input
                       type="checkbox"
-                      checked={
-                        this.state.checkMasterState ? "checked" : undefined
-                      }
+                      checked={checkMasterState && "checked"}
                       onClick={this.handleMasterSelectBtn}
-                    ></input>
+                    />
                   </span>
                 </div>
-                <div className="th2">상품 정보</div>
-                <div className="th3">수량</div>
-                <div className="th4">주문금액</div>
-                <div className="th5">배송비</div>
+                <span className="th2">상품 정보</span>
+                <span className="th3">수량</span>
+                <span className="th4">주문금액</span>
+                <span className="th5">배송비</span>
               </div>
               {this.state.cartData.map((item, i) => {
                 return (
                   <CartItem
                     cartData={item}
-                    checkMasterState={this.state.checkMasterState}
-                    itemSelected={this.state.itemSelected}
+                    checkMasterState={checkMasterState}
+                    itemSelected={itemSelected}
                     handleSelectedItem={this.handleSelectedItem}
                     handleSum={this.handleSum}
                     handleMinus={this.handleMinus}
@@ -305,7 +238,7 @@ class Cart extends React.Component {
                 선택상품 삭제
               </button>
               <button type="button">품절상품 삭제</button>
-              <p>장바구니는 접속 종료 후 60일 동안 보관됩니다.</p>
+              <span>장바구니는 접속 종료 후 60일 동안 보관됩니다.</span>
             </div>
           </div>
           <div className="priceInfoWrap">

@@ -1,6 +1,8 @@
+@import "../../Styles/common.scss";
+
 .Cart {
-  margin: 0 auto;
   width: 1350px;
+  margin: 0 auto;
   margin-top: 325px;
   padding: 0 50px 200px;
 
@@ -33,49 +35,37 @@
     border-top: 4px solid #000;
 
     .category {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include center;
       height: 74px;
 
       .th1 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include center;
         width: 64px;
       }
 
       .th2 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include center;
         width: 811px;
         font-weight: 700;
         font-size: 18px;
       }
 
       .th3 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include center;
         width: 200px;
         font-weight: 700;
         font-size: 18px;
       }
 
       .th4 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include center;
         width: 200px;
         font-weight: 700;
         font-size: 18px;
       }
 
       .th5 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include center;
         width: 225px;
         font-weight: 700;
         font-size: 18px;
@@ -103,7 +93,7 @@
     outline: none;
   }
 
-  p {
+  span {
     float: right;
     font-size: 15px;
     color: #000;
@@ -117,15 +107,11 @@
   border-bottom: 1px solid #000;
 
   .category {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include center;
     height: 74px;
 
     .th1 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include center;
       width: 540px;
       font-size: 18px;
       font-weight: 700;
@@ -133,9 +119,7 @@
     }
 
     .th2 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include center;
       width: 420px;
       font-size: 18px;
       font-weight: 700;
@@ -143,9 +127,7 @@
     }
 
     .th3 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include center;
       width: 540px;
       font-size: 18px;
       font-weight: 700;
@@ -154,9 +136,7 @@
   }
 
   .content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include center;
     height: 149px;
     border-top: 1px solid #d4d4d4;
 
@@ -181,9 +161,7 @@
     }
 
     .td2 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include center;
       width: 420px;
 
       .price {
@@ -194,9 +172,7 @@
     }
 
     .td3 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include center;
       width: 540px;
 
       .price {

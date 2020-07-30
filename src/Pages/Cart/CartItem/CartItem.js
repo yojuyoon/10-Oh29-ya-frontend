@@ -22,7 +22,6 @@ class CartItem extends React.Component {
     }
   }
 
-  //CartItem안에 물건 금액 계산 하는 함수
   handleTotalPriceItem = () => {
     const { discount_rate, discount_price, price } = this.props.cartData;
     const { quantity } = this.state;
@@ -35,8 +34,6 @@ class CartItem extends React.Component {
   };
 
   render() {
-    // console.log(this.props.checkMasterState);
-
     const {
       id,
       image,
@@ -48,18 +45,24 @@ class CartItem extends React.Component {
       quantity,
     } = this.props.cartData;
 
-    const { itemSelected } = this.props;
+    const {
+      itemSelected,
+      handleSelectedItem,
+      delSelectedItem,
+      handleMinus,
+      handleSum,
+    } = this.props;
 
     return (
       <div className="CartItem">
         <div className="td1">
           <span
             className="check"
-            onClick={() => this.props.handleSelectedItem(id, quantity)}
+            onClick={() => handleSelectedItem(id, quantity)}
           >
             <input
               type="checkbox"
-              checked={itemSelected.includes(id) ? "checked" : null}
+              checked={itemSelected.includes(id) && "checked"}
             ></input>
           </span>
         </div>
@@ -89,7 +92,7 @@ class CartItem extends React.Component {
             </div>
             <button
               className="delBtn"
-              onClick={() => this.props.delSelectedItem(id)}
+              onClick={() => delSelectedItem(id)}
             ></button>
           </div>
         </div>
@@ -99,7 +102,7 @@ class CartItem extends React.Component {
               <button
                 className="btn"
                 type="button"
-                onClick={() => this.props.handleMinus(id)}
+                onClick={() => handleMinus(id)}
               >
                 -
               </button>
@@ -107,7 +110,7 @@ class CartItem extends React.Component {
               <button
                 className="btn"
                 type="button"
-                onClick={() => this.props.handleSum(id)}
+                onClick={() => handleSum(id)}
               >
                 +
               </button>
