@@ -22,7 +22,6 @@ class ActiveLikeBtn extends React.Component {
           user_likes_pressed: res.data.user_likes_pressed,
           like_num: res.data.like_num,
         };
-
         handleIcon(postId, option);
       });
   };
