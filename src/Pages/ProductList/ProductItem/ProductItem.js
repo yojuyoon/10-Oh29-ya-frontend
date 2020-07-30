@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProductItem.scss";
-import { Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 class ProductItem extends React.Component {
   constructor() {
@@ -30,8 +30,8 @@ class ProductItem extends React.Component {
   handleHeartItem = () => {
     //하트 보내는 POST
     if (!localStorage.getItem("token")) {
-      alert("로그인을 먼저 하셔야합니다");
-      this.props.history.push("Login"); //여기 오류
+      alert("로그인 먼저 해주세요");
+      this.props.history.push("/Login"); //여기 오류
     } else {
       fetch("http://10.58.4.24:8000/product/like", {
         method: "PATCH",
@@ -125,17 +125,10 @@ class ProductItem extends React.Component {
             </div>
             <div className="count">{this.state.heartCount}</div>
           </div>
-
-          {/* <div className="review">
-            <div className="image">
-              <i class="far fa-comment-alt"></i>
-            </div>
-            <div className="count">265</div>
-          </div> */}
         </div>
       </li>
     );
   }
 }
 
-export default ProductItem;
+export default withRouter(ProductItem);

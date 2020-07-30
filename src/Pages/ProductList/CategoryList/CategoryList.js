@@ -68,9 +68,23 @@ class CategoryList extends React.Component {
                   }
                 >
                   <li onClick={() => this.handleFilterId(1)}>추천순</li>
-                  <li onClick={() => this.handleFilterId(2)}>신상품순</li>
+                  <li
+                    onClick={
+                      (() => this.handleFilterId(2),
+                      this.props.handleSortCreatedAt)
+                    }
+                  >
+                    신상품순
+                  </li>
                   <li onClick={() => this.handleFilterId(3)}>베스트순</li>
-                  <li onClick={() => this.handleFilterId(4)}>낮은가격순</li>
+                  <li
+                    onClick={
+                      (() => this.handleFilterId(4),
+                      this.props.handleSortAscending)
+                    }
+                  >
+                    낮은가격순
+                  </li>
                   <li
                     onClick={
                       (() => this.handleFilterId(5),

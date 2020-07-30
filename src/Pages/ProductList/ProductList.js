@@ -114,7 +114,7 @@ class ProductList extends React.Component {
 
   /*********여기는 좌측 Nav *********/
 
-  //이 친구는 onClick했을 때 할인 중인 상품들만 보여주는 함수 (할인상품만)
+  //이 함수는 onClick했을 때 할인 중인 상품들만 보여주는 함수 (할인상품만)
   handleFilterDiscount = () => {
     const { itemData } = this.state;
 
@@ -155,32 +155,101 @@ class ProductList extends React.Component {
 
   /*********여기는 상단 categoryfilter에 있는 드롭다운 *********/
 
-  //내림차순, 높은 가격순
-  // handleSortDescending = () => {
-  //   console.log("돌아감");
-  //   const { itemData } = this.state;
-  //   let tempData = [...itemData];
+  // 내림차순, 높은 가격순
+  handleSortDescending = () => {
+    console.log("돌아감");
+    const { itemData } = this.state;
+    let tempData = [...itemData];
+    let price = "";
 
-  //   // console.log("아 왜!!", tempData[0].price);
-  //   for (let i = 0; i < tempData.length; i++) {
-  //     for (let j = tempData.length - 1; j > i; j--) {
-  //       console.log(tempData[j]);
-  //       // console.log("j+1" + tempData[j + 1]);
-  //       // console.log(parseInt(tempData[j + 1].price));
-  //       // tempData[j].discount_rate
-  //       //   ? (price = "discount_price")
-  //       //   : (price = "price");
+    // console.log("아 왜!!", tempData[0].price);
+    for (let i = tempData.length - 1; i >= 0; i--) {
+      for (let j = 0; j < i; j++) {
+        // console.log("j+1" + tempData[j + 1]);
+        // console.log(parseInt(tempData[j + 1].price));
+        let j_price = 0;
+        let j2_price = 0;
+        if (tempData[j].discount_rate) j_price = tempData[j].discount_price;
+        else j_price = tempData[j].price;
+        if (tempData[j + 1].discount_rate)
+          j2_price = tempData[j + 1].discount_price;
+        else j2_price = tempData[j + 1].price;
 
-  //       if (tempData[j].price < tempData[j + 1].price) {
-  //         let temp = tempData[j];
-  //         tempData[j] = tempData[j + 1];
-  //         tempData[j + 1] = temp;
-  //       }
-  //     }
-  //   }
-  //   // console.log(tempData);
-  //   this.setState({ itemData: tempData });
-  // };
+        if (parseInt(j_price) < parseInt(j2_price)) {
+          let temp = tempData[j];
+          tempData[j] = tempData[j + 1];
+          tempData[j + 1] = temp;
+        }
+      }
+    }
+    console.log(tempData);
+    // console.log(tempData);
+    this.setState({ itemData: tempData });
+  };
+
+  handleSortAscending = () => {
+    console.log("돌아감");
+    const { itemData } = this.state;
+    let tempData = [...itemData];
+    let price = "";
+
+    // console.log("아 왜!!", tempData[0].price);
+    for (let i = tempData.length - 1; i >= 0; i--) {
+      for (let j = 0; j < i; j++) {
+        // console.log("j+1" + tempData[j + 1]);
+        // console.log(parseInt(tempData[j + 1].price));
+        let j_price = 0;
+        let j2_price = 0;
+        if (tempData[j].discount_rate) j_price = tempData[j].discount_price;
+        else j_price = tempData[j].price;
+        if (tempData[j + 1].discount_rate)
+          j2_price = tempData[j + 1].discount_price;
+        else j2_price = tempData[j + 1].price;
+
+        if (parseInt(j_price) > parseInt(j2_price)) {
+          let temp = tempData[j];
+          tempData[j] = tempData[j + 1];
+          tempData[j + 1] = temp;
+        }
+      }
+    }
+    console.log(tempData);
+    // console.log(tempData);
+    this.setState({ itemData: tempData });
+  };
+
+  handleSortCreatedAt = () => {
+    console.log("돌아감");
+    const { itemData } = this.state;
+    let tempData = [...itemData];
+
+    // console.log("아 왜!!", tempData[0].price);
+    for (let i = tempData.length - 1; i >= 0; i--) {
+      for (let j = 0; j < i; j++) {
+        // console.log("j+1" + tempData[j + 1]);
+        // console.log(parseInt(tempData[j + 1].price));
+
+        let time1 = parseInt(
+          tempData[j].created_at.split(":")[2].replace(".", "").replace("Z", "")
+        );
+        let time2 = parseInt(
+          tempData[j + 1].created_at
+            .split(":")[2]
+            .replace(".", "")
+            .replace("Z", "")
+        );
+
+        if (time1 < time2) {
+          let temp = tempData[j];
+          tempData[j] = tempData[j + 1];
+          tempData[j + 1] = temp;
+        }
+      }
+    }
+    // console.log(tempData);
+    // console.log(tempData);
+    this.setState({ itemData: tempData });
+  };
 
   //////////////////////////////////////////////////////////////////
 
@@ -202,6 +271,8 @@ class ProductList extends React.Component {
           <div className="right">
             <CategoryList
               handleSortDescending={this.handleSortDescending}
+              handleSortAscending={this.handleSortAscending}
+              handleSortCreatedAt={this.handleSortCreatedAt}
               detailList={this.state.detailList}
             />
             <ul className="productSection">
