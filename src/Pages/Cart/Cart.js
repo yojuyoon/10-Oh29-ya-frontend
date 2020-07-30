@@ -103,6 +103,23 @@ class Cart extends React.Component {
       { total: this.handleSumToalPrice() },
     ];
     console.log(newData); //나중에 삭제
+    ////
+
+    // fetch("http://10.58.4.24:8000/cart/update", {
+    //   method: "PATCH",
+    //   headers: {
+    //     Authorization: localStorage.getItem("token"),
+    //   },
+    //   body: JSON.stringify({
+    //     cart: newData,
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     console.log("체크아웃 좀 시켜줘..ㅜ", res);
+    //   });
+
+    ////
     localStorage.setItem("cart_count", cartData.length);
     return newData;
   };
@@ -176,29 +193,34 @@ class Cart extends React.Component {
 
   componentDidMount() {
     ////내 로컬
-    fetch("http://localhost:3000/data/cartData.json")
-      .then((response) => response.json())
-      .then((response) => {
+    // fetch("http://localhost:3000/data/cartData.json")
+    //   .then((response) => response.json())
+    //   .then((response) => {
+    //     this.setState(
+    //       {
+    //         cartData: response.data,
+    //       },
+    //       () => {
+    //         localStorage.setItem("cart_count", this.state.cartData.length);
+    //       }
+    //     );
+    //   });
+
+    fetch("http://10.58.4.24:8000/cart", {
+      method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("여기!!", res);
         this.setState({
-          cartData: response.data,
+          cartData: res.data,
         });
       });
 
-    // fetch("http://10.58.4.24:8000/cart", {
-    //   method: "GET",
-    //   body: JSON.stringify({
-    //     user: 1,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     this.setState({
-    //       cartData: res.data,
-    //     });
-    //     console.log(res);
-    //   });
-
-    /////
+    ///
   }
 
   componentWillUnmount() {
@@ -206,15 +228,18 @@ class Cart extends React.Component {
     //newData를  body에 담아 POST
     //refresh했을 경우 어떻게 처리할지 고민해 볼 것.
 
-    fetch("http://10.58.4.24:8000/cart/", {
-      method: "POST",
+    fetch("http://10.58.4.24:8000/cart/update", {
+      method: "PATCH",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
       body: JSON.stringify({
         cart: newData,
       }),
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        console.log("체크아웃 좀 시켜줘..ㅜ", res);
       });
   }
 
@@ -260,7 +285,6 @@ class Cart extends React.Component {
                 <div className="th4">주문금액</div>
                 <div className="th5">배송비</div>
               </div>
-
               {this.state.cartData.map((item, i) => {
                 return (
                   <CartItem
