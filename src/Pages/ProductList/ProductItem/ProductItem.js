@@ -28,10 +28,9 @@ class ProductItem extends React.Component {
   }
 
   handleHeartItem = () => {
-    //하트 보내는 POST
     if (!localStorage.getItem("token")) {
       alert("로그인 먼저 해주세요");
-      this.props.history.push("/Login"); //여기 오류
+      this.props.history.push("/Login");
     } else {
       fetch("http://10.58.4.24:8000/product/like", {
         method: "PATCH",
@@ -44,7 +43,6 @@ class ProductItem extends React.Component {
       })
         .then((res) => res.json())
         .then((res) => {
-          console.log("여기에 무엇이 들었니", res);
           this.setState({
             heartCount: res.like_data.like_num,
             myHeartState: res.like_data.pressed,

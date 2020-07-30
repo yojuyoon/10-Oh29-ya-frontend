@@ -2,17 +2,6 @@ import React from "react";
 import CategoryItem from "./CategoryItem/CategoryItem";
 import "./CategoryList.scss";
 
-// const itemData = [
-//   "전체",
-//   "반팔",
-//   "긴팔",
-//   "민소매",
-//   "피케",
-//   "스웨트 셔츠",
-//   "후디",
-//   "집업",
-// ];
-
 const obj = {
   0: "추천순",
   1: "추천순",

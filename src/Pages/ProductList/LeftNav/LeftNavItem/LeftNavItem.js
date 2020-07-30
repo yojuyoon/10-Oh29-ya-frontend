@@ -6,7 +6,7 @@ class LeftNav extends React.Component {
     const { item } = this.props;
     return (
       <li className="category">
-        <Link to={`/ProductList/Women/${item}`}>
+        <Link to={`/ProductList/${this.props.gender}/${item}`}>
           <button>{item}</button>
         </Link>
       </li>
