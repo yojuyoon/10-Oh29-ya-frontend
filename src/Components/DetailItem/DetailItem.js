@@ -33,8 +33,8 @@ class DetailItem extends React.Component {
       method: "GET",
     })
       .then((res) => res.json())
-      .then((res) => {
-        this.setState({ data: res.data });
+      .then(({ data }) => {
+        this.setState({ data });
       });
   };
 
