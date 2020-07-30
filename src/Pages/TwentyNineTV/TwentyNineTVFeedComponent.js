@@ -21,7 +21,6 @@ class TwentyNineTVFeedComponent extends React.Component {
         official_check,
         like_num,
         hashtag,
-        likeIcon,
         post_id,
         user_likes_pressed,
       },
@@ -60,8 +59,8 @@ class TwentyNineTVFeedComponent extends React.Component {
               ></div>
               <div className="feedTag">{hashtag.join(" ")}</div>
               <ActiveLikeBtn
+                handleIcon={this.props.handleIcon}
                 postId={post_id}
-                // likeIcon={likeIcon}
                 likedNumber={like_num}
                 heartState={user_likes_pressed}
               />

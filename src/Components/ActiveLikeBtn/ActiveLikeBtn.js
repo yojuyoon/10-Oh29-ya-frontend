@@ -5,33 +5,9 @@ import UnActiveIcon from "./svg/UnActiveIcon";
 import "./ActiveLikeBtn.scss";
 
 class ActiveLikeBtn extends React.Component {
-  state = {
-    heart: this.props.heartState,
-    icon: this.props.heartState ? <ActiveIcon /> : <UnActiveIcon />,
-    likedNumber: 0,
-  };
-
-  componentDidMount() {
-    const { likedNumber } = this.props;
-    this.setState({
-      likedNumber: likedNumber,
-    });
-  }
-
   iconHandler = () => {
-    const { heart } = this.state;
-    const { postId } = this.props;
-    heart
-      ? this.setState({
-          heart: false,
-          icon: <UnActiveIcon />,
-        })
-      : this.setState({
-          heart: true,
-          icon: <ActiveIcon />,
-        });
-
-    return fetch(`http://${API_URL}/media/recommend/like`, {
+    const { postId, handleIcon } = this.props;
+    fetch(`http://${API_URL}/media/recommend/like`, {
       method: "PATCH",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -42,22 +18,18 @@ class ActiveLikeBtn extends React.Component {
     })
       .then((res) => res.json())
       .then((res) => {
-        this.setState(
-          {
-            likedNumber: res.like_num,
-            heartState: res.user_likes_pressed,
-          }
-          // () => this.props.getIconState(this.state.likeIcon)
-        );
+        const { user_likes_pressed, like_num } = res.data;
+        const option = { user_likes_pressed, like_num };
+        handleIcon(postId, option);
       });
   };
 
   render() {
     const { iconHandler } = this;
-    const { icon, likedNumber } = this.state;
+    const { likedNumber, heartState } = this.props;
     return (
       <div onClick={iconHandler} className="likeIcon">
-        <div>{icon}</div>
+        <div>{heartState ? <ActiveIcon /> : <UnActiveIcon />}</div>
         <span className="likeNumber">{likedNumber}</span>
       </div>
     );
