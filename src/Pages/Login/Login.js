@@ -1,6 +1,6 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-import { snsLoginArray } from "./snsLoginData.js";
+import SnsLogin from "./SnsLogin/SnsLogin";
+import { Link } from "react-router-dom";
 import API_URL from "../../config";
 import "./Login.scss";
 
@@ -10,6 +10,7 @@ class Login extends React.Component {
     password: "",
     token: "",
     checked: false,
+    cart: "",
   };
 
   handlerlogin = () => {
@@ -34,7 +35,7 @@ class Login extends React.Component {
             this.props.history.push("/SpecialOrder");
           }
         } else {
-          alert("다시 로그인 해주세요.");
+          alert("로그인 실패");
         }
       });
   };
@@ -87,28 +88,20 @@ class Login extends React.Component {
             로그인하기
           </button>
           <div className="loginNotPossible">
-            <p className="LoginNotText">회원가입</p>
+            <Link to="/Join" className="LoginNotText">
+              회원가입
+            </Link>
             <div className="LoginNotBorder" />
             <p className="LoginNotText">계정찾기</p>
             <div className="LoginNotBorder" />
             <p className="LoginNotText">비밀번호 재설정</p>
           </div>
           <p className="snsLoginTitle">SNS계정으로 로그인하기</p>
-          {snsLoginArray.snsLogin.map(({ index, src, alt, text }) => (
-            <div key={index} className="snsLoginContainer">
-              <div className="imgContainer">
-                <img className="logoImg" alt={alt} src={src} />
-              </div>
-              <p className="loginText">{text}</p>
-            </div>
-          ))}
-          <div className="unLogin">
-            <p className="unLoginText">2018년 2월 이전 비회원 주문조회 {">"}</p>
-          </div>
+          <SnsLogin />
         </div>
       </div>
     );
   }
 }
 
-export default withRouter(Login);
+export default Login;
