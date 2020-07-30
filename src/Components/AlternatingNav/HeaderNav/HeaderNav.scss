@@ -59,12 +59,26 @@
       }
 
       .fas {
+        position: relative;
         cursor: pointer;
-      }
 
-      .menuIcon {
-        margin: 0 15px 0 5px;
-        font-size: 10px;
+        .menuIcon {
+          margin: 0 15px 0 5px;
+          font-size: 12px;
+        }
+
+        .shoppingNumber {
+          width: 15px;
+          top: -10px;
+          left: 8%;
+          position: absolute;
+          font-size: 13px;
+          text-align: center;
+          color: $whiteColor;
+          background-color: $orangeColor;
+          padding: 2px;
+          border-radius: 13px;
+        }
       }
     }
 

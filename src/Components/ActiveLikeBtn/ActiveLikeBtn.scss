@@ -5,15 +5,6 @@
   color: #5d5d5d;
   cursor: pointer;
 
-  .likeIconDisplayNone {
-    display: none;
-  }
-
-  .clickedIcon {
-    display: none;
-    position: absolute;
-  }
-
   .clickedIconActive {
     display: block;
   }
@@ -21,4 +12,13 @@
   .likeNumber {
     margin-left: 5px;
   }
+}
+
+.likeIconDisplayNone {
+  display: none;
+}
+
+.clickedIcon {
+  display: none;
+  position: absolute;
 }
