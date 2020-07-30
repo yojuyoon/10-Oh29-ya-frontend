@@ -48,7 +48,7 @@ class HeaderNav extends React.Component {
                 sessionStorage.getItem("token") ? (
                   <i onClick={logoutHandler} className="fas fa-door-open" />
                 ) : (
-                  <i className="fas fa-sign-in-alt" />
+                  <Link to="/Login" className="fas fa-sign-in-alt" />
                 )}
               </div>
             </div>
