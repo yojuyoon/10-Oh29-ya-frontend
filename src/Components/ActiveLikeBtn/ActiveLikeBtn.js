@@ -18,10 +18,8 @@ class ActiveLikeBtn extends React.Component {
     })
       .then((res) => res.json())
       .then((res) => {
-        const option = {
-          user_likes_pressed: res.data.user_likes_pressed,
-          like_num: res.data.like_num,
-        };
+        const { user_likes_pressed, like_num } = res.data;
+        const option = { user_likes_pressed, like_num };
         handleIcon(postId, option);
       });
   };

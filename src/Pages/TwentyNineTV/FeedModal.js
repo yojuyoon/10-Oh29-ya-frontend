@@ -14,9 +14,8 @@ class FeedModal extends React.Component {
   }
 
   HandleSnsModal = () => {
-    this.state.shareModal
-      ? this.setState({ shareModal: false })
-      : this.setState({ shareModal: true });
+    const { shareModal } = this.state;
+    shareModal && this.setState({ shareModal });
   };
   render() {
     const { HandleSnsModal } = this;
@@ -37,9 +36,10 @@ class FeedModal extends React.Component {
         user_likes_pressed,
       },
     } = this.props;
+    const { shareModal } = this.state;
     return (
       <div className="FeedModal">
-        {this.state.shareModal && <SnsModal hideReport={HandleSnsModal} />};
+        {shareModal && <SnsModal hideReport={HandleSnsModal} />};
         <div
           onClick={idxPrevHandler}
           className={!idxPrevHandler ? "leftBtnHide" : "leftBtn"}
