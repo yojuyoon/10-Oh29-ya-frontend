@@ -32,24 +32,24 @@
   }
 
   .dDayBubble {
-    position: relative;
-    height: 40px;
+    height: 60px;
     left: 0;
+    position: relative;
 
     .bubble {
-      width: 150px;
+      width: 170px;
       position: absolute;
       font-weight: bold;
       color: $whiteColor;
       background-color: $orangeColor;
-      padding: 6px;
+      padding: 6px 12px 6px 6px;
       border-radius: 0.2rem;
       text-align: center;
       animation: bubbleMotion 1s forwards;
 
-      &::after {
+      &::before {
         content: "";
-        border-bottom: 10px solid transparent;
+        border-bottom: 30px solid transparent;
         border-left: 10px solid $orangeColor;
       }
     }
@@ -62,30 +62,6 @@
     .progress {
       height: 100%;
       background-color: red;
-    }
-
-    .obLager {
-      width: 17%;
-    }
-
-    .wecode {
-      width: 87.2%;
-    }
-
-    .samsung {
-      width: 50%;
-    }
-
-    .pibuPibu {
-      width: 65%;
-    }
-
-    .havit {
-      width: 22%;
-    }
-
-    .komorebi {
-      width: 32%;
     }
   }
 
