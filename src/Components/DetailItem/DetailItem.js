@@ -1,15 +1,13 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { ip } from "./../../Pages/Login/ip";
-import ActiveIcon from "../../Components/ActiveLikeBtn/svg/ActiveIcon";
-import UnActiveIcon from "../../Components/ActiveLikeBtn/svg/UnActiveIcon";
 import "./DetailItem.scss";
 
 class DetailItem extends React.Component {
   state = {
     input: 1,
     data: "",
-    like: false,
+    heartLike: false,
   };
 
   calculationHandler = (e) => {
@@ -66,8 +64,6 @@ class DetailItem extends React.Component {
     return (data * 2) / 100;
   };
 
-  heartHandler = () => {};
-
   decimalRemove = (data) => {
     return (
       Math.floor(data).toLocaleString(undefined, {
@@ -85,7 +81,6 @@ class DetailItem extends React.Component {
         brand_desc,
         image,
         name,
-        like_num,
         price,
         discount_rate,
         discount_price,
@@ -96,7 +91,6 @@ class DetailItem extends React.Component {
       quantityHandler,
       shoppingHandler,
       cardPrice,
-      // heartHandler,
       decimalRemove,
     } = this;
 
@@ -121,18 +115,8 @@ class DetailItem extends React.Component {
               <div className="orderTitle">
                 <h1>{name}</h1>
               </div>
-              <div className="heartContainer">
-                {/* 좋아요 기능 구현 예정 */}
-                {/* {like
-                  ? this.setState({
-                      heart: true,
-                      icon: <UnActiveIcon />,
-                    })
-                  : this.setState({
-                      heart: false,
-                      icon: <ActiveIcon />,
-                    })} */}
-                <p>{like_num}</p>
+              <div className="heartCenterContainer">
+                {/* heart 컴포넌트 입주 예정 */}
               </div>
             </div>
             <p className="costPrice">{decimalRemove(price)}</p>
