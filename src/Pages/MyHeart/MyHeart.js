@@ -1,15 +1,15 @@
 import React from "react";
-import FavListTwoNineTV from "./FavListTwoNineTV";
 import FavListProduct from "./FavListProduct";
 import FavListPost from "./FavListPost";
 import FavListBrand from "./FavListBrand";
 import API_URL from "../../config";
+import TwentyNineTV from "../TwentyNineTV/TwentyNineTV";
 import "./MyHeart.scss";
 
 class MyHeart extends React.Component {
   state = {
     favTwentyNineList: [],
-    twentyNineCount: "",
+    feedCount: "",
     favProductList: [],
     productCount: "",
     activeId: 0,
@@ -36,8 +36,7 @@ class MyHeart extends React.Component {
       .then((res) => res.json())
       .then((res) =>
         this.setState({
-          favTwentyNineList: res.my_heart_list,
-          twentyNineCount: res.my_heart_list.length,
+          feedCount: res.my_heart_list.length,
         })
       );
 
@@ -64,7 +63,7 @@ class MyHeart extends React.Component {
       case 1:
         return <FavListBrand />;
       case 2:
-        return <FavListTwoNineTV data={favTwentyNineList} />;
+        return <TwentyNineTV type="myheart" data={favTwentyNineList} />;
       case 3:
         return <FavListPost />;
       default:
@@ -76,7 +75,7 @@ class MyHeart extends React.Component {
 
   render() {
     const { handleClicked, componentHandler } = this;
-    const { activeId, productCount, twentyNineCount } = this.state;
+    const { activeId, productCount } = this.state;
     return (
       <div className="MyHeart">
         <aside className="myHeartMenu">
@@ -154,7 +153,7 @@ class MyHeart extends React.Component {
               onClick={() => handleClicked(2)}
               className={activeId === 2 && "myheartCategoryClicked"}
             >
-              TV({twentyNineCount})
+              TV({this.state.feedCount})
             </li>
             <li
               onClick={() => handleClicked(3)}

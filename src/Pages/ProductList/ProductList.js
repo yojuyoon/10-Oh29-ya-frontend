@@ -61,7 +61,7 @@ class ProductList extends React.Component {
         this.setState({
           itemData: res.data,
         });
-        console.log(res);
+        // console.log(res);
       });
   };
   ////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@ class ProductList extends React.Component {
 
   //onClick했을 때, 10000원 이하의 제품을 보여주는 함수
   handleFilterRate = () => {
-    console.log("여기도 눌렸어!!");
+    // console.log("여기도 눌렸어!!");
 
     this.setState({
       itemData: this.state.itemData.filter((item) => {

@@ -3,7 +3,6 @@
 
 .TwentyNineTVFeed {
   margin-top: 300px;
-
   @include center;
   flex-wrap: wrap;
 
@@ -92,4 +91,21 @@
       }
     }
   }
+}
+
+.moreBtnContainer {
+  display: flex;
+  justify-content: center;
+
+  .moreBtn {
+    width: 450px;
+    height: 65px;
+    background-color: transparent;
+    border: 1px solid rgba(45, 45, 45, 0.3);
+    cursor: pointer;
+  }
+}
+
+.margin-0 {
+  margin: 0;
 }

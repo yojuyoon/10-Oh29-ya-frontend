@@ -14,27 +14,36 @@ class FeedModal extends React.Component {
   }
 
   HandleSnsModal = () => {
-    this.state.shareModal
-      ? this.setState({ shareModal: false })
-      : this.setState({ shareModal: true });
-  };
-
-  getIconState = (likeIcon) => {
-    this.setState({
-      heart: likeIcon.user_likes_pressed,
-      count: likeIcon.like_num,
-    });
+    const { shareModal } = this.state;
+    this.setState({ shareModal: !shareModal });
   };
 
   render() {
     const { HandleSnsModal } = this;
-    const { hideModal, data, idxPrevHandler, idxNextHandler } = this.props;
+    const {
+      hideModal,
+      idxPrevHandler,
+      idxNextHandler,
+      handleIcon,
+      data: {
+        thumbnail_image,
+        staff_logo,
+        staff_name,
+        official_check,
+        content,
+        hashtag,
+        post_id,
+        like_num,
+        user_likes_pressed,
+      },
+    } = this.props;
+    const { shareModal } = this.state;
     return (
       <div className="FeedModal">
-        {this.state.shareModal && <SnsModal hideReport={HandleSnsModal} />};
+        {shareModal && <SnsModal hideReport={HandleSnsModal} />};
         <div
           onClick={idxPrevHandler}
-          className={!idxPrevHandler ? "leftBtnHide" : "leftBtn"}
+          className={!idxPrevHandler ? "btn left hide" : "btn left"}
         ></div>
         <div className="ModalContentContainer">
           <button onClick={hideModal} className="closeBtn">
@@ -47,7 +56,7 @@ class FeedModal extends React.Component {
             <img
               alt="contentImg"
               className="contentImg"
-              src={data.thumbnail_image}
+              src={thumbnail_image}
             />
           </div>
           <div className="progressBar"></div>
@@ -58,13 +67,13 @@ class FeedModal extends React.Component {
                   <img
                     alt="profileLogo"
                     className="profileLogo"
-                    src={data.staff_logo}
+                    src={staff_logo}
                   />
                 </div>
                 <div className="profileName">
-                  <span className="brandName">{data.staff_name}</span>
+                  <span className="brandName">{staff_name}</span>
                   <span className="officialCheck">
-                    {data.official_check && (
+                    {official_check && (
                       <span className="officialCheck">✹ Official</span>
                     )}
                   </span>
@@ -73,11 +82,16 @@ class FeedModal extends React.Component {
               <div className="moreBtn">•••</div>
             </div>
             <div className="contents">
-              <div className="text">{data.content}</div>
-              <div className="tag">{data.hashtag.join(" ")}</div>
+              <div className="text">{content}</div>
+              <div className="tag">{hashtag.join(" ")}</div>
             </div>
             <div className="icons">
-              <ActiveLikeBtn />
+              <ActiveLikeBtn
+                handleIcon={handleIcon}
+                postId={post_id}
+                likedNumber={like_num}
+                heartState={user_likes_pressed}
+              />
               <div onClick={HandleSnsModal} className="shareIcon">
                 <img
                   alt="shareIcon"
@@ -121,7 +135,7 @@ class FeedModal extends React.Component {
         </div>
         <div
           onClick={idxNextHandler}
-          className={!idxNextHandler ? "rightBtnHide" : "rightBtn"}
+          className={!idxNextHandler ? "btn right hide" : "btn right"}
         ></div>
       </div>
     );

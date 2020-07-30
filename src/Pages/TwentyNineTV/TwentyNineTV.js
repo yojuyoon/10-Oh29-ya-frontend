@@ -14,10 +14,17 @@ class TwentyNineTV extends React.Component {
       data: [],
       currentModalData: [],
       currentIdx: 0,
+      count: "",
     };
   }
 
   componentDidMount = () => {
+    this.props.type === "total"
+      ? this.getTwentyNineTVData()
+      : this.getMyHeartData();
+  };
+
+  getTwentyNineTVData = () => {
     fetch(`http://${API_URL}/media/recommend`, {
       method: "GET",
       headers: {
@@ -27,11 +34,39 @@ class TwentyNineTV extends React.Component {
       .then((res) => res.json())
       .then((res) => {
         this.setState({
-          data: res.data.map((feed) => {
-            return feed;
-          }),
+          data: res.data,
         });
       });
+  };
+
+  getMyHeartData = () => {
+    fetch(`http://${API_URL}/mypage/heart/post`, {
+      method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((res) =>
+        this.setState({
+          data: res.my_heart_list,
+          count: res.my_heart_list.legnth,
+        })
+      );
+  };
+
+  handleIcon = (clickedId, option) => {
+    this.setState({
+      data: this.state.data.map((feed) => {
+        if (feed.post_id === clickedId) {
+          return {
+            ...feed,
+            ...option,
+          };
+        }
+        return feed;
+      }),
+    });
   };
 
   showModal = () => {
@@ -66,35 +101,49 @@ class TwentyNineTV extends React.Component {
       setModalIdx,
       idxNextHandler,
       idxPrevHandler,
+      handleIcon,
     } = this;
     const { modalStatus, data, currentIdx } = this.state;
     return (
-      <div className="TwentyNineTVFeed">
-        {data.map((feed, index) => {
-          return (
-            <TwentyNineTVFeedComponent
-              onClick={() => {
-                showModal();
-                setModalIdx(index);
-              }}
-              feed={feed}
-              key={index}
+      <>
+        <div
+          className={
+            this.props.match.path === "/MyHeart"
+              ? "TwentyNineTVFeed margin-0"
+              : "TwentyNineTVFeed"
+          }
+        >
+          {data.map((feed, index) => {
+            return (
+              <TwentyNineTVFeedComponent
+                onClick={() => {
+                  showModal();
+                  setModalIdx(index);
+                }}
+                feed={feed}
+                key={index}
+                handleIcon={this.handleIcon}
+              />
+            );
+          })}
+          {modalStatus && (
+            <FeedModal
+              handleIcon={handleIcon}
+              hideModal={hideModal}
+              data={data[currentIdx]}
+              idxNextHandler={
+                currentIdx === data.length - 1
+                  ? !idxNextHandler
+                  : idxNextHandler
+              }
+              idxPrevHandler={currentIdx > 0 && idxPrevHandler}
             />
-          );
-        })}
-        {modalStatus && (
-          <FeedModal
-            hideModal={hideModal}
-            data={data[currentIdx]}
-            idxNextHandler={
-              currentIdx === currentIdx.length - 1
-                ? !idxNextHandler
-                : idxNextHandler
-            }
-            idxPrevHandler={currentIdx > 0 && idxPrevHandler}
-          />
-        )}
-      </div>
+          )}
+        </div>
+        <div className="moreBtnContainer">
+          <button className="moreBtn">더보기 ▾</button>
+        </div>
+      </>
     );
   }
 }

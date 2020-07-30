@@ -18,12 +18,10 @@ class ProductItem extends React.Component {
   }
 
   handleHeartItem = () => {
-    console.log("하트 눌렸어!");
     this.setState({
       myHeartState: !this.state.myHeartState,
     });
 
-    //하트 보내는 POST
     fetch("http://10.58.4.24:8000/product/like", {
       method: "PATCH",
       body: JSON.stringify({

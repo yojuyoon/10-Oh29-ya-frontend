@@ -16,7 +16,7 @@ class CategoryItem extends React.Component {
   };
 
   checkand = () => {
-    console.log("첵첵");
+    // console.log("첵첵");
   };
 
   render() {

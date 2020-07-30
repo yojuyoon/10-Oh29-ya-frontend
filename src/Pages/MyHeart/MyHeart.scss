@@ -79,7 +79,6 @@
     width: 1500px;
 
     .myHeartTopContainer {
-      height: 140px;
       padding: 30px;
       background-color: $grayColor;
       display: flex;
@@ -135,6 +134,7 @@
         margin-left: 20px;
       }
     }
+
     .myheartCategory {
       width: 800px;
       margin: 0 auto;
@@ -147,10 +147,12 @@
       li {
         font-size: 30px;
       }
+
       .myheartCategoryClicked {
         font-weight: 700;
       }
     }
+
     .myHeartContents {
       margin-top: 50px;
     }
