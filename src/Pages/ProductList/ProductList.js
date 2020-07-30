@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProductList.scss";
-import "./LeftNav.scss";
+// import "./LeftNav.scss";
 import LeftNav from "./LeftNav/LeftNav";
 import ProductItem from "./ProductItem/ProductItem";
 import CategoryList from "./CategoryList/CategoryList";
@@ -18,7 +18,7 @@ class ProductList extends React.Component {
 
   componentDidMount() {
     fetch(
-      `http://10.58.4.24:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`,
+      `http://10.58.7.130:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`,
 
       localStorage.getItem("token")
         ? {
@@ -39,7 +39,7 @@ class ProductList extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params !== this.props.match.params) {
       fetch(
-        `http://10.58.4.24:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`,
+        `http://10.58.7.130:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`,
         localStorage.getItem("token")
           ? {
               headers: {
@@ -186,7 +186,7 @@ class ProductList extends React.Component {
   };
 
   render() {
-    const { itemData } = this.state;
+    const { itemData, detailList } = this.state;
 
     return (
       <div className="ProductList">
@@ -205,7 +205,7 @@ class ProductList extends React.Component {
               handleSortDescending={this.handleSortDescending}
               handleSortAscending={this.handleSortAscending}
               handleSortCreatedAt={this.handleSortCreatedAt}
-              detailList={this.state.detailList}
+              detailList={detailList}
             />
             <ul className="productSection">
               {itemData.map((item) => {

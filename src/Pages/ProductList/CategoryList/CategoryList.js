@@ -23,14 +23,12 @@ class CategoryList extends React.Component {
     };
   }
 
-  //토글 방식으로 드롭다운 메뉴를 열고, 닫고 관리하는 함수
   HandleDropDown = () => {
     this.setState({ hideDropDown: !this.state.hideDropDown });
   };
 
-  //주어진 id와 동일한 key값을 가진 메뉴를 객체 obj에서 찾아서 드롭다운 메뉴 안에 보여줌
-  handleFilterId = (id) => {
-    this.setState({ filterId: id });
+  handleFilterId = (filterId) => {
+    this.setState({ filterId });
   };
 
   render() {

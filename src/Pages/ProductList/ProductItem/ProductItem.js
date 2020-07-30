@@ -19,7 +19,9 @@ class ProductItem extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps !== this.props) {
+    if (
+      prevProps.data.user_like_pressed !== this.props.data.user_like_pressed
+    ) {
       this.setState({
         heartCount: this.props.data.like_num,
         myHeartState: this.props.data.user_like_pressed,
@@ -32,7 +34,7 @@ class ProductItem extends React.Component {
       alert("로그인 먼저 해주세요");
       this.props.history.push("/Login");
     } else {
-      fetch("http://10.58.4.24:8000/product/like", {
+      fetch("http://10.58.7.130:8000/product/like", {
         method: "PATCH",
         headers: {
           Authorization: localStorage.getItem("token"),

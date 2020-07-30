@@ -1,7 +1,5 @@
 .FilterNav {
   .filterTop {
-    //   font-family: "campton", "Apple SD Gothic Neo", NanumBarunGothic,
-    //     "나눔바른고딕", Malgun Gothic, "맑은 고딕", dotum, sans-serif;
     position: relative;
     padding: 15px 0 35px;
     margin-top: 20px;
@@ -28,7 +26,6 @@
   }
 
   .filterTitle {
-    display: block;
     padding-bottom: 10px;
     font-weight: 600;
   }
@@ -41,15 +38,10 @@
       min-height: 20px;
       line-height: 20px;
       display: inline-block;
-      position: relative;
       vertical-align: top;
     }
 
     input {
-      // position: absolute;
-      // top: 2px;
-      // left: 2px;
-      // z-index: -1;
       width: 14px;
       height: 14px;
     }
@@ -57,13 +49,8 @@
     label {
       font-size: 12px;
       line-height: 22px;
-      // min-height: 20px;
       padding-left: 8px;
-      // display: inline-block;
-      // position: relative;
-      // z-index: 10;
       color: #303033;
-      box-sizing: border-box;
       cursor: pointer;
       vertical-align: top;
     }

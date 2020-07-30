@@ -1,10 +1,9 @@
 import React from "react";
-import "./Women.scss";
-import "../../../Styles/reset.scss";
 import LeftNav from "../../../Pages/ProductList/LeftNav/LeftNav";
 import CategorySection from "./CategorySection/CategorySection";
 import MainSlider from "./MainSlider/MainSlider";
 import CategoryTwoBanner from "./CategoryTwoBanner/CategoryTwoBanner";
+import "./Women.scss";
 import { withRouter } from "react-router-dom";
 // import MainWrap from "./MainWrap/MainWrap";
 
@@ -30,9 +29,10 @@ class Women extends React.Component {
             </div>
           </div>
         </div>
-        <div className="rightBtnTopEnd"></div>
+        <div className="rightBtnTopEnd" />
       </div>
     );
   }
 }
+
 export default withRouter(Women);

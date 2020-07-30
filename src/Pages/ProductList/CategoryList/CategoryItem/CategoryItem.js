@@ -17,10 +17,6 @@ class CategoryItem extends React.Component {
     );
   };
 
-  checkand = () => {
-    // console.log("첵첵");
-  };
-
   render() {
     const { menuClicked } = this.state;
     const { item } = this.props;

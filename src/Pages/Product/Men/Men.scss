@@ -5,19 +5,16 @@
     .categoryNav {
       width: 250px;
       height: 571px;
+      position: absolute;
       left: 25px;
       margin: 25px 0 0;
       padding: 25px 25px 15px;
-      position: absolute;
       z-index: 20;
       background-color: white;
     }
 
     .mainSwiper {
-      width: 100%;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: 50%;
+      background: no-repeat cover 50%;
 
       img {
         width: 100%;

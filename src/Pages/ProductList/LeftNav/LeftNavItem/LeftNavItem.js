@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 
 class LeftNav extends React.Component {
   render() {
-    const { item } = this.props;
+    const { item, gender } = this.props;
+
     return (
       <li className="category">
-        <Link to={`/ProductList/${this.props.gender}/${item}`}>
+        <Link to={`/ProductList/${gender}/${item}`}>
           <button>{item}</button>
         </Link>
       </li>

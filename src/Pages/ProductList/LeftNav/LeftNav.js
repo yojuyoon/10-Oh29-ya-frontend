@@ -1,6 +1,6 @@
 import React from "react";
-import "./LeftNav.scss";
 import LeftNav from "./LeftNavItem/LeftNavItem";
+import "./NavLeft.scss";
 import categoryData from "./../data/categoryData";
 
 class MainLeftNav extends React.Component {

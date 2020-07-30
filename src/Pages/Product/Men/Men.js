@@ -1,10 +1,9 @@
 import React from "react";
-import "./Men.scss";
-import "../../../Styles/reset.scss";
 import LeftNav from "../../ProductList/LeftNav/LeftNav";
 import MainSlider from "./MainSlider/MainSlider";
 import CategorySection from "./CategorySection/CategorySection";
 import CategoryTwoBanner from "./CategoryTwoBanner/CategoryTwoBanner";
+import "./Men.scss";
 import { withRouter } from "react-router-dom";
 
 class Men extends React.Component {
@@ -29,7 +28,7 @@ class Men extends React.Component {
             </div>
           </div>
         </div>
-        <div className="rightBtnTopEnd"></div>
+        <div className="rightBtnTopEnd" />
       </div>
     );
   }
