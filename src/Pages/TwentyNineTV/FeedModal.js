@@ -77,7 +77,12 @@ class FeedModal extends React.Component {
               <div className="tag">{data.hashtag.join(" ")}</div>
             </div>
             <div className="icons">
-              <ActiveLikeBtn />
+              <ActiveLikeBtn
+                handleIcon={this.props.handleIcon}
+                postId={data.post_id}
+                likedNumber={data.like_num}
+                heartState={data.user_likes_pressed}
+              />
               <div onClick={HandleSnsModal} className="shareIcon">
                 <img
                   alt="shareIcon"
