@@ -23,15 +23,8 @@ class TwentyNineTVFeedComponent extends React.Component {
         hashtag,
         post_id,
         user_likes_pressed,
-        handleIcon,
       },
     } = this.props;
-
-    if (post_id === 2) {
-      console.log("this should change");
-      console.log(like_num);
-      console.log(user_likes_pressed); //콘솔 찍어보고 삭제
-    }
     return (
       <section className="TwentyNineTV">
         <div className="feedContainer">
@@ -66,7 +59,7 @@ class TwentyNineTVFeedComponent extends React.Component {
               ></div>
               <div className="feedTag">{hashtag.join(" ")}</div>
               <ActiveLikeBtn
-                handleIcon={handleIcon}
+                handleIcon={this.props.handleIcon}
                 postId={post_id}
                 likedNumber={like_num}
                 heartState={user_likes_pressed}

@@ -19,16 +19,25 @@ class FeedModal extends React.Component {
       : this.setState({ shareModal: true });
   };
 
-  getIconState = (likeIcon) => {
-    this.setState({
-      heart: likeIcon.user_likes_pressed,
-      count: likeIcon.like_num,
-    });
-  };
-
   render() {
     const { HandleSnsModal } = this;
-    const { hideModal, data, idxPrevHandler, idxNextHandler } = this.props;
+    const {
+      hideModal,
+      idxPrevHandler,
+      idxNextHandler,
+      handleIcon,
+      data: {
+        thumbnail_image,
+        staff_logo,
+        staff_name,
+        official_check,
+        content,
+        hashtag,
+        post_id,
+        like_num,
+        user_likes_pressed,
+      },
+    } = this.props;
     return (
       <div className="FeedModal">
         {this.state.shareModal && <SnsModal hideReport={HandleSnsModal} />};
@@ -47,7 +56,7 @@ class FeedModal extends React.Component {
             <img
               alt="contentImg"
               className="contentImg"
-              src={data.thumbnail_image}
+              src={thumbnail_image}
             />
           </div>
           <div className="progressBar"></div>
@@ -58,13 +67,13 @@ class FeedModal extends React.Component {
                   <img
                     alt="profileLogo"
                     className="profileLogo"
-                    src={data.staff_logo}
+                    src={staff_logo}
                   />
                 </div>
                 <div className="profileName">
-                  <span className="brandName">{data.staff_name}</span>
+                  <span className="brandName">{staff_name}</span>
                   <span className="officialCheck">
-                    {data.official_check && (
+                    {official_check && (
                       <span className="officialCheck">✹ Official</span>
                     )}
                   </span>
@@ -73,15 +82,15 @@ class FeedModal extends React.Component {
               <div className="moreBtn">•••</div>
             </div>
             <div className="contents">
-              <div className="text">{data.content}</div>
-              <div className="tag">{data.hashtag.join(" ")}</div>
+              <div className="text">{content}</div>
+              <div className="tag">{hashtag.join(" ")}</div>
             </div>
             <div className="icons">
               <ActiveLikeBtn
-                handleIcon={this.props.handleIcon}
-                postId={data.post_id}
-                likedNumber={data.like_num}
-                heartState={data.user_likes_pressed}
+                handleIcon={handleIcon}
+                postId={post_id}
+                likedNumber={like_num}
+                heartState={user_likes_pressed}
               />
               <div onClick={HandleSnsModal} className="shareIcon">
                 <img
