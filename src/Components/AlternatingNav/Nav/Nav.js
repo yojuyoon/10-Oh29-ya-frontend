@@ -4,31 +4,52 @@ import { navData } from "../navData";
 import "./Nav.scss";
 
 class HeaderNav extends React.Component {
+  logoutHandler = () => {
+    alert("로그아웃 정상 처리 되었습니다. 👋💨");
+    localStorage.removeItem("token");
+    localStorage.removeItem("cart_count");
+    sessionStorage.removeItem("token");
+    this.props.history.push("/SpecialOrder");
+  };
+
   render() {
+    const { logoutHandler } = this;
+
     return (
       <nav className="NavActive">
         <div className="navContainer">
-          <div className="logoContainer">
+          <Link to="/SpecialOrder" className="logoContainer">
             <img
               className="logoImg"
               alt="logo  square"
-              src="Images/logoSquare.PNG"
+              src="/Images/logoSquare.PNG"
             />
-          </div>
+          </Link>
           <div className="navMenuContainer">
             <div className="navRowContainer">
               <div className="menuTitle">
-                {navData.title.map(({ name, index }) => (
-                  <Link to="/TwentyNineTV" key={index} className="title">
+                {navData.title.map(({ name, index, route }) => (
+                  <Link to={`${route}`} key={index} className="title">
                     {name}
-                    {name === "29TV" ? <span className="dot"></span> : null}
+                    {name === "29TV" && <span className="dot" />}
                   </Link>
                 ))}
               </div>
               <div className="navMenuIcon">
-                {navData.icon.map(({ index, className }) => (
-                  <i key={index} className={className} />
-                ))}
+                <i className="fas fa-user" />
+                <i className="fas fa-heart" />
+                <Link to="/cart" className="fas fa-shopping-bag" />
+                {localStorage.getItem("cart_count") && (
+                  <span className="shoppingNumber">
+                    {localStorage.getItem("cart_count")}
+                  </span>
+                )}
+                {localStorage.getItem("token") ||
+                sessionStorage.getItem("token") ? (
+                  <i onClick={logoutHandler} className="fas fa-door-open" />
+                ) : (
+                  <i className="fas fa-sign-in-alt" />
+                )}
               </div>
             </div>
             <div className="navRowContainer">
