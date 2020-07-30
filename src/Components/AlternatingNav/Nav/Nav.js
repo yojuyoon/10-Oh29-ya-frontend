@@ -44,7 +44,6 @@ class HeaderNav extends React.Component {
                     {localStorage.getItem("cart_count")}
                   </span>
                 )}
-                <i className="fas fa-sign-out-alt" />
                 {localStorage.getItem("token") ||
                 sessionStorage.getItem("token") ? (
                   <i onClick={logoutHandler} className="fas fa-door-open" />

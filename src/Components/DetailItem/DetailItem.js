@@ -44,8 +44,6 @@ class DetailItem extends React.Component {
       input,
     } = this.state;
 
-    localStorage.setItem("cart_count", input);
-
     fetch(`${ip}/cart/add`, {
       method: "POST",
       headers: {
