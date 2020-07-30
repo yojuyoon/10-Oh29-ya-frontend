@@ -17,68 +17,71 @@ class ProductList extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.handleData();
-  // }
-
-  // handleData = () => {
-  //   //내로컬;
-  //   fetch("http://localhost:3000/data/product.json")
-  //     .then((response) => response.json())
-  //     .then((response) => {
-  //       // console.log(response);
-  //       this.setState({
-  //         itemData: response.data,
-  //         originItemData: response.data,
-  //       });
-  //     });
-
-  //   // fetch(`http://10.58.4.24:8000/product?category=MEN&subcategory=상의`)
-  //   //   .then((res) => res.json())
-  //   //   .then((res) =>
-  //   //     this.setState({ itemData: res.data, originItemData: res.data })
-  //   //   );
-  // };
-
-  ////되는거!!
   componentDidMount() {
-    console.log(this.props.match.params.category);
-
-    fetch(
-      `http://10.58.4.24:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`
-    )
-      .then((res) => res.json())
-      .then((res) =>
-        this.setState({ itemData: res.data, originItemData: res.data })
-      );
+    this.handleData();
   }
 
-  handleCreateCategories = () => {
-    let detail_list = new Set();
+  handleData = () => {
+    //내로컬;
+    fetch("http://localhost:3000/data/product.json")
+      .then((response) => response.json())
+      .then((response) => {
+        // console.log(response);
+        this.setState({
+          itemData: response.data,
+          originItemData: response.data,
+        });
+      });
 
-    for (let i = 0; i < this.state.itemData.length; i++) {
-      console.log(this.state.itemData[i].detail);
-      detail_list.add(this.state.itemData[i].detail);
-    }
-    this.setState({ datailList: detail_list });
+    // fetch(`http://10.58.4.24:8000/product?category=MEN&subcategory=상의`)
+    //   .then((res) => res.json())
+    //   .then((res) =>
+    //     this.setState({ itemData: res.data, originItemData: res.data })
+    //   );
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.match.params !== this.props.match.params) {
-      fetch(
-        `http://10.58.4.24:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`
-      )
-        .then((res) => res.json())
-        .then((res) =>
-          this.setState(
-            { itemData: res.data, originItemData: res.data },
-            () => {
-              this.handleCreateCategories();
-            }
-          )
-        );
-    }
-  }
+  //되는거!!
+
+  // handleCreateCategories = () => {
+  //   let detail_list = new Set();
+
+  //   for (let i = 0; i < this.state.itemData.length; i++) {
+  //     console.log(this.state.itemData[i].detail);
+  //     detail_list.add(this.state.itemData[i].detail);
+  //   }
+  //   this.setState({ datailList: detail_list });
+  // };
+
+  // componentDidMount() {
+  //   console.log(this.props.match.params.category);
+
+  //   fetch(
+  //     `http://10.58.4.24:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((res) =>
+  //       this.setState({ itemData: res.data, originItemData: res.data }, () => {
+  //         this.handleCreateCategories();
+  //       })
+  //     );
+  // }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevProps.match.params !== this.props.match.params) {
+  //     fetch(
+  //       `http://10.58.4.24:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`
+  //     )
+  //       .then((res) => res.json())
+  //       .then((res) =>
+  //         this.setState(
+  //           { itemData: res.data, originItemData: res.data },
+  //           () => {
+  //             this.handleCreateCategories();
+  //           }
+  //         )
+  //       );
+  //   }
+  // }
 
   ////////////////////////////////////////////////////////////
 
@@ -128,28 +131,31 @@ class ProductList extends React.Component {
   /*********여기는 상단 categoryfilter에 있는 드롭다운 *********/
 
   //내림차순, 높은 가격순
-  handleSortDescending = () => {
-    console.log("돌아감");
+  // handleSortDescending = () => {
+  //   console.log("돌아감");
+  //   const { itemData } = this.state;
+  //   let tempData = [...itemData];
 
-    const { itemData } = this.state;
-    let tempData = [...itemData];
-    let price = 0;
-    let temp = 0;
+  //   // console.log("아 왜!!", tempData[0].price);
+  //   for (let i = 0; i < tempData.length; i++) {
+  //     for (let j = tempData.length - 1; j > i; j--) {
+  //       console.log(tempData[j]);
+  //       // console.log("j+1" + tempData[j + 1]);
+  //       // console.log(parseInt(tempData[j + 1].price));
+  //       // tempData[j].discount_rate
+  //       //   ? (price = "discount_price")
+  //       //   : (price = "price");
 
-    for (let i = tempData.length - 1; i > 0; i--) {
-      for (let j = 0; j < i; j++) {
-        tempData[j].discount_rate
-          ? (price = "discount_price")
-          : (price = "price");
-        if (tempData[j].price < tempData[j + 1].price) {
-          temp = tempData[j].price;
-          tempData[j].price = tempData[j + 1].price;
-          tempData[j + 1].price = temp;
-        }
-      }
-    }
-    this.setState({ itemData: tempData });
-  };
+  //       if (tempData[j].price < tempData[j + 1].price) {
+  //         let temp = tempData[j];
+  //         tempData[j] = tempData[j + 1];
+  //         tempData[j + 1] = temp;
+  //       }
+  //     }
+  //   }
+  //   // console.log(tempData);
+  //   this.setState({ itemData: tempData });
+  // };
 
   //////////////////////////////////////////////////////////////////
 

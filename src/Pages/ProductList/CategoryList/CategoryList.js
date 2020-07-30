@@ -59,7 +59,7 @@ class CategoryList extends React.Component {
                 <div className="recommend" onClick={this.HandleDropDown}>
                   <div className="wrap">{obj[this.state.filterId]}</div>
                   <div>
-                    <i class="fas fa-angle-down"></i>
+                    <i className="fas fa-angle-down"></i>
                   </div>
                 </div>
                 <ul

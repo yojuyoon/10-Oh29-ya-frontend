@@ -17,17 +17,33 @@ class ProductItem extends React.Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps !== this.props) {
+      this.setState({
+        heartCount: this.props.data.like_num,
+        myHeartState: this.props.data.user_like_pressed,
+      });
+    }
+  }
+
   handleHeartItem = () => {
     // this.setState({
     //   myHeartState: !this.state.myHeartState,
     // });
-    ////===>필요한 코드인지 고민해 볼 것
+    // //
+
+    if (!localStorage.getItem("access_token")) {
+      alert("로그인을 먼저 하셔야합니다");
+      this.props.history.push("Login");
+    }
 
     //하트 보내는 POST
     fetch("http://10.58.1.34:8000/product/like", {
       method: "POST",
+      headers: {
+        Authorization: localStorage.getItem("access_token"),
+      },
       body: JSON.stringify({
-        user: 2,
         product: this.props.data.id,
       }),
     })
