@@ -32,14 +32,7 @@ class JoinEmail extends React.Component {
       );
   };
 
-  changeIdHandler = (e) => {
-    e.preventDefault();
-    this.setState({
-      email: e.target.value,
-    });
-  };
-
-  changePwHandler = (e) => {
+  changeInputHandler = (e) => {
     e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value,
@@ -47,14 +40,12 @@ class JoinEmail extends React.Component {
   };
 
   checkboxHandler = (e) => {
-    const {
-      target: { checked },
-    } = e;
+    const { checked } = e.target;
     this.setState({ checked });
   };
 
   render() {
-    const { changeIdHandler, changePwHandler, checkboxHandler } = this;
+    const { changeInputHandler, checkboxHandler } = this;
     const { email, password, passwordCheck, checked, checkbox } = this.state;
 
     return (
@@ -65,7 +56,7 @@ class JoinEmail extends React.Component {
         <input
           name="email"
           className="loginInput"
-          onChange={changeIdHandler}
+          onChange={changeInputHandler}
           placeholder="이메일을 입력하세요"
           required
         />
@@ -78,15 +69,14 @@ class JoinEmail extends React.Component {
           type="password"
           name="password"
           className="loginInput"
-          onChange={changePwHandler}
+          onChange={changeInputHandler}
           placeholder="비밀번호를 입력하세요"
         />
-
         <input
           type="password"
           name="passwordCheck"
           className="loginInput"
-          onChange={changePwHandler}
+          onChange={changeInputHandler}
           placeholder="비밀번호를 확인해주세요"
         />
         {password !== passwordCheck && (

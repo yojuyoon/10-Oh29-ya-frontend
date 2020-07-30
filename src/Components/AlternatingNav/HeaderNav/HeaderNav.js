@@ -66,7 +66,7 @@ class Nav extends React.Component {
               {navData.title.map(({ name, index, route }) => (
                 <Link to={`${route}`} key={index} className="title">
                   {name}
-                  {name === "29TV" ? <span className="dot" /> : null}
+                  {name === "29TV" && <span className="dot" />}
                 </Link>
               ))}
             </div>
