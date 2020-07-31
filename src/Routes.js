@@ -35,7 +35,12 @@ class Routes extends React.Component {
             path="/ProductList/:category/:subcategory"
             component={ProductList}
           />
-          <Route exact path="/TwentyNineTV" component={TwentyNineTV} />
+          <Route
+            exact
+            path="/TwentyNineTV"
+            path="/TwentyNineTV"
+            render={() => <TwentyNineTV type="total" />}
+          />
           <Route exact path="/Footer" component={Footer} />
           <Route exact path="/Nav" component={Nav} />
           <Route exact path="/HeaderNav" component={HeaderNav} />

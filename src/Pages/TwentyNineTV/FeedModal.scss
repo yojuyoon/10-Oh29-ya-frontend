@@ -4,45 +4,33 @@
 .FeedModal {
   width: 100%;
   height: 100%;
-  top: 0;
   position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   @include center;
   background-color: rgba(27, 27, 27, 0.7);
   z-index: 999;
 
-  .leftBtn {
+  .btn {
     width: 50px;
     height: 50px;
     margin-right: 20px;
     transform: rotate(135deg);
     border: 2px solid $whiteColor;
-    border-width: 0 2px 2px 0;
     cursor: pointer;
-  }
 
-  .leftBtnHide {
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
-    visibility: hidden;
-  }
+    &.left {
+      border-width: 0 2px 2px 0;
+    }
 
-  .rightBtn {
-    width: 50px;
-    height: 50px;
-    margin-left: 20px;
-    transform: rotate(135deg);
-    border: 2px solid $whiteColor;
-    border-width: 2px 0 0 2px;
-    cursor: pointer;
-  }
+    &.right {
+      border-width: 2px 0 0 2px;
+    }
 
-  .rightBtnHide {
-    width: 50px;
-    height: 50px;
-    margin-left: 20px;
-    visibility: hidden;
+    &.hidden {
+      visibility: hidden;
+    }
   }
 
   .ModalContentContainer {

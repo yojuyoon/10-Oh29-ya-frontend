@@ -1,25 +1,81 @@
 import React from "react";
-import FavListTwoNineTV from "./FavListTwoNineTV";
 import FavListProduct from "./FavListProduct";
 import FavListPost from "./FavListPost";
 import FavListBrand from "./FavListBrand";
+import API_URL from "../../config";
+import TwentyNineTV from "../TwentyNineTV/TwentyNineTV";
 import "./MyHeart.scss";
 
-const obj = {
-  0: <FavListProduct />,
-  1: <FavListBrand />,
-  2: <FavListTwoNineTV />,
-  3: <FavListPost />,
-};
-
 class MyHeart extends React.Component {
-  state = { activeId: 0, titleClicked: false };
+  state = {
+    favTwentyNineList: [],
+    feedCount: "",
+    favProductList: [],
+    productCount: "",
+    activeId: 0,
+    titleClicked: false,
+  };
 
   handleClicked = (id) => {
     this.setState({ activeId: id, titleClicked: true });
   };
 
+  getLength = (num) => {
+    this.setState({
+      count: num,
+    });
+  };
+
+  componentDidMount() {
+    fetch(`http://${API_URL}/mypage/heart/post`, {
+      method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((res) =>
+        this.setState({
+          feedCount: res.my_heart_list.length,
+        })
+      );
+
+    fetch(`http://${API_URL}/mypage/heart/product`, {
+      method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((res) =>
+        this.setState({
+          favProductList: res.data,
+          productCount: res.data.length,
+        })
+      );
+  }
+
+  componentHandler = (id) => {
+    const { favProductList, favTwentyNineList } = this.state;
+    switch (id) {
+      case 0:
+        return <FavListProduct item={favProductList} />;
+      case 1:
+        return <FavListBrand />;
+      case 2:
+        return <TwentyNineTV type="myheart" data={favTwentyNineList} />;
+      case 3:
+        return <FavListPost />;
+      default:
+        return this.state.favProductList.length ? (
+          <FavListProduct item={favProductList} />
+        ) : null;
+    }
+  };
+
   render() {
+    const { handleClicked, componentHandler } = this;
+    const { activeId, productCount } = this.state;
     return (
       <div className="MyHeart">
         <aside className="myHeartMenu">
@@ -82,31 +138,31 @@ class MyHeart extends React.Component {
           </div>
           <ul className="myheartCategory">
             <li
-              onClick={() => this.handleClicked(0)}
-              className={this.state.activeId === 0 && "myheartCategoryClicked"}
+              onClick={() => handleClicked(0)}
+              className={activeId === 0 && "myheartCategoryClicked"}
             >
-              PRODUCT()
+              PRODUCT({productCount})
             </li>
             <li
-              onClick={() => this.handleClicked(1)}
-              className={this.state.activeId === 1 && "myheartCategoryClicked"}
+              onClick={() => handleClicked(1)}
+              className={activeId === 1 && "myheartCategoryClicked"}
             >
-              BRAND()
+              BRAND(0)
             </li>
             <li
-              onClick={() => this.handleClicked(2)}
-              className={this.state.activeId === 2 && "myheartCategoryClicked"}
+              onClick={() => handleClicked(2)}
+              className={activeId === 2 && "myheartCategoryClicked"}
             >
-              TV()
+              TV({this.state.feedCount})
             </li>
             <li
-              onClick={() => this.handleClicked(3)}
-              className={this.state.activeId === 3 && "myheartCategoryClicked"}
+              onClick={() => handleClicked(3)}
+              className={activeId === 3 && "myheartCategoryClicked"}
             >
-              POST()
+              POST(0)
             </li>
           </ul>
-          <div className="myHeartContents">{obj[this.state.activeId]}</div>
+          <div className="myHeartContents">{componentHandler(activeId)}</div>
         </main>
       </div>
     );
