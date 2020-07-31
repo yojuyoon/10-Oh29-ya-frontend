@@ -43,7 +43,7 @@ class FeedModal extends React.Component {
         {shareModal && <SnsModal hideReport={HandleSnsModal} />};
         <div
           onClick={idxPrevHandler}
-          className={!idxPrevHandler ? "btn left hide" : "btn left"}
+          className={!idxPrevHandler ? "btn left hidden" : "btn left"}
         ></div>
         <div className="ModalContentContainer">
           <button onClick={hideModal} className="closeBtn">
@@ -135,7 +135,7 @@ class FeedModal extends React.Component {
         </div>
         <div
           onClick={idxNextHandler}
-          className={!idxNextHandler ? "btn right hide" : "btn right"}
+          className={!idxNextHandler ? "btn right hidden" : "btn right"}
         ></div>
       </div>
     );

@@ -10,7 +10,7 @@
   h3 {
     margin: 17px 0;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   ul {
@@ -21,7 +21,7 @@
 
   li {
     line-height: 35px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: lighter;
     cursor: pointer;
   }
@@ -52,7 +52,7 @@
     }
 
     .number {
-      font-size: 30px;
+      font-size: 28px;
     }
 
     span {
@@ -76,15 +76,15 @@
   }
 
   main {
-    width: 1500px;
+    width: 80%;
 
     .myHeartTopContainer {
-      padding: 30px;
+      padding: 20px;
       background-color: $grayColor;
       display: flex;
 
       .title {
-        font-size: 18px;
+        font-size: 17px;
         color: gray;
         cursor: pointer;
       }
