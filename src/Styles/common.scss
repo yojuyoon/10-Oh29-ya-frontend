@@ -4,10 +4,6 @@ $grayColor: rgb(44, 44, 48);
 $whiteColor: rgb(255, 255, 255);
 $clearColor: #00ff0000;
 
-* {
-  box-sizing: border-box;
-}
-
 @mixin center {
   display: flex;
   justify-content: center;
