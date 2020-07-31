@@ -13,7 +13,7 @@ class SpecialContent extends React.Component {
 
   tick() {
     this.setState({
-      dDay: new Date("2020/07/31 00:00:00").getTime() - new Date().getTime(),
+      dDay: new Date("2020/07/31 23:59:59").getTime() - new Date().getTime(),
     });
   }
 
