@@ -27,7 +27,7 @@ class MyHeart extends React.Component {
   };
 
   componentDidMount() {
-    fetch(`http://${API_URL}/mypage/heart/post`, {
+    fetch(`${API_URL}/mypage/heart/post`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -40,7 +40,7 @@ class MyHeart extends React.Component {
         })
       );
 
-    fetch(`http://${API_URL}/mypage/heart/product`, {
+    fetch(`${API_URL}/mypage/heart/product`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),

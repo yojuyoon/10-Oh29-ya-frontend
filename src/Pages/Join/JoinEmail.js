@@ -1,6 +1,6 @@
 import React from "react";
 import "./JoinEmail.scss";
-import { ip } from "../Login/ip";
+import API_URL from "../../config";
 
 class JoinEmail extends React.Component {
   state = {
@@ -16,7 +16,7 @@ class JoinEmail extends React.Component {
   joinHandler = () => {
     const { email, password } = this.state;
 
-    fetch("http://" + ip + "/account/sign-up", {
+    fetch(`${API_URL}/account/sign-up`, {
       method: "POST",
       body: JSON.stringify({
         email,

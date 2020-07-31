@@ -5,7 +5,6 @@ import Join from "./Pages/Join/Join";
 import JoinEmail from "./Pages/Join/JoinEmail";
 import Main from "./Pages/Main/Main";
 import Product from "./Pages/Product/Product";
-import Women from "./Pages//Women/Women";
 import ProductList from "./Pages/ProductList/ProductList";
 import DetailProduct from "./Pages/DetailProduct/DetailProduct";
 import DetailItem from "./Components/DetailItem/DetailItem";
@@ -14,6 +13,7 @@ import TwentyNineTV from "./Pages/TwentyNineTV/TwentyNineTV";
 import Nav from "./Components/AlternatingNav/Nav/Nav";
 import HeaderNav from "./Components/AlternatingNav/HeaderNav/HeaderNav";
 import AlternatingNav from "./Components/AlternatingNav/AlternatingNav";
+import Cart from "./Pages/Cart/Cart";
 import MyHeart from "./Pages/MyHeart/MyHeart";
 import SpecialOrder from "./Pages/SpecialOrder/SpecialOrder";
 import SpecialContent from "./Components/SpecialContent/SpecialContent";
@@ -29,11 +29,16 @@ class Routes extends React.Component {
           <Route exact path="/Login" component={Login} />
           <Route exact path="/Join" component={Join} />
           <Route exact path="/JoinEmail" component={JoinEmail} />
-          <Route exact path="/Product" component={Product} />
-          <Route exact path="/Product/Women" component={Women} />
+          <Route exact path="/Product/:id" component={Product} />
           <Route exact path="/ProductList" component={ProductList} />
           <Route
             exact
+            path="/ProductList/:category/:subcategory"
+            component={ProductList}
+          />
+          <Route
+            exact
+            path="/TwentyNineTV"
             path="/TwentyNineTV"
             render={() => <TwentyNineTV type="total" />}
           />
@@ -43,6 +48,7 @@ class Routes extends React.Component {
           <Route exact path="/DetailProduct/:id" component={DetailProduct} />
           <Route exact path="/DetailItem" component={DetailItem} />
           <Route exact path="/AlternatingNav" component={AlternatingNav} />
+          <Route exact path="/Cart" component={Cart} />
           <Route exact path="/MyHeart" component={MyHeart} />
           <Route exact path="/SpecialOrder" component={SpecialOrder} />
           <Route exact path="/SpecialContent" component={SpecialContent} />

@@ -2,17 +2,6 @@ import React from "react";
 import CategoryItem from "./CategoryItem/CategoryItem";
 import "./CategoryList.scss";
 
-const itemData = [
-  "전체",
-  "반팔",
-  "긴팔",
-  "민소매",
-  "피케",
-  "스웨트 셔츠",
-  "후디",
-  "집업",
-];
-
 const obj = {
   0: "추천순",
   1: "추천순",
@@ -34,21 +23,23 @@ class CategoryList extends React.Component {
     };
   }
 
-  handleFilterId = (id) => {
-    this.setState({ filterId: id });
-  };
-
   HandleDropDown = () => {
     this.setState({ hideDropDown: !this.state.hideDropDown });
   };
 
+  handleFilterId = (filterId) => {
+    this.setState({ filterId });
+  };
+
   render() {
+    const { handleSort } = this.props;
+
     return (
       <div className="CategoryList">
         <div>
           <ul className="categoryTab">
             <div className="categoryLeft">
-              {itemData.map((item, i) => {
+              {this.props.detailList.map((item, i) => {
                 return <CategoryItem item={item} key={i} />;
               })}
             </div>
@@ -57,7 +48,7 @@ class CategoryList extends React.Component {
                 <div className="recommend" onClick={this.HandleDropDown}>
                   <div className="wrap">{obj[this.state.filterId]}</div>
                   <div>
-                    <i class="fas fa-angle-down"></i>
+                    <i className="fas fa-angle-down"></i>
                   </div>
                 </div>
                 <ul
@@ -66,10 +57,29 @@ class CategoryList extends React.Component {
                   }
                 >
                   <li onClick={() => this.handleFilterId(1)}>추천순</li>
-                  <li onClick={() => this.handleFilterId(2)}>신상품순</li>
+                  <li
+                    onClick={
+                      (() => this.handleFilterId(2),
+                      this.props.handleSortCreatedAt)
+                    }
+                  >
+                    신상품순
+                  </li>
                   <li onClick={() => this.handleFilterId(3)}>베스트순</li>
-                  <li onClick={() => this.handleFilterId(4)}>낮은가격순</li>
-                  <li onClick={() => this.handleFilterId(5)}>높은가격순</li>
+                  <li
+                    onClick={
+                      (() => this.handleFilterId(4), () => handleSort("D"))
+                    }
+                  >
+                    낮은가격순
+                  </li>
+                  <li
+                    onClick={
+                      (() => this.handleFilterId(5), () => handleSort("A"))
+                    }
+                  >
+                    높은가격순
+                  </li>
                   <li onClick={() => this.handleFilterId(6)}>높은할인순</li>
                   <li onClick={() => this.handleFilterId(7)}>베스트리뷰순</li>
                   <li onClick={() => this.handleFilterId(8)}>베스트하트순</li>

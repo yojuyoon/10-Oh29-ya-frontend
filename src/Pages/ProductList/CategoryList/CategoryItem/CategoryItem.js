@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import "./CategoryItem.scss";
 
 class CategoryItem extends React.Component {
@@ -12,21 +11,21 @@ class CategoryItem extends React.Component {
   }
 
   handleCategory = () => {
-    this.setState({ menuClicked: true });
-  };
-
-  checkand = () => {
-    // console.log("첵첵");
+    this.setState({ menuClicked: true }, () =>
+      console.log(this.state.menuClicked)
+    );
   };
 
   render() {
     const { menuClicked } = this.state;
+    const { item } = this.props;
+
     return (
       <li
-        onClick={this.handleCategory && this.checkand}
+        onClick={this.handleCategory}
         className={menuClicked ? "CategoryItem clicked" : "CategoryItem"}
       >
-        <Link>{this.props.item}</Link>
+        <Link to={`/ProductList/MEN/${item}`}>{item}</Link>
       </li>
     );
   }

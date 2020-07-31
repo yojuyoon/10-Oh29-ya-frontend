@@ -25,7 +25,7 @@ class TwentyNineTV extends React.Component {
   };
 
   getTwentyNineTVData = () => {
-    fetch(`http://${API_URL}/media/recommend`, {
+    fetch(`${API_URL}/media/recommend`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -40,7 +40,7 @@ class TwentyNineTV extends React.Component {
   };
 
   getMyHeartData = () => {
-    fetch(`http://${API_URL}/mypage/heart/post`, {
+    fetch(`${API_URL}/mypage/heart/post`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),

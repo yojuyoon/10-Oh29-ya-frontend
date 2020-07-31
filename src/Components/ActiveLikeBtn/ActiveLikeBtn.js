@@ -7,7 +7,8 @@ import "./ActiveLikeBtn.scss";
 class ActiveLikeBtn extends React.Component {
   iconHandler = () => {
     const { postId, handleIcon } = this.props;
-    fetch(`http://${API_URL}/media/recommend/like`, {
+
+    fetch(`${API_URL}/media/recommend/like`, {
       method: "PATCH",
       headers: {
         Authorization: localStorage.getItem("token"),

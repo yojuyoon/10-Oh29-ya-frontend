@@ -7,7 +7,7 @@ export const navData = {
     { index: 5, name: "Welove", route: "/SpecialOrder" },
   ],
   category: [
-    { index: 1, name: "Women" },
+    { index: 1, name: "WOMEN" },
     { index: 2, name: "ACC" },
     { index: 3, name: "MEN" },
     { index: 4, name: "BEAUTY" },
