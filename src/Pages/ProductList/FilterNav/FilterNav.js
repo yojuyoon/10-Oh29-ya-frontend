@@ -56,9 +56,9 @@ class FilterNav extends React.Component {
           <div className="filterBox">
             <div className="filterTitle">가격대</div>
             <ul className="filterContents">
-              {priceRangeArr.map((range) => {
+              {priceRangeArr.map((range, i) => {
                 return (
-                  <li className="eachFilter" onClick={handleFilterRate}>
+                  <li className="eachFilter" onClick={handleFilterRate} key={i}>
                     <span>
                       <input type="radio"></input>
                       <label _ngcontent-c19="" title="품절상품 제외">

@@ -68,13 +68,15 @@ class CartItem extends React.Component {
         </div>
         <div className="td2">
           <div className="image">
-            <Link>
+            <Link to={`/DetailProduct/${id}`}>
               <img src={image} alt="product" />
             </Link>
           </div>
           <div className="productInfo">
             <div>
-              <Link className="name">{brand}</Link>
+              <Link to={`/DetailProduct/${id}`} className="name">
+                {brand}
+              </Link>
             </div>
             <div>
               <Link className="info">{name}</Link>

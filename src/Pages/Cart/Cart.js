@@ -189,11 +189,11 @@ class Cart extends React.Component {
           <ol>
             <li className="inCart">
               <span>01 SHOPPING BAG</span>
-              <i class="fas fa-chevron-right"></i>
+              <i className="fas fa-chevron-right"></i>
             </li>
             <li className="orderNow">
               <span className="greyed">02 ORDER</span>
-              <i class="fas fa-chevron-right"></i>
+              <i className="fas fa-chevron-right"></i>
             </li>
             <li className="orderConfirmed">
               <span className="greyed">03 ORDER CONFIRMED</span>
@@ -270,14 +270,14 @@ class Cart extends React.Component {
           </div>
           <div className="btnOrderWrap">
             <button className="btnShopping" type="button">
-              <Link>CONTINUE SHOPPING</Link>
+              <Link to="/Product/MEN">CONTINUE SHOPPING</Link>
             </button>
             <button
               className="btnCheckout"
               type="button"
               onClick={this.handleCheckOut}
             >
-              <Link>CHECK OUT</Link>
+              <Link to="/Product/MEN">CHECK OUT</Link>
             </button>
           </div>
         </div>
