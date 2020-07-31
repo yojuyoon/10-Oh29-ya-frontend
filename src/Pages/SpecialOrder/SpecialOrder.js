@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { ip } from "./../Login/ip";
 import SpecialContent from "../../Components/SpecialContent/SpecialContent";
+import API_URL from "../../config";
 import "./SpecialOrder.scss";
 
 class SpecialOrder extends React.Component {
@@ -10,12 +10,13 @@ class SpecialOrder extends React.Component {
   };
 
   componentDidMount = () => {
-    fetch(ip + "/product/specialorders", {
+    fetch(`${API_URL}/product/specialorders`, {
       method: "GET",
       header: JSON.stringify({}),
     })
       .then((res) => res.json())
       .then((res) => {
+        console.log(res);
         this.setState({
           data: res.data.map((data) => {
             return {
