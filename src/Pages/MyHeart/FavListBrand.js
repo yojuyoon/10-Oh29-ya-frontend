@@ -1,18 +1,16 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 
 class FavListTwoNineTV extends React.Component {
   render() {
     const style = {
-      background: "pink",
       height: "100vh",
-      color: "white",
       fontWeight: "bold",
-      fontSize: "60px",
+      fontSize: "20px",
       display: "flex",
       justifyContent: "center",
+      marginTop: "400px",
     };
-    return <div style={style}>Brand</div>;
+    return <div style={style}>하트한 내역이 없습니다.</div>;
   }
 }
 
