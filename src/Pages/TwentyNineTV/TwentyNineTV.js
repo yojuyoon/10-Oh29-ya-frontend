@@ -40,7 +40,7 @@ class TwentyNineTV extends React.Component {
   };
 
   getMyHeartData = () => {
-    fetch(`http://${API_URL}/mypage/heart/post`, {
+    fetch(`${API_URL}/mypage/heart/post`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),
