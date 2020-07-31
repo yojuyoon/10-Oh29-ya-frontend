@@ -18,7 +18,7 @@ class TwentyNineTV extends React.Component {
   }
 
   componentDidMount = () => {
-    fetch(`http://${API_URL}/media/recommend`, {
+    fetch(`${API_URL}/media/recommend`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),

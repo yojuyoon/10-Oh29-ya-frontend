@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import SpecialContent from "../../Components/SpecialContent/SpecialContent";
+import API_URL from "../../config";
 import "./SpecialOrder.scss";
 
 class SpecialOrder extends React.Component {
@@ -9,7 +10,7 @@ class SpecialOrder extends React.Component {
   };
 
   componentDidMount = () => {
-    fetch("http://3.17.144.255:8000/product/specialorders", {
+    fetch(`${API_URL}/product/specialorders`, {
       method: "GET",
       header: JSON.stringify({}),
     })

@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { ip } from "./../../Pages/Login/ip";
+import API_URL from "../../config";
 import ActiveIcon from "../ActiveLikeBtn/svg/ActiveIcon";
 import UnActiveIcon from "../ActiveLikeBtn/svg/UnActiveIcon";
 import "./DetailItem.scss";
@@ -32,8 +32,7 @@ class DetailItem extends React.Component {
   };
 
   componentDidMount = () => {
-    console.log("컴디마!!!!!!!!!!!!!");
-    fetch(`http://3.17.144.255:8000/product/${this.props.match.params.id}`, {
+    fetch(`${API_URL}/product/${this.props.match.params.id}`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -55,7 +54,7 @@ class DetailItem extends React.Component {
       input,
     } = this.state;
 
-    fetch(`${ip}/cart/add`, {
+    fetch(`${API_URL}/cart/add`, {
       method: "POST",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -90,7 +89,7 @@ class DetailItem extends React.Component {
       alert("로그인 먼저 해주세요");
       this.props.history.push("/Login");
     } else {
-      fetch("http://3.17.144.255:8000/product/like", {
+      fetch(`${API_URL}/product/like`, {
         method: "PATCH",
         headers: {
           Authorization: localStorage.getItem("token"),

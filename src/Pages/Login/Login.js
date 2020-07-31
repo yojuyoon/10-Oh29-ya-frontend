@@ -16,7 +16,7 @@ class Login extends React.Component {
   handlerlogin = () => {
     const { email, password, token, checked } = this.state;
 
-    fetch(`http://3.17.144.255:8000/account/sign-in`, {
+    fetch(`${API_URL}/account/sign-in`, {
       method: "POST",
       body: JSON.stringify({
         email,
