@@ -1,11 +1,13 @@
 import React from "react";
 import LeftNav from "./LeftNavItem/LeftNavItem";
 import "./NavLeft.scss";
-import categoryData from "./../data/categoryData";
+import { categoryData } from "./../data/categoryData";
 
 class MainLeftNav extends React.Component {
   render() {
     const { gender } = this.props;
+    const [menData, womenData] = categoryData;
+    const genderArr = gender === "MEN" ? menData : womenData;
 
     return (
       <div className="MainLeftNav">
@@ -18,25 +20,9 @@ class MainLeftNav extends React.Component {
             </li>
             <li className="categoryList">
               <ul>
-                {gender === "MEN"
-                  ? categoryData[0].map((item, i) => {
-                      return (
-                        <LeftNav
-                          item={item}
-                          gender={this.props.gender}
-                          key={i}
-                        />
-                      );
-                    })
-                  : categoryData[1].map((item, i) => {
-                      return (
-                        <LeftNav
-                          item={item}
-                          gender={this.props.gender}
-                          key={i}
-                        />
-                      );
-                    })}
+                {genderArr.map((item, i) => {
+                  return <LeftNav item={item} gender={gender} key={i} />;
+                })}
               </ul>
             </li>
           </ul>

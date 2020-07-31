@@ -32,6 +32,8 @@ class CategoryList extends React.Component {
   };
 
   render() {
+    const { handleSort } = this.props;
+
     return (
       <div className="CategoryList">
         <div>
@@ -66,16 +68,14 @@ class CategoryList extends React.Component {
                   <li onClick={() => this.handleFilterId(3)}>베스트순</li>
                   <li
                     onClick={
-                      (() => this.handleFilterId(4),
-                      this.props.handleSortAscending)
+                      (() => this.handleFilterId(4), () => handleSort("D"))
                     }
                   >
                     낮은가격순
                   </li>
                   <li
                     onClick={
-                      (() => this.handleFilterId(5),
-                      this.props.handleSortDescending)
+                      (() => this.handleFilterId(5), () => handleSort("A"))
                     }
                   >
                     높은가격순

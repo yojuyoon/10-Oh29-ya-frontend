@@ -1,6 +1,7 @@
 import React from "react";
 import "./ProductItem.scss";
 import { withRouter, Link } from "react-router-dom";
+import API_URL from "../../../Components/config";
 
 class ProductItem extends React.Component {
   constructor() {
@@ -34,7 +35,7 @@ class ProductItem extends React.Component {
       alert("로그인 먼저 해주세요");
       this.props.history.push("/Login");
     } else {
-      fetch("http://10.58.7.130:8000/product/like", {
+      fetch(`${API_URL}/product/like`, {
         method: "PATCH",
         headers: {
           Authorization: localStorage.getItem("token"),

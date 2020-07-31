@@ -1,4 +1,4 @@
-const categoryData = [
+export const categoryData = [
   [
     "상의",
     "셔츠",
@@ -26,5 +26,3 @@ const categoryData = [
     "수영복",
   ],
 ];
-
-export default categoryData;

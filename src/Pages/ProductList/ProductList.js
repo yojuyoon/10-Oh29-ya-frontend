@@ -1,10 +1,10 @@
 import React from "react";
 import "./ProductList.scss";
-// import "./LeftNav.scss";
 import LeftNav from "./LeftNav/LeftNav";
 import ProductItem from "./ProductItem/ProductItem";
 import CategoryList from "./CategoryList/CategoryList";
 import FilterNav from "./FilterNav/FilterNav";
+import API_URL from "../../Components/config";
 
 class ProductList extends React.Component {
   constructor() {
@@ -18,15 +18,12 @@ class ProductList extends React.Component {
 
   componentDidMount() {
     fetch(
-      `http://10.58.7.130:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`,
-
-      localStorage.getItem("token")
-        ? {
-            headers: {
-              Authorization: localStorage.getItem("token"),
-            },
-          }
-        : null
+      `${API_URL}/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`,
+      localStorage.getItem("token") && {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
     )
       .then((res) => res.json())
       .then((res) =>
@@ -37,16 +34,16 @@ class ProductList extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const { category, subcategory } = this.props.match.params;
+
     if (prevProps.match.params !== this.props.match.params) {
       fetch(
-        `http://10.58.7.130:8000/product?category=${this.props.match.params.category}&subcategory=${this.props.match.params.subcategory}`,
-        localStorage.getItem("token")
-          ? {
-              headers: {
-                Authorization: localStorage.getItem("token"),
-              },
-            }
-          : null
+        `${API_URL}/product?category=${category}&subcategory=${subcategory}`,
+        localStorage.getItem("token") && {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
       )
         .then((res) => res.json())
         .then((res) =>
@@ -61,16 +58,15 @@ class ProductList extends React.Component {
   }
 
   handleCreateCategories = () => {
+    const { itemData } = this.state;
     let detail_list = new Set();
 
-    for (let i = 0; i < this.state.itemData.length; i++) {
-      detail_list.add(this.state.itemData[i].detail);
+    for (let i = 0; i < itemData.length; i++) {
+      detail_list.add(itemData[i].detail);
     }
 
     this.setState({ detailList: [...detail_list] });
   };
-
-  /*********좌측 Nav *********/
 
   handleFilterDiscount = () => {
     const { itemData } = this.state;
@@ -94,26 +90,24 @@ class ProductList extends React.Component {
     const { itemData } = this.state;
 
     const filtered = itemData.filter((item) => {
-      return item.discount_rate
-        ? parseInt(item.discount_price) < 50000
-        : parseInt(item.price) < 50000;
+      return (
+        parseInt(item[item.discount_rate ? "discount_price" : "price"]) < 50000
+      );
     });
     this.setState({ itemData: filtered });
   };
 
-  //초기화
   handleFilterReset = () => {
-    const { originItemData } = this.state;
-
-    this.setState({ itemData: originItemData });
+    const { originItemData: itemData } = this.state;
+    this.setState({ itemData });
   };
 
   /*********상단 드롭다운 메뉴*********/
 
-  handleSortDescending = () => {
+  handleSort = (direction) => {
+    console.log(direction);
     const { itemData } = this.state;
     let tempData = [...itemData];
-    let price = "";
 
     for (let i = tempData.length - 1; i >= 0; i--) {
       for (let j = 0; j < i; j++) {
@@ -123,33 +117,16 @@ class ProductList extends React.Component {
         else j_price = tempData[j].price;
         if (tempData[j + 1].discount_rate)
           j2_price = tempData[j + 1].discount_price;
-        else j2_price = tempData[j + 1].price;
-        if (parseInt(j_price) < parseInt(j2_price)) {
-          let temp = tempData[j];
-          tempData[j] = tempData[j + 1];
-          tempData[j + 1] = temp;
-        }
-      }
-    }
-    this.setState({ itemData: tempData });
-  };
-
-  handleSortAscending = () => {
-    const { itemData } = this.state;
-    let tempData = [...itemData];
-    let price = "";
-
-    for (let i = tempData.length - 1; i >= 0; i--) {
-      for (let j = 0; j < i; j++) {
-        let j_price = 0;
-        let j2_price = 0;
+        const isAscending =
+          direction == "A"
+            ? parseInt(j_price) < parseInt(j2_price)
+            : parseInt(j_price) > parseInt(j2_price);
         if (tempData[j].discount_rate) j_price = tempData[j].discount_price;
         else j_price = tempData[j].price;
         if (tempData[j + 1].discount_rate)
           j2_price = tempData[j + 1].discount_price;
         else j2_price = tempData[j + 1].price;
-
-        if (parseInt(j_price) > parseInt(j2_price)) {
+        if (isAscending) {
           let temp = tempData[j];
           tempData[j] = tempData[j + 1];
           tempData[j + 1] = temp;
@@ -202,8 +179,7 @@ class ProductList extends React.Component {
           </div>
           <div className="right">
             <CategoryList
-              handleSortDescending={this.handleSortDescending}
-              handleSortAscending={this.handleSortAscending}
+              handleSort={this.handleSort}
               handleSortCreatedAt={this.handleSortCreatedAt}
               detailList={detailList}
             />
