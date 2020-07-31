@@ -37,8 +37,8 @@ class HeaderNav extends React.Component {
               </div>
               <div className="navMenuIcon">
                 <i className="fas fa-user" />
-                <i className="fas fa-heart" />
-                <Link to="/cart" className="fas fa-shopping-bag" />
+                <Link to="/Myheart" className="fas fa-heart" />
+                <Link to="/Cart" className="fas fa-shopping-bag" />
                 {localStorage.getItem("cart_count") && (
                   <span className="shoppingNumber">
                     {localStorage.getItem("cart_count")}
