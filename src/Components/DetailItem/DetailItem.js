@@ -1,13 +1,16 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { ip } from "./../../Pages/Login/ip";
+import ActiveIcon from "../ActiveLikeBtn/svg/ActiveIcon";
+import UnActiveIcon from "../ActiveLikeBtn/svg/UnActiveIcon";
 import "./DetailItem.scss";
 
 class DetailItem extends React.Component {
   state = {
     input: 1,
-    data: "",
-    heartLike: false,
+    data: {},
+    heartState: false,
+    heartCount: 0,
   };
 
   calculationHandler = (e) => {
@@ -29,12 +32,20 @@ class DetailItem extends React.Component {
   };
 
   componentDidMount = () => {
-    fetch(`${ip}/product/${this.props.match.params.id}`, {
+    console.log("컴디마!!!!!!!!!!!!!");
+    fetch(`http://3.17.144.255:8000/product/${this.props.match.params.id}`, {
       method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
     })
       .then((res) => res.json())
-      .then(({ data }) => {
-        this.setState({ data });
+      .then((res) => {
+        this.setState({
+          data: res.data,
+          heartState: res.data.user_like_pressed,
+          heartCount: res.data.like_num,
+        });
       });
   };
 
@@ -70,9 +81,39 @@ class DetailItem extends React.Component {
     );
   };
 
+  handleHeartItem = () => {
+    const {
+      data: { id },
+    } = this.state;
+
+    if (!localStorage.getItem("token")) {
+      alert("로그인 먼저 해주세요");
+      this.props.history.push("/Login");
+    } else {
+      fetch("http://3.17.144.255:8000/product/like", {
+        method: "PATCH",
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          product: id,
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          this.setState({
+            heartCount: res.like_data.like_num,
+            heartState: res.like_data.pressed,
+          });
+        });
+    }
+  };
+
   render() {
     const {
       input,
+      heartState,
+      heartCount,
       data: {
         brand_logo,
         brand,
@@ -90,6 +131,7 @@ class DetailItem extends React.Component {
       shoppingHandler,
       cardPrice,
       decimalRemove,
+      handleHeartItem,
     } = this;
 
     return (
@@ -113,8 +155,9 @@ class DetailItem extends React.Component {
               <div className="orderTitle">
                 <h1>{name}</h1>
               </div>
-              <div className="heartCenterContainer">
-                {/* heart 컴포넌트 입주 예정 */}
+              <div onClick={handleHeartItem} className="heartCenterContainer">
+                {!heartState ? <UnActiveIcon /> : <ActiveIcon />}
+                <p>{heartCount}</p>
               </div>
             </div>
             <p className="costPrice">{decimalRemove(price)}</p>
