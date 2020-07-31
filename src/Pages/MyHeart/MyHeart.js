@@ -75,14 +75,14 @@ class MyHeart extends React.Component {
 
   render() {
     const { handleClicked, componentHandler } = this;
-    const { activeId, productCount } = this.state;
+    const { activeId, productCount, feedCount } = this.state;
     return (
       <div className="MyHeart">
         <aside className="myHeartMenu">
           <div className="user">
             <h2 className="userName">윤지영님</h2>
             <span className="myHeartNumber">
-              나의 하트<span>11</span>
+              나의 하트<span>{productCount + feedCount}</span>
             </span>
             <span className="following">
               팔로잉<span>0</span>
@@ -153,7 +153,7 @@ class MyHeart extends React.Component {
               onClick={() => handleClicked(2)}
               className={activeId === 2 && "myheartCategoryClicked"}
             >
-              TV({this.state.feedCount})
+              TV({feedCount})
             </li>
             <li
               onClick={() => handleClicked(3)}
