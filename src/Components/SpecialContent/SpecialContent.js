@@ -72,7 +72,7 @@ class SpecialContent extends React.Component {
         <div className="imgContainer">
           <a
             href={
-              content.id === 26
+              content.id === 6
                 ? "https://wecode.co.kr/"
                 : "/DetailProduct/" + content.product_id
             }
