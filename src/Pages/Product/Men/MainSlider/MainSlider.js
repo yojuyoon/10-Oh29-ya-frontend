@@ -24,19 +24,19 @@ class MainSlider extends React.Component {
             <img src="http://img.29cm.co.kr/next-product/2020/07/16/24c4e2a720c046f6be107964c02f1d93_20200716232700.jpg?width=2000" />
           </div>
           <div>
-            <img src="http://img.29cm.co.kr/next-product/2020/07/16/91be5de2993948a08c804d53dffbd4e8_20200716232843.jpg?width=2000" />
+            <img src="http://img.29cm.co.kr/next-product/2020/07/25/54eb44ac4ccf4981adc855ec0dcc3245_20200725002928.jpg?width=2000" />
           </div>
           <div>
             <img src="http://img.29cm.co.kr/next-product/2020/07/16/8826a7a213824ebb91166b847acb3d0c_20200716233634.jpg?width=2000" />
           </div>
           <div>
-            <img src="http://img.29cm.co.kr/next-product/2020/07/16/629473ec8d674ed594d4e96f7155a82a_20200716233235.jpg?width=2000" />
+            <img src="http://img.29cm.co.kr/next-product/2020/07/25/56ff02c22b0049e3809f4aeba3ddb36a_20200725002654.jpg?width=2000" />
           </div>
           <div>
             <img src="http://img.29cm.co.kr/next-product/2020/07/16/e7292da155b14d4c9f862a4792753fae_20200716233732.jpg?width=2000" />
           </div>
           <div>
-            <img src="http://img.29cm.co.kr/next-product/2020/07/16/e7292da155b14d4c9f862a4792753fae_20200716233732.jpg?width=2000" />
+            <img src="http://img.29cm.co.kr/next-product/2020/07/25/413617071fb148b5b2b3e13faf2e00ef_20200725002401.jpg?width=2000" />
           </div>
         </Slider>
       </div>

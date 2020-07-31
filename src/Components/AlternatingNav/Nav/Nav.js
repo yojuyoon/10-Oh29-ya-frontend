@@ -56,7 +56,11 @@ class HeaderNav extends React.Component {
               <div className="categoryColumnContainer">
                 <div className="categoryColletion">
                   {navData.category.map(({ name, index }) => (
-                    <Link key={index} to="/Product" className="category">
+                    <Link
+                      key={index}
+                      to={`/Product/${name}`}
+                      className="category"
+                    >
                       {name}
                     </Link>
                   ))}

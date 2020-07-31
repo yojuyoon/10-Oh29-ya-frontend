@@ -14,26 +14,32 @@ const priceRangeArr = [
 
 class FilterNav extends React.Component {
   render() {
+    const {
+      handleFilterReset,
+      handleFilterFreeShipping,
+      handleFilterDiscount,
+      handleFilterRate,
+    } = this.props;
+
     return (
-      <div>
+      <div className="FilterNav">
         <div className="filterTop">
           <span>필터</span>
-          <span className="reset">초기화</span>
+          <span className="reset" onClick={handleFilterReset}>
+            초기화
+          </span>
         </div>
         <div className="filterBody">
           <div className="filterBox">
             <div className="filterTitle">상품정보</div>
             <ul className="filterContents">
-              <li className="eachFilter">
+              <li className="eachFilter" onClick={handleFilterFreeShipping}>
                 <span>
                   <input type="checkbox"></input>
                   <label title="품절상품 제외">무료배송</label>
                 </span>
               </li>
-              <li
-                className="eachFilter"
-                onClick={this.props.handleFilterDiscount}
-              >
+              <li className="eachFilter" onClick={handleFilterDiscount}>
                 <span>
                   <input type="checkbox"></input>
                   <label title="품절상품 제외">할인상품만</label>
@@ -52,10 +58,7 @@ class FilterNav extends React.Component {
             <ul className="filterContents">
               {priceRangeArr.map((range) => {
                 return (
-                  <li
-                    className="eachFilter"
-                    onClick={this.props.handleFilterRate}
-                  >
+                  <li className="eachFilter" onClick={handleFilterRate}>
                     <span>
                       <input type="radio"></input>
                       <label _ngcontent-c19="" title="품절상품 제외">

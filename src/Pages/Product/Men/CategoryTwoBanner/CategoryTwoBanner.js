@@ -1,7 +1,7 @@
 import React from "react";
-import "./CategoryTwoBanner.scss";
 import TwoBannerItem from "./TwoBannerItem/TwoBannerItem";
-import itemData from "../../data/womenItemData.js";
+import "./CategoryTwoBanner.scss";
+import itemData from "../data/menItemData";
 
 class CategoryTwoBanner extends React.Component {
   render() {

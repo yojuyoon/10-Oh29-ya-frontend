@@ -1,4 +1,4 @@
-@import "../../../../Styles/common.scss";
+@import "../../../Styles/common.scss";
 
 .MainLeftNav {
   .categoryInner {
@@ -33,8 +33,6 @@
 
       li {
         height: 28px;
-        display: block;
-        width: 100%;
       }
     }
   }
