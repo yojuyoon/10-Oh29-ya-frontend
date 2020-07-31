@@ -27,6 +27,10 @@ class MyHeart extends React.Component {
   };
 
   componentDidMount() {
+    // if (!localStorage.getItem("token")) {
+    //   alert("로그인 먼저 해주세요");
+    //   this.props.history.push("/Login");
+    // } else {
     fetch(`${API_URL}/mypage/heart/post`, {
       method: "GET",
       headers: {
@@ -39,7 +43,7 @@ class MyHeart extends React.Component {
           feedCount: res.my_heart_list.length,
         })
       );
-
+    // }
     fetch(`${API_URL}/mypage/heart/product`, {
       method: "GET",
       headers: {
