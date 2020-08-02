@@ -73,15 +73,13 @@
       height: 18px;
       margin-top: 6px;
       padding: 0 8px;
-      border: 1px solid #e4e4e4;
-      border-radius: 1px;
       font-size: 10px;
       color: #5d5d5d;
       line-height: 18px;
     }
 
     .heartArea {
-      display: flex;
+      display: inline-block;
       margin-top: 13px;
 
       .count {
@@ -91,8 +89,6 @@
       }
 
       .heart {
-        //   display: inline-block;
-        //   width: 18px;
         display: flex;
         height: 18px;
         margin-right: 14px;

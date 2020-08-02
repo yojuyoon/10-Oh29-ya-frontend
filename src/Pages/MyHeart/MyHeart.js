@@ -2,8 +2,8 @@ import React from "react";
 import FavListProduct from "./FavListProduct";
 import FavListPost from "./FavListPost";
 import FavListBrand from "./FavListBrand";
-import API_URL from "../../config";
 import TwentyNineTV from "../TwentyNineTV/TwentyNineTV";
+import API_URL from "../../config";
 import "./MyHeart.scss";
 
 class MyHeart extends React.Component {
@@ -11,7 +11,6 @@ class MyHeart extends React.Component {
     favTwentyNineList: [],
     feedCount: "",
     favProductList: [],
-    productCount: "",
     activeId: 0,
     titleClicked: false,
   };
@@ -20,15 +19,22 @@ class MyHeart extends React.Component {
     this.setState({ activeId: id, titleClicked: true });
   };
 
-  getLength = (num) => {
-    this.setState({
-      count: num,
-    });
-  };
+  getProductData() {
+    fetch(`${API_URL}/mypage/heart/product`, {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((res) =>
+        this.setState({
+          favProductList: res.data,
+        })
+      );
+  }
 
-  componentDidMount() {
+  getTVData() {
     fetch(`${API_URL}/mypage/heart/post`, {
-      method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),
       },
@@ -39,20 +45,12 @@ class MyHeart extends React.Component {
           feedCount: res.my_heart_list.length,
         })
       );
+  }
 
-    fetch(`${API_URL}/mypage/heart/product`, {
-      method: "GET",
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-      .then((res) => res.json())
-      .then((res) =>
-        this.setState({
-          favProductList: res.data,
-          productCount: res.data.length,
-        })
-      );
+  componentDidMount() {
+    const { getProductData, getTVData } = this;
+    getProductData();
+    getTVData();
   }
 
   componentHandler = (id) => {
@@ -67,7 +65,7 @@ class MyHeart extends React.Component {
       case 3:
         return <FavListPost />;
       default:
-        return this.state.favProductList.length ? (
+        return favProductList.length ? (
           <FavListProduct item={favProductList} />
         ) : null;
     }
@@ -75,14 +73,14 @@ class MyHeart extends React.Component {
 
   render() {
     const { handleClicked, componentHandler } = this;
-    const { activeId, productCount, feedCount } = this.state;
+    const { activeId, feedCount, favProductList } = this.state;
     return (
       <div className="MyHeart">
         <aside className="myHeartMenu">
           <div className="user">
             <h2 className="userName">윤지영님</h2>
             <span className="myHeartNumber">
-              나의 하트<span>{productCount + feedCount}</span>
+              나의 하트<span>{favProductList.length + feedCount}</span>
             </span>
             <span className="following">
               팔로잉<span>0</span>
@@ -141,7 +139,7 @@ class MyHeart extends React.Component {
               onClick={() => handleClicked(0)}
               className={activeId === 0 && "myheartCategoryClicked"}
             >
-              PRODUCT({productCount})
+              PRODUCT({favProductList.length})
             </li>
             <li
               onClick={() => handleClicked(1)}

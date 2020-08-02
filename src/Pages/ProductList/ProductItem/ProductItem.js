@@ -65,7 +65,6 @@ class ProductItem extends React.Component {
       discount_price,
       id,
     } = data;
-
     return (
       <li className="productItem">
         <div className="imgBox">

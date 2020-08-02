@@ -99,6 +99,25 @@ class Cart extends React.Component {
     return newData;
   };
 
+  handleLeaveCart = () => {
+    const { cartData } = this.state;
+    let checkOut = [];
+    let newData = [];
+    var tempObj = {};
+    for (let i = 0; i < cartData.length; i++) {
+      tempObj = {};
+      tempObj["id"] = cartData[i].id;
+      tempObj["quantity"] = cartData[i].quantity;
+      checkOut = [...checkOut, tempObj];
+    }
+    newData = [
+      { product_list: checkOut },
+      { total: this.handleSumToalPrice() },
+    ];
+    localStorage.setItem("cart_count", cartData.length);
+    return newData;
+  };
+
   handleSum = (itemId) => {
     const { cartData } = this.state;
     let temp = [];
@@ -165,7 +184,7 @@ class Cart extends React.Component {
   }
 
   componentWillUnmount() {
-    let newData = this.handleCheckOut();
+    let newData = this.handleLeaveCart();
 
     fetch("http://10.58.4.24:8000/cart/update", {
       method: "PATCH",
