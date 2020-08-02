@@ -12,7 +12,7 @@ class TwentyNineTVFeedComponent extends React.Component {
 
   render() {
     const {
-      onClick,
+      modalHandler,
       feed: {
         thumbnail_image,
         staff_logo,
@@ -31,7 +31,7 @@ class TwentyNineTVFeedComponent extends React.Component {
           <div className="feedContent">
             <div className="container">
               <img
-                onClick={onClick}
+                onClick={modalHandler}
                 alt="feed"
                 className="feedImg"
                 src={thumbnail_image}
@@ -50,13 +50,13 @@ class TwentyNineTVFeedComponent extends React.Component {
               </div>
               <div
                 className={
-                  content.length > 0 && (
+                  content.length && (
                     <div className="feedComment">
                       <p>{content}</p>
                     </div>
                   )
                 }
-              ></div>
+              />
               <div className="feedTag">{hashtag.join(" ")}</div>
               <ActiveLikeBtn
                 handleIcon={this.props.handleIcon}

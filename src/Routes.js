@@ -39,7 +39,6 @@ class Routes extends React.Component {
           <Route
             exact
             path="/TwentyNineTV"
-            path="/TwentyNineTV"
             render={() => <TwentyNineTV type="total" />}
           />
           <Route exact path="/Footer" component={Footer} />

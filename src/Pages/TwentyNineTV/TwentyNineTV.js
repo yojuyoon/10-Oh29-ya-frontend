@@ -116,7 +116,7 @@ class TwentyNineTV extends React.Component {
           {data.map((feed, index) => {
             return (
               <TwentyNineTVFeedComponent
-                onClick={() => {
+                modalHandler={() => {
                   showModal();
                   setModalIdx(index);
                 }}
@@ -136,7 +136,7 @@ class TwentyNineTV extends React.Component {
                   ? !idxNextHandler
                   : idxNextHandler
               }
-              idxPrevHandler={currentIdx > 0 && idxPrevHandler}
+              idxPrevHandler={currentIdx && idxPrevHandler}
             />
           )}
         </div>

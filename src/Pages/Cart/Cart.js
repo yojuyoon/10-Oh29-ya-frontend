@@ -99,6 +99,25 @@ class Cart extends React.Component {
     return newData;
   };
 
+  handleLeaveCart = () => {
+    const { cartData } = this.state;
+    let checkOut = [];
+    let newData = [];
+    var tempObj = {};
+    for (let i = 0; i < cartData.length; i++) {
+      tempObj = {};
+      tempObj["id"] = cartData[i].id;
+      tempObj["quantity"] = cartData[i].quantity;
+      checkOut = [...checkOut, tempObj];
+    }
+    newData = [
+      { product_list: checkOut },
+      { total: this.handleSumToalPrice() },
+    ];
+    localStorage.setItem("cart_count", cartData.length);
+    return newData;
+  };
+
   handleSum = (itemId) => {
     const { cartData } = this.state;
     let temp = [];
@@ -165,7 +184,7 @@ class Cart extends React.Component {
   }
 
   componentWillUnmount() {
-    let newData = this.handleCheckOut();
+    let newData = this.handleLeaveCart();
 
     fetch("http://10.58.4.24:8000/cart/update", {
       method: "PATCH",
@@ -189,11 +208,11 @@ class Cart extends React.Component {
           <ol>
             <li className="inCart">
               <span>01 SHOPPING BAG</span>
-              <i class="fas fa-chevron-right"></i>
+              <i className="fas fa-chevron-right"></i>
             </li>
             <li className="orderNow">
               <span className="greyed">02 ORDER</span>
-              <i class="fas fa-chevron-right"></i>
+              <i className="fas fa-chevron-right"></i>
             </li>
             <li className="orderConfirmed">
               <span className="greyed">03 ORDER CONFIRMED</span>
@@ -270,14 +289,14 @@ class Cart extends React.Component {
           </div>
           <div className="btnOrderWrap">
             <button className="btnShopping" type="button">
-              <Link>CONTINUE SHOPPING</Link>
+              <Link to="/Product/MEN">CONTINUE SHOPPING</Link>
             </button>
             <button
               className="btnCheckout"
               type="button"
               onClick={this.handleCheckOut}
             >
-              <Link>CHECK OUT</Link>
+              <Link to="/Product/MEN">CHECK OUT</Link>
             </button>
           </div>
         </div>

@@ -13,7 +13,7 @@ class FeedModal extends React.Component {
     };
   }
 
-  HandleSnsModal = () => {
+  handleSnsModal = () => {
     const { shareModal } = this.state;
     this.setState({ shareModal: !shareModal });
   };
